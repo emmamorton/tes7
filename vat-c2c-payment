@@ -1,0 +1,1388 @@
+{
+  "_id": "notify-pay-import-vat-great-britain-northern-ireland-emma",
+  "version": 1,
+  "formName": {
+    "en": "Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment"
+  },
+  "description": {
+    "en": "Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment"
+  },
+  "emailCodeParameters": [
+    {
+      "value": "Confirm your email address - Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment",
+      "emailTemplateVariable": "emailSubjectCode"
+    },
+    {
+      "value": "Confirm your email address",
+      "emailTemplateVariable": "emailHeading"
+    },
+    {
+      "value": "'Apply for a refund on import VAT you have paid on items sent or carried from Great Britain to Northern Ireland'",
+      "emailTemplateVariable": "emailFormName"
+    },
+    {
+      "value": "HMRC",
+      "emailTemplateVariable": "emailContact"
+    },
+    {
+      "value": "From the HMRC Customer Services Group",
+      "emailTemplateVariable": "emailTeam"
+    }
+  ],
+  "emailTemplateId": "fullyDynamicEmail_confirmation",
+  "emailParameters": [
+    {
+      "value": "${emailSubjectConfirmation}",
+      "emailTemplateVariable": "emailSubjectConfirmation"
+    },
+    {
+      "value": "${heading3}",
+      "emailTemplateVariable": "heading3"
+    },
+    {
+      "value": "${heading10}",
+      "emailTemplateVariable": "heading10"
+    },
+    {
+      "value": "${para1}",
+      "emailTemplateVariable": "para1"
+    },
+    {
+      "value": "${para2}",
+      "emailTemplateVariable": "para2"
+    },
+    {
+      "value": "${para3}",
+      "emailTemplateVariable": "para3"
+    },
+    {
+      "value": "${para4}",
+      "emailTemplateVariable": "para4"
+    },
+    {
+      "value": "${para5}",
+      "emailTemplateVariable": "para5"
+    },
+    {
+      "value": "${para6}",
+      "emailTemplateVariable": "para6"
+    },
+    {
+      "value": "${para7}",
+      "emailTemplateVariable": "para7"
+    },
+    {
+      "value": "${para8}",
+      "emailTemplateVariable": "para8"
+    },
+    {
+      "value": "${para9}",
+      "emailTemplateVariable": "para9"
+    },
+    {
+      "value": "${bold8}",
+      "emailTemplateVariable": "bold8"
+    },
+    {
+      "value": "${para10}",
+      "emailTemplateVariable": "para10"
+    },
+    {
+      "value": "${para11}",
+      "emailTemplateVariable": "para11"
+    },
+    {
+      "value": "${para12}",
+      "emailTemplateVariable": "para12"
+    },
+    {
+      "value": "${para13}",
+      "emailTemplateVariable": "para13"
+    },
+    {
+      "value": "${para14}",
+      "emailTemplateVariable": "para14"
+    },
+    {
+      "value": "${bold11}",
+      "emailTemplateVariable": "bold11"
+    }
+  ],
+  "expressions": {
+    "userName": "fullName orElse auth.itmpName",
+    "email": "altEmail orElse auth.email",
+    "heading3": "'What you need to do next'",
+    "heading10": "'Why you are receiving this email'",
+    "para1": "concat('Dear',' ',fullName)",
+    "para2": "'We have received your notification about the amount of VAT owed on goods moved to Northern Ireland.'",
+    "para3": "'If you have already paid, you do not need to do anything.'",
+    "para4": "'If you have not yet paid the VAT you owe, do this as soon as possible.'",
+    "para5": "'1. Go to GOV.UK'",
+    "para6": "'2. Search for ‘Pay taxes, penalties or enquiry settlements’'",
+    "para7": "'3. Follow the payment instructions on the page, using the payment details in this email.'",
+    "para8": "'Your payment reference: '",
+    "para9": "concat('Payment amount: £',amountMoney)",
+    "para10": "'We send a confirmation email for all forms submitted online.'",
+    "para11": "'If you need to contact us, quote the form submission reference number: '",
+    "para12": "'If we need to contact you, we will use the details you provided.'",
+    "para13": "'For security reasons, we have not included the details you submitted.'",
+    "para14": "'From HMRC Customer Services Group'",
+    "bold8": "concat('XVCC',substring(form.submissionReference,0,4),substring(form.submissionReference,5,9),substring(form.submissionReference,10,14))",
+    "bold11": "form.submissionReference",
+    "emailSubjectConfirmation": "'You have notified HMRC of VAT owed on goods moved to Northern Ireland'",
+    "paymentReference": "concat('XVC',substring(form.submissionReference,0,4),substring(form.submissionReference,5,9),substring(form.submissionReference,10,14))",
+    "fullNameITMP": "if user.affinityGroup = 'individual' then capitalizeAll(lowercase(auth.itmpName)) else ''",
+    "ninoGG": "if user.affinityGroup = 'individual' then auth.payenino else ''",
+    "dobGG": "if user.affinityGroup = 'individual' then auth.itmpDateOfBirth else ''",
+    "saUtrGG": "if user.affinityGroup = 'individual' then auth.sautr else ''",
+    "ctUtrGG": "if user.affinityGroup = 'organisation' then auth.ctutr else ''"
+  },
+  "booleanExpressions": {
+    "isBusiness": "user.affinityGroup = 'organisation'"
+  },
+  "expressionsOutput": [
+    "fullNameITMP",
+    "ninoGG",
+    "dobGG",
+    "saUtrGG",
+    "ctUtrGG"
+  ],
+  "authConfig": {
+    "authModule": "hmrc",
+    "agentAccess": "denyAnyAgentAffinityUser"
+  },
+  "sections": [
+    {
+      "includeIf": "${user.affinityGroup = 'individual' && auth.sautr = '' && auth.payenino = ''}",
+      "title": {
+        "en": "You need to verify your identity",
+        "cy": "Ni allwch ddefnyddio’r gwasanaeth hwn"
+      },
+      "continueIf": false,
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "id": "authNotMetIndividual",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoType": "noformat",
+          "infoText": {
+            "en": "To access this service, you must first verify your identity. <a href='${'https://www.gov.uk/using-your-gov-uk-one-login/proving-your-identity'}' target='_self'>Find out how to verify your identity (opens in new tab)</a>. "
+          }
+        },
+        {
+          "type": "info",
+          "id": "cantVerifyInfo",
+          "infoType": "noformat",
+          "infoText": "<h2 class='govuk-heading-m'>If you cannot verify your identity</h2><p class='govuk-body'> If you need to make a payment of import VAT, contact the VAT C2C payments team by email: xxxxx@gov.uk \n\n Provide details of why you need to make a payment for import VAT in your email. Do not include your username or password for your Government Gateway account. \n\n You can <a href='${link.signOut}' target='_self'>sign out of this service</a>."
+        }
+      ]
+    },
+    {
+      "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr = ''}",
+      "title": {
+        "en": "You need to register for Corporation Tax before using this service"
+      },
+      "continueIf": false,
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "id": "authNotMetOrganisation",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoType": "noformat",
+          "infoText": {
+            "en": "To access this service, you need to <a href='https://www.gov.uk/limited-company-formation/add-corporation-tax-services-to-business-tax-account?step-by-step-nav=37e4c035-b25c-4289-b85c-c6d36d11a763'>add Corporation Tax services to your business tax account (opens in new tab)</a>."
+          }
+        },
+        {
+          "type": "info",
+          "id": "contactVatC2Cteam2",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoType": "noformat",
+          "infoText": {
+            "en": "<h2 class='govuk-heading govuk-heading-m'>If you cannot add Corporation Tax to your account</h2>If you need to make a payment of import VAT, contact the VAT C2C payments team by email: xxxxx@gov.uk \n\n Provide details of why you need to make a payment for import VAT in your email. Do not include your username or password for your Government Gateway account. \n\n You can <a href='${link.signOut}' target='_self'>sign out of this service</a>."
+          }
+        }
+      ]
+    },
+    {
+      "includeIf": "${user.affinityGroup = 'individual'}",
+      "title": "Who is making a payment?",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "choice",
+          "id": "whoIsApplyingChoice",
+          "notPII": true,
+          "shortName": {
+            "en": "Who is making a payment"
+          },
+          "choices": [
+            {
+              "en": "An individual",
+              "value": "individual"
+            },
+            {
+              "en": "A business",
+              "value": "business"
+            }
+          ],
+          "hints": [
+            "",
+            "For example, a sole trader, or a partner in an ordinary partnership"
+          ]
+        }
+      ]
+    },
+    {
+      "title": [
+        {
+          "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your sign in details"
+        }
+      ],
+      "fields": [
+        {
+          "id": "entityDetails",
+          "type": "miniSummaryList",
+          "displayInSummary": true,
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "rows": [
+            {
+              "includeIf": "${auth.itmpName !='' && user.affinityGroup = 'individual'}",
+              "key": {
+                "en": "Full name"
+              },
+              "value": "${capitalizeAll(lowercase(auth.itmpName))}"
+            },
+            {
+              "includeIf": "${auth.payenino !='' && user.affinityGroup = 'individual'}",
+              "key": {
+                "en": "National Insurance number",
+                "cy": "Rhif Yswiriant Gwladol"
+              },
+              "value": "${auth.payenino}"
+            },
+            {
+              "includeIf": "${auth.itmpDateOfBirth !='' && user.affinityGroup = 'individual'}",
+              "key": {
+                "en": "Date of birth",
+                "cy": "Dyddiad geni"
+              },
+              "value": "${auth.itmpDateOfBirth}"
+            },
+            {
+              "includeIf": "${auth.sautr !='' && user.affinityGroup = 'individual'}",
+              "key": {
+                "en": "Self Assessment Unique Taxpayer Reference"
+              },
+              "value": "${auth.sautr}"
+            },
+            {
+              "includeIf": "${auth.ctutr !='' && user.affinityGroup = 'organisation'}",
+              "key": {
+                "en": "Corporation Tax Unique Taxpayer Reference"
+              },
+              "value": "${auth.ctutr}"
+            }
+          ]
+        }
+      ],
+      "dataRetrieve": [
+        {
+          "type": "ninoInsights",
+          "id": "ninoCheck",
+          "parameters": {
+            "nino": "${auth.payenino}"
+          }
+        }
+      ],
+      "confirmation": {
+        "question": {
+          "id": "areEntityDetailsCorrectChoice",
+          "type": "choice",
+          "labelSize": "m",
+          "shortName": [
+            {
+              "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
+              "en": "Corporation Tax UTR is correct"
+            },
+            {
+              "en": "Government Gateway account details correct"
+            }
+          ],
+          "errorMessage": [
+            {
+              "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
+              "en": "Select yes if this is the Corporation Tax UTR for the business"
+            },
+            {
+              "en": "Select yes if your account details are correct"
+            }
+          ],
+          "label": [
+            {
+              "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
+              "en": "Is this the Corporation Tax Unique Taxpayer Reference for the business?"
+            },
+            {
+              "en": "Are these your details?",
+              "cy": "Ai dyma’ch manylion?"
+            }
+          ],
+          "format": "yesno"
+        }
+      }
+    },
+    {
+      "includeIf": "${areEntityDetailsCorrectChoice contains 1}",
+      "title": "You cannot access this service from this account",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "id": "noFormatInfoBoxExit",
+          "label": "Information",
+          "infoText": "To access this service you must sign in with the Government Gateway user ID of an account linked to your details.",
+          "infoType": "noformat"
+        },
+        {
+          "type": "choice",
+          "id": "ggAccountDetailsIncorrectChoice",
+          "label": "What do you want to do?",
+          "labelSize": "m",
+          "shortName": "What do you want to do",
+          "errorMessage": "Select whether you want to sign in with a different account or sign out of this service",
+          "choices": [
+            "Sign in with a different account",
+            "Sign out of this service"
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "if": "${ggAccountDetailsIncorrectChoice = 0}",
+          "redirectUrl": "${link.newSession}"
+        },
+        {
+          "if": "${ggAccountDetailsIncorrectChoice = 1}",
+          "redirectUrl": "${link.signOut}"
+        }
+      ]
+    },
+    {
+      "includeIf": "${user.affinityGroup = 'individual' && auth.itmpAddress != ''}",
+      "title": {
+        "en": "Check your address"
+      },
+      "id": "ggCheckAddress",
+      "shortName": "Your contact details",
+      "fields": [
+        {
+          "id": "itmpAddressPlayback",
+          "type": "info",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoText": {
+            "en": "${auth.itmpAddress}",
+            "cy": "${auth.itmpAddress}"
+          },
+          "infoType": "noformat"
+        },
+        {
+          "id": "itmpAddressUk",
+          "type": "address",
+          "label": {
+            "en": "Address",
+            "cy": "Cyfeiriad"
+          },
+          "includeIf": "${auth.itmpAddress.country = ''}",
+          "value": "${auth.itmpAddress}",
+          "submitMode": "summaryinfoonly"
+        },
+        {
+          "id": "itmpAddressOverseas",
+          "type": "overseasAddress",
+          "label": {
+            "en": "Address",
+            "cy": "Cyfeiriad"
+          },
+          "includeIf": "${auth.itmpAddress.country != ''}",
+          "value": "${auth.itmpAddress}",
+          "submitMode": "summaryinfoonly"
+        }
+      ],
+      "confirmation": {
+        "question": {
+          "id": "yourAddressChoice",
+          "type": "choice",
+          "labelSize": "m",
+          "shortName": {
+            "en": "Is address correct",
+            "cy": "A yw’r cyfeiriad yn gywir"
+          },
+          "errorMessage": {
+            "en": "Select yes if this is your address",
+            "cy": "Dewiswch ‘Iawn’ os mai’ch cyfeiriad chi yw hwn"
+          },
+          "label": {
+            "en": "Is this your current address?"
+          },
+          "format": "yesno"
+        }
+      }
+    },
+    {
+      "title": "You need to update your address",
+      "continueIf": false,
+      "includeIf": "${yourAddressChoice contains 1}",
+      "fields": [
+        {
+          "id": "addressMessage",
+          "type": "info",
+          "label": "",
+          "infoText": "Because you told us your address has changed, you need to update this before you can continue with this service. <ol><li> [Update your personal details (opens in new tab)](https://www.gov.uk/tell-hmrc-change-of-details). </li><li>Return to this tab.</li><li>Check and confirm your new address on the next page.</li></ol> \n\n Because it may take up to 24 hours before your new address is visible in this service, you may need to come back later and sign in again.\n\n We have saved your progress.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "postUpdateButton",
+          "type": "info",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoText": {
+            "en": "<a href='${link.ggCheckAddress}' class='govuk-button' role='button' target='_self' >Check and confirm new address</a>"
+          },
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "includeIf": "${isBusiness}",
+      "caption": {
+        "en": "Business details"
+      },
+      "title": [
+        {
+          "includeIf": "${whoIsApplyingChoice contains 'business'}",
+          "en": "Are you registered for VAT?"
+        },
+        {
+          "en": "Is the business registered for VAT?"
+        }
+      ],
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "choice",
+          "helpText": "Only use this service to pay import VAT if you are not registered for VAT.",
+          "id": "registeredForVATchoice",
+          "notPII": true,
+          "shortName": {
+            "en": "Registered for VAT"
+          },
+          "format": "yesno"
+        }
+      ]
+    },
+    {
+      "includeIf": "${registeredForVATchoice contains 0}",
+      "caption": {
+        "en": "Business details"
+      },
+      "title": {
+        "en": "You cannot use this service to make an import VAT payment"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "id": "registeredVATexit",
+          "label": "VAT registered exit",
+          "infoType": "noformat",
+          "infoText": [
+            {
+              "includeIf": "${whoIsApplyingChoice contains 'business'}",
+              "en": "Because you are already registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now [sign out of this service](${link.signOut})."
+            },
+            {
+              "en": "Because the business is registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now [sign out of this service](${link.signOut})."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${user.affinityGroup = 'organisation'}",
+      "caption": {
+        "en": "Business details"
+      },
+      "title": {
+        "en": "What is the name of the business?"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "text",
+          "id": "businessNameEntered",
+          "shortName": {
+            "en": "Business name"
+          },
+          "errorShortName": {
+            "en": "the name of the business"
+          },
+          "errorShortNameStart": {
+            "en": "The name of the business"
+          },
+          "format": "text"
+        }
+      ]
+    },
+    {
+      "caption": {
+        "en": "About the import VAT payment"
+      },
+      "title": "Did the items arrive in Northern Ireland on or after ${TODAY -4y}?",
+      "shortName": {
+        "en": "About the import VAT payment"
+      },
+      "fields": [
+        {
+          "id": "arrivedNI4Years",
+          "type": "choice",
+          "helpText": "You only need to pay import VAT on items that arrived in Northern Ireland within the last 4 years.",
+          "choices": [
+            "Yes, the items arrived on or after ${TODAY -4y}",
+            "No, the items arrived more than 4 years ago"
+          ],
+          "errorMessage": {
+            "en": "Select yes if the items arrived in Northern Ireland within the last 4 years"
+          },
+          "shortName": {
+            "en": "Items arrived in Northern Ireland within last 4 years"
+          }
+        }
+      ]
+    },
+    {
+      "includeIf": "${arrivedNI4Years contains 1}",
+      "caption": {
+        "en": "About the import VAT payment"
+      },
+      "continueIf": false,
+      "title": "You do not need to make an import VAT payment",
+      "fields": [
+        {
+          "id": "dateBeforeVATrulesChangedInfo",
+          "type": "info",
+          "infoType": "noformat",
+          "infoText": "You do not need to pay import VAT on items that arrived in Northern Ireland more than 4 years ago. \n\n You can <a href='${link.signOut}' target='_self'>sign out of this service.</a>"
+        }
+      ]
+    },
+    {
+      "caption": {
+        "en": "About the import VAT payment"
+      },
+      "title": "Import VAT you owe on items sent or carried to Northern Ireland",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "infoType": "noformat",
+          "id": "howToCalculateVATGoodsShippedNI2",
+          "infoText": "To check the amount of import VAT you owe, <a href='https://www.gov.uk/guidance/how-vat-will-apply-to-goods-moving-between-great-britain-and-northern-ireland#if-you-travel-with-goods-by-air-or-sea-between-great-britain-and-northern-ireland'> check the VAT rates guidance page (opens in new tab)."
+        },
+        {
+          "id": "amountVATowed",
+          "type": "text",
+          "label": "How much import VAT do you owe?",
+          "helpText": "Enter the amount in GBP.",
+          "labelSize": "m",
+          "format": "positiveSterling",
+          "shortName": "Import VAT due",
+          "validators": [
+            {
+              "validIf": "${amountVATowed > 0}",
+              "errorMessage": {
+                "en": "Enter an amount greater than £0"
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${amountVATowed >= 18000}",
+      "title": {
+        "en": "Is your total taxable turnover over £90,000?"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "taxableProfitAboveThresholdchoice",
+          "type": "choice",
+          "format": "yesno",
+          "errorMessage": {
+            "en": "Select yes if your total taxable turnover is over £90,000"
+          },
+          "shortName": {
+            "en": "Taxable income in excess of £90,000"
+          }
+        }
+      ]
+    },
+    {
+      "includeIf": "${taxableProfitAboveThresholdchoice contains 0}",
+      "caption": {
+        "en": "About the import VAT payment"
+      },
+      "continueIf": false,
+      "title": "You need to register for VAT",
+      "fields": [
+        {
+          "id": "vatOwedAboveThresholdInfo",
+          "type": "info",
+          "infoType": "noformat",
+          "infoText": "You qualify for VAT registration, and so cannot use this form to pay import VAT. Instead, you must <a href='https://www.gov.uk/register-for-vat/how-register-for-vat'> register for VAT (opens in new tab)."
+        }
+      ]
+    },
+    {
+      "includeIf": "${auth.itmpName = ''}",
+      "caption": {
+        "en": "Contact details"
+      },
+      "shortName": {
+        "en": "Contact details"
+      },
+      "title": {
+        "en": "What is your full name?"
+      },
+      "fields": [
+        {
+          "id": "fullName",
+          "type": "text",
+          "format": "text",
+          "shortName": {
+            "en": "Your full name"
+          },
+          "errorShortName": {
+            "en": "your full name"
+          },
+          "errorShortNameStart": {
+            "en": "Your full name"
+          }
+        }
+      ]
+    },
+    {
+      "includeIf": "${(user.affinityGroup = 'individual' && auth.itmpAddress = '') || user.affinityGroup = 'organisation'}",
+      "caption": [
+        {
+          "includeIf": "${isBusiness}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your details"
+        }
+      ],
+      "title": [
+        {
+          "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+          "en": "Is your residential address in the United Kingdom?"
+        },
+        {
+          "en": "Is the business address in the United Kingdom?"
+        }
+      ],
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "addressUKorOverseas",
+          "type": "choice",
+          "labelSize": "m",
+          "shortName": [
+            {
+              "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+              "en": "Has UK residential address"
+            },
+            {
+              "en": "Business address in UK"
+            }
+          ],
+          "errorMessage": {
+            "en": "Select whether your address is in the United Kingdom or overseas"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "choices": [
+            {
+              "en": "Yes"
+            },
+            {
+              "en": "No, its overseas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${addressUKorOverseas contains 0}",
+      "caption": [
+        {
+          "includeIf": "${isBusiness}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your details"
+        }
+      ],
+      "title": [
+        {
+          "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+          "en": "Find your UK residential address"
+        },
+        {
+          "en": "Find the business' UK address"
+        }
+      ],
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "postcodeLookup",
+          "id": "ukAddress",
+          "label": "Address",
+          "shortName": [
+            {
+              "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+              "en": "UK residential address"
+            },
+            {
+              "en": "UK business address"
+            }
+          ],
+          "chooseAddressLabel": "Choose the UK address",
+          "confirmAddressLabel": "Confirm your UK address"
+        }
+      ]
+    },
+    {
+      "includeIf": "${addressUKorOverseas contains 1}",
+      "caption": [
+        {
+          "includeIf": "${isBusiness}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your details"
+        }
+      ],
+      "title": [
+        {
+          "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+          "en": "What is your overseas residential address?"
+        },
+        {
+          "en": "What is the overseas business address?"
+        }
+      ],
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "overseasAddress",
+          "type": "overseasAddress",
+          "shortName": [
+            {
+              "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+              "en": "Overseas residential address"
+            },
+            {
+              "en": "Overseas business address"
+            }
+
+          ],
+          "errorShortName": {
+            "en": "overseas address"
+          },
+          "errorShortNameStart": {
+            "en": "Overseas address"
+          }
+        }
+      ]
+    },
+    {
+      "caption": [
+        {
+          "includeIf": "${isBusiness}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your details"
+        }
+      ],
+      "title": "Choose a correspondence address for this notification",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "correspondenceAddressChoice",
+          "type": "choice",
+          "helpText": "We may use this to contact you about the import VAT notification or payment.",
+          "shortName": "Correspondence address",
+          "errorMessage": "Select a correspondence address",
+          "choices": [
+            {
+              "includeIf": "${user.affinityGroup = 'individual' && auth.itmpAddress != ''}",
+              "en": "${auth.itmpAddress}",
+              "value": "GGaddressIsCorrespondenceAddress"
+            },
+            {
+              "includeIf": "${user.affinityGroup = 'individual' && auth.itmpAddress = ''}",
+              "en": "${ukAddress orElse overseasAddress}",
+              "value": "addressEnteredIsCorrespondenceAddress"
+            },
+            {
+              "includeIf": "${user.affinityGroup = 'organisation'}",
+              "en": "${ukAddress}",
+              "value": "businessAddressIsCorrespondenceAddress"
+            },
+            {
+              "en": "Enter a different address",
+              "value": "diffAddIsCorrespondenceAddress"
+            }
+          ],
+          "hints": [
+            "The address in your Government Gateway account",
+            "Your ${if whoIsApplyingChoice contains 'individual' then 'residential' else 'business'} address",
+            "The office address of the business",
+            ""
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${correspondenceAddressChoice contains 'diffAddIsCorrespondenceAddress'}",
+      "caption": "Your contact details",
+"title": [
+      {
+        "includeIf": "${whoIsApplyingChoice contains 'individual'}",
+        "en": "Is your correspondence address in the UK?"
+      },
+      {
+        "en": "Is the correspondence address in the UK?"
+      }
+    ],
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "correspondenceAddressUKorOverseasChoice",
+          "type": "choice",
+          "labelSize": "m",
+          "shortName": {
+            "en": "Correspondence address in UK"
+          },
+          "errorMessage": {
+            "en": "Select whether the correspondence address is in the United Kingdom or overseas"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "choices": [
+            {
+              "en": "Yes"
+            },
+            {
+              "en": "No, it's overseas"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${correspondenceAddressUKorOverseasChoice contains 0}",
+      "caption": [
+        {
+          "includeIf": "${isBusiness}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your details"
+        }
+      ],
+      "title":  {
+        "en": "Find the correspondence address in the United Kingdom"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "postcodeLookup",
+          "id": "ukCorrespondenceAddress",
+          "label": "Correspondence address",
+          "shortName": {
+            "en": "Correspondence address"
+          },
+          "chooseAddressLabel": "Choose the address in the United Kingdom",
+          "confirmAddressLabel": "Confirm the address in the United Kingdom"
+        }
+      ]
+    },
+    {
+      "includeIf": "${correspondenceAddressUKorOverseasChoice contains 1}",
+      "caption": [
+        {
+          "includeIf": "${isBusiness}",
+          "en": "Business details"
+        },
+        {
+          "en": "Your details"
+        }
+      ],
+      "title": {
+        "en": "What is the overseas correspondence address?"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "overseasCorrespondenceAddress",
+          "type": "overseasAddress",
+          "shortName": {
+            "en": "Overseas correspondence address"
+          },
+          "errorShortName": {
+            "en": "overseas correspondence address"
+          },
+          "errorShortNameStart": {
+            "en": "Overseas correspondence address"
+          }
+        }
+      ]
+    },
+    {
+      "includeIf": "${auth.email != ''}",
+      "caption": {
+        "en": "Your contact details"
+      },
+      "title": {
+        "en": "What is your email address?"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "emailChoice",
+          "type": "choice",
+          "labelSize": "m",
+          "helpText": "We’ll use this to confirm that your application has been received, and to send you instructions on how to pay.",
+          "errorMessage": "Select the email address we can use to confirm that your application has been received",
+          "shortName": "Email address",
+          "choices": [
+            {
+              "en": "${auth.email}",
+              "cy": "${auth.email}",
+              "hint": "This is the email address for this Government Gateway user ID."
+            },
+            {
+              "en": "A different email address"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "includeIf": "${auth.email = '' || emailChoice contains 1}",
+      "caption": {
+        "en": "Your contact details"
+      },
+      "title": "Your email address for this application",
+      "id": "backlinkhere",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "emailYouEnterInfo",
+          "type": "info",
+          "label": "",
+          "infoText": "We will send you a code to confirm your email address. On the next screen, you'll be asked to enter the code.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "altEmail",
+          "verifiedBy": {
+            "service": "digitalContact",
+            "emailTemplateId": "dynamicEmail_code",
+            "codeField": "code"
+          },
+          "type": "text",
+          "format": "email",
+          "displayWidth": "m",
+          "label": "What is your email address?",
+          "labelSize": "m",
+          "helpText": "We will use this to send you the details of the import VAT payment you need to make.This will not update the email linked to your Government Gateway User ID.",
+          "shortName": "Email address",
+          "errorMessage": "Enter an email address in the correct format"
+        }
+      ]
+    },
+    {
+      "includeIf": "${auth.email = '' || emailChoice contains 1}",
+      "caption": {
+        "en": "Your contact details"
+      },
+      "title": "Enter your code to confirm your email address",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "emailInfo",
+          "label": "",
+          "infoType": "noformat",
+          "type": "info",
+          "infoText": "We sent a code to: <strong>${altEmail}</strong> "
+        },
+        {
+          "id": "emailTimingsInfo",
+          "label": "",
+          "infoType": "noformat",
+          "type": "info",
+          "infoText": "This can take a few minutes to arrive."
+        },
+        {
+          "id": "emailAccessInfo",
+          "label": "",
+          "type": "info",
+          "infoText": "If you're checking your email in a browser, keep this tab open. Open a new tab to access your email and get the code."
+        },
+        {
+          "id": "code",
+          "presentationHint": "invisibleInSummary",
+          "shortName": "Confirmation code",
+          "label": "Confirmation code",
+          "labelSize": "m",
+          "helpText": "This is 4 letters. For example, DNXL.",
+          "errorMessage": "Enter the code we emailed you",
+          "displayWidth": "xs",
+          "type": "text",
+          "format": "text"
+        },
+        {
+          "id": "emailCodeInfo3",
+          "type": "info",
+          "infoType": "long",
+          "label": "If you cannot find the code",
+          "infoText": "Make sure you use the code in the most recent email we sent you. \n\n Search your emails for 'Confirm your email address - Apply for a refund on import VAT you have paid on items sent or carried from Great Britain to Northern Ireland'. You may also need to check your spam or junk folder. \n\n If you cannot find it, you can (<a href='${link.backlinkhere}'>request a new code or enter a different email address</a>."
+        }
+      ]
+    },
+    {
+      "includeIf": "${auth.email = '' || emailChoice contains 1}",
+      "caption": {
+        "en": "Your contact details"
+      },
+      "title": "Email address confirmed",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "emailConfirmedInfo1",
+          "type": "info",
+          "label": "",
+          "infoText": "We'll use the email address to send you a confirmation email for this application. However, the email linked to your Government Gateway User ID will stay the same.",
+          "infoType": "noformat"
+        },
+        {
+          "id": "emailConfirmedInfo3",
+          "label": "",
+          "type": "info",
+          "infoText": "You can now continue with your notification and payment for import VAT.",
+          "infoType": "noformat"
+        }
+      ]
+    },
+    {
+      "caption": {
+        "en": "Your contact details"
+      },
+      "title": {
+        "en": "Consent to communicate by email"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "id": "emailComm1",
+          "label": "",
+          "infoText": {
+            "en": "We always send an email confirming that we have received your application. This also includes a reference number. \n\n We may also need to contact you for further information about your application. But we need your consent to communicate by email."
+          },
+          "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "id": "emailComm2",
+          "label": "",
+          "infoText": {
+            "en": "There are risks to communicating sensitive information by email. Read the <a href='https://www.gov.uk/government/publications/corresponding-with-hmrc-by-email-ccfs72/corresponding-with-hmrc-by-email' rel='noreferrer noopener'>guidance on corresponding with HMRC by email (opens in new tab)</a>."
+          },
+          "infoType": "noformat"
+        },
+        {
+          "id": "consentToEmail",
+          "type": "choice",
+          "labelSize": "s",
+          "label": {
+            "en": "Do you consent to communication by email?"
+          },
+          "shortName": {
+            "en": "Consent to communicate by email"
+          },
+          "errorMessage": {
+            "en": "Select yes if you want HMRC to communicate with you by email"
+          },
+          "choices": [
+            "Yes",
+            "No, only send a confirmation email with a reference number"
+          ]
+        }
+      ]
+    },
+    {
+      "caption": {
+        "en": "Your contact details"
+      },
+      "title": {
+        "en": "What is your telephone number (optional)?"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "telephone",
+          "type": "text",
+          "format": "telephoneNumber",
+          "shortName": {
+            "en": "Telephone number"
+          },
+          "helpText": "We may use this to contact you about the import VAT notification or payment. For international numbers include the country code",
+          "mandatory": false
+        }
+      ]
+    }
+  ],
+  "summarySection": {
+    "title": {
+      "en": "Check your answers before making your payment"
+    },
+    "header": {
+      "en": "",
+      "cy": ""
+    },
+    "footer": "",
+    "fields": [
+      {
+        "id": "Spacing",
+        "type": "info",
+        "infoText": "",
+        "infoType": "noformat"
+      },
+      {
+        "id": "Spacing1",
+        "type": "info",
+        "infoText": "",
+        "infoType": "noformat"
+      },
+      {
+        "id": "declarationInfo",
+        "type": "info",
+        "infoText": "By submitting this form, you are confirming that the information entered is correct to the best of your knowledge. Giving false information on purpose could result in a penalty or prosecution.</div>",
+        "infoType": "important"
+      }
+    ],
+    "continueLabel": {
+      "en": "Confirm and submit"
+    }
+  },
+  "acknowledgementSection": {
+    "title": {
+      "en": "Acknowledgement Page",
+      "cy": "Tudalen Gydnabyddiaeth"
+    },
+    "pdf": {
+      "header": "",
+      "footer": "<h2>Payment details</h2> \n* <b>Payment reference number:</b> ${paymentReference}\n \n* <b>Payment amount:</b> ${amountVATowed} \n\n ###Pay with our online payment service\n\n \n\n 1. Go to GOV.UK \n\n 2. Search for ‘Pay taxes, penalties or enquiry settlements’\n\n 3. Follow the payment instructions on the page, using the payment details in this PDF.\n\n###Pay online with telephone banking, CHAPS or Bacs\n\n \n\nYou can pay by Faster Payments, CHAPS (Clearing House Automated Payment System) or Bacs (Bankers Automated Clearing System) to HMRC’s account using these details:\n\n <b>Account name:</b> HMRC payments\n\n<b>Reference number:</b> ${paymentReference} \n\n <b>Sort code:</b> 08 32 10 \n\n <b>Account number:</b> 12001020 \n\n \n\n Payments by:<ul><li>Faster Payments (online or telephone banking) usually reach HMRC on the same or next day, including weekends and bank holidays</li><li>CHAPS usually reach HMRC the same working day if you pay within your bank’s processing times</li><li>Bacs usually take 3 working days</li></ul> \n\n ###Pay from overseas\n\n Use the following details to pay from an overseas account:\n\n <b>Account number (IBAN):</b> GB03 BARC 2011 4783 9776 92 \n\n<b>Bank identifier code (BIC):</b> BARCGB22 \n\n <b>Account name:</b> HMRC Shipley \n\n###Pay by cheque in the post \n\n Make your cheque payable to ‘HM Revenue and Customs only’ and write your payment reference on the back of the cheque. \n\n You’ll also need to give us the following details:\n \n* your name, address and telephone number \n* the amount you’re paying \n\n Do not: \n* fold the cheque \n* fasten documents together \n \n Allow 3 working days for your payment to reach HMRC and send your payment to: \n\n HMRC \n\n  Direct \n\n  BX5 5BD \n\n You can request a receipt with you payment."
+    },
+    "showBanner": false,
+    "fields": [
+      {
+        "id": "pageHeading",
+        "type": "info",
+        "label": {
+          "en": "",
+          "cy": ""
+        },
+        "infoType": "noformat",
+        "infoText": {
+          "en": "<h1 class='govuk-heading-l'>Now make your payment</h1><p class='govuk-body'>"
+        }
+      },
+      {
+        "id": "nextSteps",
+        "type": "info",
+        "label": {
+          "en": "",
+          "cy": ""
+        },
+        "infoType": "noformat",
+        "infoText": {
+          "en": "Your form has been submitted. We have sent a confirmation email to: **${email}**.",
+          "cy": "Anfonon ni e-bost cadarnhau at **${email}** gyda’ch cyfeirnod cyflwyno. Nid yw’r e-bost yn cynnwys copi o’ch atebion.\n\n<strong>[Argraffwch neu cadwch gopi PDF o’ch ffurflen](${link.printAcknowledgementPdf})</strong>\n\n"
+        }
+      },
+      {
+        "id": "payDetailsHeading",
+        "type": "info",
+        "infoType": "noformat",
+        "infoText": {
+          "en": "<h2 class='govuk-heading-m'>Payment Details</h2><p class='govuk-body'>",
+          "cy": ""
+        }
+      },
+      {
+        "id": "payDetails",
+        "type": "info",
+        "label": {
+          "en": "",
+          "cy": ""
+        },
+        "infoType": "noformat",
+        "infoText": {
+          "en": "Keep these details safe, you may need them later. \n \n* Payment reference number: <strong> ${paymentReference}</strong> \n* Amount you need to pay: <strong>${amountVATowed}</strong> \n\n<strong>[Download a copy of your answers and payment instructions (PDF, opens in new tab)](${link.printAcknowledgementPdf})</strong>"
+        }
+      },
+      {
+        "id": "payNow",
+        "type": "info",
+        "infoType": "noformat",
+        "infoText": {
+          "en": "<h2 class='govuk-heading-m'>If you are paying now</h2><p class='govuk-body'>"
+        }
+      },
+      {
+        "id": "payNowDetails",
+        "type": "info",
+        "label": {
+          "en": "",
+          "cy": ""
+        },
+        "infoType": "noformat",
+        "infoText": {
+          "en": "You can continue to pay now using our online payment service. It’s the easiest way to make your payment."
+        }
+      },
+      {
+        "type": "button",
+        "id": "paymentJourney",
+        "label": "Pay now",
+        "reference": "${paymentReference}",
+        "amountInPence": "${amountVATowed * 100}",
+        "isStartButton": true
+      },
+      {
+        "id": "payNow",
+        "type": "info",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": {
+          "en": "<h2 class='govuk-heading-m'>Other ways to pay</h2><p class='govuk-body'>\n\n You can pay later if you need to, using the payment instructions in the PDF, and confirmation email."
+        }
+      },
+      {
+        "type": "info",
+        "id": "payLaterWarning",
+        "label": "",
+        "infoText": "You should make this payment within 45 days."
+      },
+      {
+        "type": "info",
+        "id": "makePaymentBACSguidance",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "<h3 class='govuk-heading-s'>Pay online with telephone banking, CHAPS or Bacs</h2><p class='govuk-body'>\n\n \n\nYou can pay by Faster Payments, CHAPS (Clearing House Automated Payment System) or Bacs (Bankers Automated Clearing System) to HMRC’s account using these details:\n\n <dl class='govuk-summary-list'><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Account name</dt><dd class='govuk-summary-list__value'>HMRC payments</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Reference number</dt><dd class='govuk-summary-list__value'>${paymentReference}</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Sort code</dt><dd class='govuk-summary-list__value'>08 32 10</dd></div><dt class='govuk-summary-list__key'>Account number</dt><dd class='govuk-summary-list__value'>12001020</dd></div></dl>"
+      },
+      {
+        "type": "info",
+        "id": "paymentWarning",
+        "label": "",
+        "infoText": "Your payment may be delayed if you use the wrong reference."
+      },
+      {
+        "type": "info",
+        "id": "makePaymentTimings",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "Payments by:\n* Faster Payments (online or telephone banking) usually reach HMRC on the same or next day, including weekends and bank holidays \n* CHAPS usually reach HMRC the same working day if you pay within your bank’s processing times \n* Bacs usually take 3 working days \n"
+      },
+      {
+        "id": "payOverseas",
+        "type": "info",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": {
+          "en": "<h3 class='govuk-heading-s'>Pay from overseas</h2><p class='govuk-body'>\n\n\n\n      Use the following details to pay from an overseas account:\n\n      <dl class='govuk-summary-list'><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Account number (IBAN)</dt><dd class='govuk-summary-list__value'>GB03 BARC 2011 4783 9776 92</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>\n\n      Bank identifier code (BIC)\n\n      </dt><dd class='govuk-summary-list__value'>BARCGB22</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>\n\n      Account name\n\n      </dt><dd class='govuk-summary-list__value'>HMRC Shipley</dd></div></div></dl> Use the following address if you need to give your bank HMRC’s banking address:"
+        }
+      },
+      {
+        "type": "info",
+        "id": "payOverseasaddress",
+        "label": "",
+        "infoText": "Barclays Bank Plc \n\n  1 Churchill Place \n\n  London \n\n  United Kingdom \n\n E14 5HP"
+      },
+      {
+        "id": "nextSteps3",
+        "type": "info",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": {
+          "en": "<h3 class='govuk-heading-s'>Pay by cheque in the post</h2><p class='govuk-body'>\n\n  \n\n Make your cheque payable to ‘HM Revenue and Customs only’ and write your payment reference on the back of the cheque. \nYou’ll also need to give us the following details:\n \n* your name, address and telephone number \n* the amount you’re paying \n\n Do not: \n* fold the cheque \n* fasten documents together \n \n Allow 3 working days for your payment to reach HMRC and send your payment to:"
+        }
+      },
+      {
+        "type": "info",
+        "id": "chequePostDetails",
+        "label": "",
+        "infoText": "HMRC \n\n  Direct \n\n  BX5 5BD"
+      },
+      {
+        "type": "info",
+        "id": "receiptRequest",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "You can include a request for a receipt with your payment."
+      },
+      {
+        "type": "info",
+        "id": "contactC2C",
+        "label": "",
+        "infoType": "noformat",
+        "infoText": "<h2 class='govuk-heading-m'>If you need to contact us</h2><p class='govuk-body'> \n\nQuote the submission reference number: <strong>${form.submissionReference}"
+      }
+    ]
+  },
+  "destinations": [
+    {
+      "id": "transitionToSubmitted",
+      "type": "stateTransition",
+      "requiredState": "Submitted"
+    }
+  ]
+}
