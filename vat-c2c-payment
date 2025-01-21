@@ -1,5 +1,5 @@
 {
-  "_id": "notify-pay-import-vat-great-britain-northern-ireland-emma",
+  "_id": "notify-pay-import-vat-great-britain-northern-ireland",
   "version": 1,
   "formName": {
     "en": "Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment"
@@ -251,7 +251,7 @@
           "en": "Business details"
         },
         {
-          "en": "Your sign in details"
+          "en": "Your account details"
         }
       ],
       "fields": [
@@ -522,10 +522,10 @@
           "infoText": [
             {
               "includeIf": "${whoIsApplyingChoice contains 'business'}",
-              "en": "Because you are already registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now [sign out of this service](${link.signOut})."
+              "en": "Because you are already registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now sign out of this service."
             },
             {
-              "en": "Because the business is registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now [sign out of this service](${link.signOut})."
+              "en": "Because the business is registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now sign out of this service."
             }
           ]
         }
@@ -709,10 +709,10 @@
       "title": [
         {
           "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-          "en": "Is your residential address in the United Kingdom?"
+          "en": "Is your residential address in the United Kingdom or overseas?"
         },
         {
-          "en": "Is the business address in the United Kingdom?"
+          "en": "Is the business address in the United Kingdom or overseas?"
         }
       ],
       "presentationHint": "invisiblePageTitle",
@@ -724,10 +724,10 @@
           "shortName": [
             {
               "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-              "en": "Has UK residential address"
+              "en": "Residential address in UK or overseas"
             },
             {
-              "en": "Business address in UK"
+              "en": "Business address in UK or overseas"
             }
           ],
           "errorMessage": {
@@ -736,10 +736,10 @@
           "presentationHint": "invisiblePageTitle",
           "choices": [
             {
-              "en": "Yes"
+              "en": "United Kingdom"
             },
             {
-              "en": "No, its overseas"
+              "en": "Overseas"
             }
           ]
         }
@@ -759,10 +759,10 @@
       "title": [
         {
           "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-          "en": "Find your UK residential address"
+          "en": "Find your residential address in the United kingdom"
         },
         {
-          "en": "Find the business' UK address"
+          "en": "Find the business address in the United Kingdom"
         }
       ],
       "presentationHint": "invisiblePageTitle",
@@ -774,14 +774,14 @@
           "shortName": [
             {
               "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-              "en": "UK residential address"
+              "en": "Residential address in the United Kingdom"
             },
             {
-              "en": "UK business address"
+              "en": "Business address in the United Kingdom"
             }
           ],
-          "chooseAddressLabel": "Choose the UK address",
-          "confirmAddressLabel": "Confirm your UK address"
+          "chooseAddressLabel": "Choose the address in the United Kingdom",
+          "confirmAddressLabel": "Confirm the address in the United Kingdom"
         }
       ]
     },
@@ -818,7 +818,6 @@
             {
               "en": "Overseas business address"
             }
-
           ],
           "errorShortName": {
             "en": "overseas address"
@@ -845,7 +844,7 @@
         {
           "id": "correspondenceAddressChoice",
           "type": "choice",
-          "helpText": "We may use this to contact you about the import VAT notification or payment.",
+          "helpText": "We may use a correspondence address to contact you about the import VAT notification and payment if we need to.",
           "shortName": "Correspondence address",
           "errorMessage": "Select a correspondence address",
           "choices": [
@@ -865,7 +864,7 @@
               "value": "businessAddressIsCorrespondenceAddress"
             },
             {
-              "en": "Enter a different address",
+              "en": "A different address",
               "value": "diffAddIsCorrespondenceAddress"
             }
           ],
@@ -881,15 +880,9 @@
     {
       "includeIf": "${correspondenceAddressChoice contains 'diffAddIsCorrespondenceAddress'}",
       "caption": "Your contact details",
-"title": [
-      {
-        "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-        "en": "Is your correspondence address in the UK?"
+      "title": {
+        "en": "Is the correspondence address in the United Kingdom or overseas?"
       },
-      {
-        "en": "Is the correspondence address in the UK?"
-      }
-    ],
       "presentationHint": "invisiblePageTitle",
       "fields": [
         {
@@ -897,7 +890,7 @@
           "type": "choice",
           "labelSize": "m",
           "shortName": {
-            "en": "Correspondence address in UK"
+            "en": "Correspondence address in UK or overseas"
           },
           "errorMessage": {
             "en": "Select whether the correspondence address is in the United Kingdom or overseas"
@@ -905,10 +898,10 @@
           "presentationHint": "invisiblePageTitle",
           "choices": [
             {
-              "en": "Yes"
+              "en": "United Kingdom"
             },
             {
-              "en": "No, it's overseas"
+              "en": "Overseas"
             }
           ]
         }
@@ -925,7 +918,7 @@
           "en": "Your details"
         }
       ],
-      "title":  {
+      "title": {
         "en": "Find the correspondence address in the United Kingdom"
       },
       "presentationHint": "invisiblePageTitle",
