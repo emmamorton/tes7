@@ -1,262 +1,168 @@
 {
-  "_id": "notify-pay-import-vat-great-britain-northern-ireland-emma",
-  "version": 1,
+  "_id": "tell-hmrc-about-your-pension-income",
   "formName": {
-    "en": "Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment"
+    "en": "Tell HMRC about your pension income",
+    "cy": "Rhoi gwybod i CThEF am eich incwm pensiwn"
   },
   "description": {
-    "en": "Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment"
+    "en": "Use this service to tell HMRC about your pension income",
+    "cy": "Defnyddiwch y gwasanaeth hwn i roi gwybod i CThEF am eich incwm pensiwn"
   },
-  "emailCodeParameters": [
-    {
-      "value": "Confirm your email address - Notify HMRC of import VAT you owe on goods moved from Great Britain to Northern Ireland and make the payment",
-      "emailTemplateVariable": "emailSubjectCode"
-    },
-    {
-      "value": "Confirm your email address",
-      "emailTemplateVariable": "emailHeading"
-    },
-    {
-      "value": "'Apply for a refund on import VAT you have paid on items sent or carried from Great Britain to Northern Ireland'",
-      "emailTemplateVariable": "emailFormName"
-    },
-    {
-      "value": "HMRC",
-      "emailTemplateVariable": "emailContact"
-    },
-    {
-      "value": "From the HMRC Customer Services Group",
-      "emailTemplateVariable": "emailTeam"
-    }
+  "languages": [
+    "en",
+    "cy"
   ],
-  "emailTemplateId": "fullyDynamicEmail_confirmation",
+  "userResearchUrl": "https,://survey.take-part-in-research.service.gov.uk/jfe/form/SV_74GjifgnGv6GsMC?Source=BannerList_HMRC_Tell_HMRC_about_pension_income",
+  "version": 1,
+  "authConfig": {
+    "authModule": "hmrcVerified",
+    "ivFailure": "# You are unable to use this service because we have not been able to confirm your identity",
+    "agentAccess": "denyAnyAgentAffinityUser",
+    "minimumCL": "200"
+  },
+  "emailTemplateId": "dynamicEmail_confirmation",
   "emailParameters": [
     {
-      "value": "${emailSubjectConfirmation}",
+      "value": "${emailCustomerName}",
+      "emailTemplateVariable": "customerName"
+    },
+    {
+      "value": "${form.submissionReference}",
+      "emailTemplateVariable": "submissionReference"
+    },
+    {
+      "value": "${'You told HMRC about pension income'}",
       "emailTemplateVariable": "emailSubjectConfirmation"
     },
     {
-      "value": "${heading3}",
-      "emailTemplateVariable": "heading3"
+      "value": "${'HMRC received your information about pension income'}",
+      "emailTemplateVariable": "heading1"
     },
     {
-      "value": "${heading10}",
-      "emailTemplateVariable": "heading10"
+      "value": "${'Why you are receiving this email'}",
+      "emailTemplateVariable": "heading7"
     },
     {
-      "value": "${para1}",
+      "value": "${'We will now review your form.'}",
       "emailTemplateVariable": "para1"
     },
     {
-      "value": "${para2}",
+      "value": "${'We will let you know if there is a change to your tax code within 15 working days.'}",
       "emailTemplateVariable": "para2"
     },
     {
-      "value": "${para3}",
+      "value": "${'What happens next'}",
+      "emailTemplateVariable": "heading2"
+    },
+    {
+      "value": "${heading6}",
+      "emailTemplateVariable": "heading6"
+    },
+    {
+      "value": "${'If we need more details, we will contact you by telephone. We will never ask for more information by email.'}",
       "emailTemplateVariable": "para3"
     },
     {
-      "value": "${para4}",
+      "value": "${'If there are no changes to your tax code we will not contact you.'}",
       "emailTemplateVariable": "para4"
-    },
-    {
-      "value": "${para5}",
-      "emailTemplateVariable": "para5"
     },
     {
       "value": "${para6}",
       "emailTemplateVariable": "para6"
     },
     {
-      "value": "${para7}",
+      "value": "${'We send a confirmation email for all forms submitted online.'}",
       "emailTemplateVariable": "para7"
     },
     {
-      "value": "${para8}",
-      "emailTemplateVariable": "para8"
-    },
-    {
-      "value": "${para9}",
-      "emailTemplateVariable": "para9"
-    },
-    {
-      "value": "${bold8}",
-      "emailTemplateVariable": "bold8"
-    },
-    {
-      "value": "${para10}",
-      "emailTemplateVariable": "para10"
-    },
-    {
-      "value": "${para11}",
-      "emailTemplateVariable": "para11"
-    },
-    {
-      "value": "${para12}",
-      "emailTemplateVariable": "para12"
-    },
-    {
-      "value": "${para13}",
-      "emailTemplateVariable": "para13"
-    },
-    {
-      "value": "${para14}",
-      "emailTemplateVariable": "para14"
-    },
-    {
-      "value": "${bold11}",
-      "emailTemplateVariable": "bold11"
+      "value": "${'From the HMRC Income tax team'}",
+      "emailTemplateVariable": "emailTeam"
     }
   ],
   "expressions": {
-    "userName": "fullName orElse auth.itmpName",
-    "email": "altEmail orElse auth.email",
-    "heading3": "'What you need to do next'",
-    "heading10": "'Why you are receiving this email'",
-    "para1": "concat('Dear',' ',fullName)",
-    "para2": "'We have received your notification about the amount of VAT owed on goods moved to Northern Ireland.'",
-    "para3": "'If you have already paid, you do not need to do anything.'",
-    "para4": "'If you have not yet paid the VAT you owe, do this as soon as possible.'",
-    "para5": "'1. Go to GOV.UK'",
-    "para6": "'2. Search for ‘Pay taxes, penalties or enquiry settlements’'",
-    "para7": "'3. Follow the payment instructions on the page, using the payment details in this email.'",
-    "para8": "'Your payment reference: '",
-    "para9": "concat('Payment amount: £',amountMoney)",
-    "para10": "'We send a confirmation email for all forms submitted online.'",
-    "para11": "'If you need to contact us, quote the form submission reference number: '",
-    "para12": "'If we need to contact you, we will use the details you provided.'",
-    "para13": "'For security reasons, we have not included the details you submitted.'",
-    "para14": "'From HMRC Customer Services Group'",
-    "bold8": "concat('XVCC',substring(form.submissionReference,0,4),substring(form.submissionReference,5,9),substring(form.submissionReference,10,14))",
-    "bold11": "form.submissionReference",
-    "emailSubjectConfirmation": "'You have notified HMRC of VAT owed on goods moved to Northern Ireland'",
-    "paymentReference": "concat('XVC',substring(form.submissionReference,0,4),substring(form.submissionReference,5,9),substring(form.submissionReference,10,14))",
-    "fullNameITMP": "if user.affinityGroup = 'individual' then capitalizeAll(lowercase(auth.itmpName)) else ''",
-    "ninoGG": "if user.affinityGroup = 'individual' then auth.payenino else ''",
-    "dobGG": "if user.affinityGroup = 'individual' then auth.itmpDateOfBirth else ''",
-    "saUtrGG": "if user.affinityGroup = 'individual' then auth.sautr else ''",
-    "ctUtrGG": "if user.affinityGroup = 'organisation' then auth.ctutr else ''"
+    "heading6": "if yourAddressChoice contains 1 then 'Because you told us the address we hold is wrong'|'Oherwydd eich bod wedi dweud wrthym fod y cyfeiriad sydd gennym yn anghywir' else ''",
+    "para6": "if yourAddressChoice contains 1 then 'You now need to update your address. Search GOV.UK for: Tell HMRC about a change to your personal details.'|'Mae angen i chi ddiweddaru eich cyfeiriad nawr. Ewch i GOV.UK a chwilio am: Rhoi gwybod i CThEF am newid i’ch manylion personol.' else ''",
+    "emailCustomerName": "auth.itmpName orElse concat(yourFirstName,' ',yourLastName) orElse 'Customer'|'Cwsmer'",
+    "email": "emailAddressNonGg orElse emailAlt orElse auth.email",
+    "currentTaxYear": "if month(TODAY) > 4 || (month(TODAY) = 4 && day(TODAY) > 5) then year(TODAY)+1 else year(TODAY)",
+    "yearFromTODAY": "year(TODAY)",
+    "taxYear": "if month(TODAY) > 4 || (month(TODAY) = 4 && day(TODAY) > 5) then year(TODAY)+1 else year(TODAY)",
+    "nextTaxYear": "if month(TODAY) > 4 || (month(TODAY) = 4 && day(TODAY) > 5) then year(TODAY)+2 else year(TODAY)+1",
+    "lastTaxYear": "if month(TODAY) > 4 || (month(TODAY) = 4 && day(TODAY) > 5) then year(TODAY) else year(TODAY)-1",
+    "atlTypeWording": "if issueType contains 'incorrect' then 'Payment amounts are different'|'Mae symiau’r taliadau’n wahanol' else 'Ended pension'|'Pensiwn sydd wedi dod i ben'",
+    "netAmountPlayback": "estimatedIncomeAmount - totalTaxAtDateOfLeavingIncorrect",
+    "netAmountPlayback1": "endedIncomeAmount - taxAtSource",
+    "taxDistrictNumber": "if count(dataRetrieve.individualsEmployments) = 1 then dataRetrieve.individualsEmployments.taxDistrictNumber else ''",
+    "payeNumber": "if count(dataRetrieve.individualsEmployments) = 1 then dataRetrieve.individualsEmployments.payeNumber else ''",
+    "worksNumber": "if count(dataRetrieve.individualsEmployments) = 1 then dataRetrieve.individualsEmployments.worksNumber else ''",
+    "sequenceNumber": {
+      "type": "number",
+      "fractionalDigits": 0,
+      "value": "if count(dataRetrieve.individualsEmployments) = 1 then dataRetrieve.individualsEmployments.sequenceNumber else ''"
+    }
   },
   "booleanExpressions": {
-    "isBusiness": "user.affinityGroup = 'organisation'"
-  },
-  "expressionsOutput": [
-    "fullNameITMP",
-    "ninoGG",
-    "dobGG",
-    "saUtrGG",
-    "ctUtrGG"
-  ],
-  "authConfig": {
-    "authModule": "hmrc",
-    "agentAccess": "denyAnyAgentAffinityUser"
+    "hasPAYE": "user.enrolments.IR-PAYE.TaxOfficeReference != ''",
+    "noPAYE": "!hasPAYE"
   },
   "sections": [
     {
-      "includeIf": "${user.affinityGroup = 'individual' && auth.sautr = '' && auth.payenino = ''}",
       "title": {
-        "en": "You need to verify your identity",
-        "cy": "Ni allwch ddefnyddio’r gwasanaeth hwn"
+        "en": "Tell HMRC about your pension income",
+        "cy": "Rhoi gwybod i CThEF am eich incwm pensiwn"
       },
-      "continueIf": false,
-      "presentationHint": "invisiblePageTitle",
       "fields": [
         {
+          "id": "beforeYouStartInfo",
           "type": "info",
-          "id": "authNotMetIndividual",
+          "infoText": {
+            "en": "Use this form to tell us about a pension income from the <strong> current tax year (6 April ${lastTaxYear} to 5 April ${taxYear}).",
+            "cy": "Defnyddiwch y ffurflen hon i roi gwybod i ni am incwm pensiwn o’r <strong> flwyddyn dreth bresennol (6 Ebrill ${lastTaxYear} i 5 Ebrill ${taxYear})."
+          },
+          "infoType": "noformat"
+        },
+        {
+          "id": "beforeYouStartPartTwoInfo",
+          "type": "info",
+          "infoText": {
+            "en": "You can tell us if: <ul><li>a pension income shown in your personal tax account does not match the amount you received</li><li>you no longer receive payments from a pension</li></ul>",
+            "cy": "Mae angen chi roi gwybod i ni os yw’r canlynol yn berthnasol: <ul><li>nid yw swm yr incwm pensiwn yn eich cyfrif treth personol yr un peth â’r swm a gawsoch</li><li>nid ydych yn cael taliadau o bensiwn mwyach</li></ul>"
+          },
+          "infoType": "noformat"
+        },
+        {
+          "type": "info",
+          "infoType": "standard",
+          "id": "whenToFillOutInfo",
+          "infoText": {
+            "en": "If your pension details have recently changed, allow 35 days for us to update your personal tax account.",
+            "cy": "Os yw’ch manylion pensiwn wedi newid yn ddiweddar, caniatewch 35 diwrnod i ni ddiweddaru eich cyfrif treth personol."
+          }
+        },
+        {
+          "type": "info",
+          "id": "insetMultipleInfoGiven",
           "label": {
             "en": "",
             "cy": ""
           },
           "infoType": "noformat",
           "infoText": {
-            "en": "To access this service, you must first verify your identity. <a href='${'https://www.gov.uk/using-your-gov-uk-one-login/proving-your-identity'}' target='_self'>Find out how to verify your identity (opens in new tab)</a>. "
+            "en": "If you need to, you can tell us about as about more than one pension.",
+            "cy": "Gallwch ddweud wrthym am fwy nag un pensiwn, os oes angen i chi wneud hynny."
           }
-        },
-        {
-          "type": "info",
-          "id": "cantVerifyInfo",
-          "infoType": "noformat",
-          "infoText": "<h2 class='govuk-heading-m'>If you cannot verify your identity</h2><p class='govuk-body'> If you need to make a payment of import VAT, contact the VAT C2C payments team by email: xxxxx@gov.uk \n\n Provide details of why you need to make a payment for import VAT in your email. Do not include your username or password for your Government Gateway account. \n\n You can <a href='${link.signOut}' target='_self'>sign out of this service</a>."
         }
       ]
     },
     {
-      "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr = ''}",
       "title": {
-        "en": "You need to register for Corporation Tax before using this service"
+        "en": "Personal details",
+        "cy": "Manylion personol"
       },
-      "continueIf": false,
-      "presentationHint": "invisiblePageTitle",
+      "includeIf": "${auth.itmpName != '' && auth.payenino != '' && auth.itmpDateOfBirth != ''}",
       "fields": [
         {
-          "type": "info",
-          "id": "authNotMetOrganisation",
-          "label": {
-            "en": "",
-            "cy": ""
-          },
-          "infoType": "noformat",
-          "infoText": {
-            "en": "To access this service, you need to <a href='https://www.gov.uk/limited-company-formation/add-corporation-tax-services-to-business-tax-account?step-by-step-nav=37e4c035-b25c-4289-b85c-c6d36d11a763'>add Corporation Tax services to your business tax account (opens in new tab)</a>."
-          }
-        },
-        {
-          "type": "info",
-          "id": "contactVatC2Cteam2",
-          "label": {
-            "en": "",
-            "cy": ""
-          },
-          "infoType": "noformat",
-          "infoText": {
-            "en": "<h2 class='govuk-heading govuk-heading-m'>If you cannot add Corporation Tax to your account</h2>If you need to make a payment of import VAT, contact the VAT C2C payments team by email: xxxxx@gov.uk \n\n Provide details of why you need to make a payment for import VAT in your email. Do not include your username or password for your Government Gateway account. \n\n You can <a href='${link.signOut}' target='_self'>sign out of this service</a>."
-          }
-        }
-      ]
-    },
-    {
-      "includeIf": "${user.affinityGroup = 'individual'}",
-      "title": "Who is making a payment?",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "type": "choice",
-          "id": "whoIsApplyingChoice",
-          "notPII": true,
-          "shortName": {
-            "en": "Who is making a payment"
-          },
-          "choices": [
-            {
-              "en": "An individual",
-              "value": "individual"
-            },
-            {
-              "en": "A business",
-              "value": "business"
-            }
-          ],
-          "hints": [
-            "",
-            "For example, a sole trader, or a partner in an ordinary partnership"
-          ]
-        }
-      ]
-    },
-    {
-      "title": [
-        {
-          "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your sign in details"
-        }
-      ],
-      "fields": [
-        {
-          "id": "entityDetails",
+          "id": "personalDetails",
           "type": "miniSummaryList",
           "displayInSummary": true,
           "label": {
@@ -265,14 +171,13 @@
           },
           "rows": [
             {
-              "includeIf": "${auth.itmpName !='' && user.affinityGroup = 'individual'}",
               "key": {
-                "en": "Full name"
+                "en": "Name",
+                "cy": "Enw"
               },
               "value": "${capitalizeAll(lowercase(auth.itmpName))}"
             },
             {
-              "includeIf": "${auth.payenino !='' && user.affinityGroup = 'individual'}",
               "key": {
                 "en": "National Insurance number",
                 "cy": "Rhif Yswiriant Gwladol"
@@ -280,26 +185,11 @@
               "value": "${auth.payenino}"
             },
             {
-              "includeIf": "${auth.itmpDateOfBirth !='' && user.affinityGroup = 'individual'}",
               "key": {
                 "en": "Date of birth",
                 "cy": "Dyddiad geni"
               },
               "value": "${auth.itmpDateOfBirth}"
-            },
-            {
-              "includeIf": "${auth.sautr !='' && user.affinityGroup = 'individual'}",
-              "key": {
-                "en": "Self Assessment Unique Taxpayer Reference"
-              },
-              "value": "${auth.sautr}"
-            },
-            {
-              "includeIf": "${auth.ctutr !='' && user.affinityGroup = 'organisation'}",
-              "key": {
-                "en": "Corporation Tax Unique Taxpayer Reference"
-              },
-              "value": "${auth.ctutr}"
             }
           ]
         }
@@ -307,92 +197,1048 @@
       "dataRetrieve": [
         {
           "type": "ninoInsights",
+          "_comment": "REMOVE if statement for go live",
           "id": "ninoCheck",
           "parameters": {
             "nino": "${auth.payenino}"
+          }
+        },
+        {
+          "type": "employments",
+          "id": "individualsEmployments",
+          "if": "${dataRetrieve.ninoCheck.reason != 'NINO_ON_WATCH_LIST'}",
+          "parameters": {
+            "nino": "${auth.payenino}",
+            "taxYear": "${2025}"
           }
         }
       ],
       "confirmation": {
         "question": {
-          "id": "areEntityDetailsCorrectChoice",
+          "id": "yourDetailsChoice",
           "type": "choice",
           "labelSize": "m",
-          "shortName": [
+          "shortName": {
+            "en": "Are personal details correct",
+            "cy": "A yw’r manylion personol yn gywir"
+          },
+          "errorMessage": {
+            "en": "Select yes if these are your details",
+            "cy": "Dewiswch ‘Iawn’ os mai’ch manylion chi yw’r rhain"
+          },
+          "label": {
+            "en": "Are these your details?",
+            "cy": "Ai dyma’ch manylion?"
+          },
+          "choices": [
             {
-              "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
-              "en": "Corporation Tax UTR is correct"
+              "en": "Yes",
+              "cy": "Iawn"
             },
             {
-              "en": "Government Gateway account details correct"
+              "en": "No",
+              "cy": "Na"
             }
-          ],
-          "errorMessage": [
-            {
-              "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
-              "en": "Select yes if this is the Corporation Tax UTR for the business"
-            },
-            {
-              "en": "Select yes if your account details are correct"
-            }
-          ],
-          "label": [
-            {
-              "includeIf": "${user.affinityGroup = 'organisation' && auth.ctutr !=''}",
-              "en": "Is this the Corporation Tax Unique Taxpayer Reference for the business?"
-            },
-            {
-              "en": "Are these your details?",
-              "cy": "Ai dyma’ch manylion?"
-            }
-          ],
-          "format": "yesno"
+          ]
         }
       }
     },
     {
-      "includeIf": "${areEntityDetailsCorrectChoice contains 1}",
-      "title": "You cannot access this service from this account",
-      "presentationHint": "invisiblePageTitle",
+      "title": {
+        "en": "You need to check your personal details",
+        "cy": "Mae angen i chi wirio eich manylion personol"
+      },
+      "includeIf": "${yourDetailsChoice contains 1}",
       "fields": [
         {
           "type": "info",
-          "id": "noFormatInfoBoxExit",
-          "label": "Information",
-          "infoText": "To access this service you must sign in with the Government Gateway user ID of an account linked to your details.",
-          "infoType": "noformat"
+          "id": "exitInfo",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoType": "noformat",
+          "infoText": {
+            "en": "We need to make sure your personal details match our records.",
+            "cy": "Mae angen i ni sicrhau bod eich manylion personol yn cyd-fynd â'n cofnodion."
+          }
         },
         {
+          "id": "exitChoice",
           "type": "choice",
-          "id": "ggAccountDetailsIncorrectChoice",
-          "label": "What do you want to do?",
+          "label": {
+            "en": "What do you want to do now?",
+            "cy": "Beth hoffech ei wneud nawr?"
+          },
           "labelSize": "m",
-          "shortName": "What do you want to do",
-          "errorMessage": "Select whether you want to sign in with a different account or sign out of this service",
+          "errorMessage": {
+            "en": "Select what you want to do now",
+            "cy": "Dewiswch yr hyn rydych am ei wneud nawr"
+          },
+          "shortName": {
+            "en": "Redirect choice",
+            "cy": "Ailgyfeirio’r dewis"
+          },
           "choices": [
-            "Sign in with a different account",
-            "Sign out of this service"
+            {
+              "en": "Tell HMRC about a change to your personal details",
+              "cy": "Rhoi gwybod i CThEF am newid i’ch manylion personol"
+            },
+            {
+              "en": "Sign in with a different Government Gateway user ID",
+              "cy": "Mewngofnodi gan ddefnyddio Dynodydd Defnyddiwr (ID) gwahanol ar gyfer Porth y Llywodraeth"
+            },
+            {
+              "en": "Sign out of this service",
+              "cy": "Allgofnodi o’r gwasanaeth hwn"
+            }
           ]
         }
       ],
       "redirects": [
         {
-          "if": "${ggAccountDetailsIncorrectChoice = 0}",
+          "if": "${exitChoice = 0}",
+          "redirectUrl": "https://www.gov.uk/tell-hmrc-change-of-details"
+        },
+        {
+          "if": "${exitChoice = 1}",
           "redirectUrl": "${link.newSession}"
         },
         {
-          "if": "${ggAccountDetailsIncorrectChoice = 1}",
+          "if": "${exitChoice = 2}",
           "redirectUrl": "${link.signOut}"
         }
       ]
     },
     {
-      "includeIf": "${user.affinityGroup = 'individual' && auth.itmpAddress != ''}",
       "title": {
-        "en": "Check your address"
+        "en": "You cannot use this service",
+        "cy": "Ni allwch ddefnyddio’r gwasanaeth hwn"
       },
-      "id": "ggCheckAddress",
-      "shortName": "Your contact details",
+      "includeIf": "${dataRetrieve.ninoCheck.reason = 'NINO_ON_WATCH_LIST' || dataRetrieve.ninoCheck.riskScore = 100}",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "type": "info",
+          "id": "ninoExit",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoType": "noformat",
+          "infoText": {
+            "en": "You cannot use this service with this Government Gateway user ID.",
+            "cy": "Does dim modd i chi ddefnyddio’r gwasanaeth hwn gyda’r Dynodydd Defnyddiwr (ID) hwn ar gyfer Porth y Llywodraeth."
+          }
+        },
+        {
+          "id": "exitNinoChoice",
+          "type": "choice",
+          "label": {
+            "en": "What do you want to do now?",
+            "cy": "Beth hoffech ei wneud nawr?"
+          },
+          "labelSize": "m",
+          "errorMessage": {
+            "en": "Select what you want to do now",
+            "cy": "Dewiswch yr hyn rydych am ei wneud nawr"
+          },
+          "shortName": {
+            "en": "Redirect choice",
+            "cy": "Ailgyfeirio’r dewis"
+          },
+          "choices": [
+            {
+              "en": "Return to the guidance about tax on pensions",
+              "cy": "Dychwelyd i’r arweiniad ynghylch treth ar bensiynau"
+            },
+            {
+              "en": "Sign out of this service",
+              "cy": "Allgofnodi o’r gwasanaeth hwn"
+            }
+          ]
+        }
+      ],
+      "redirects": [
+        {
+          "if": "${exitNinoChoice = 0}",
+          "redirectUrl": "https://www.gov.uk/tax-on-pension"
+        },
+        {
+          "if": "${exitNinoChoice = 1}",
+          "redirectUrl": "${link.signOut}"
+        }
+      ]
+    },
+    {
+      "id": "companyBenefitAtl",
+      "type": "addToList",
+      "title": {
+        "en": "You have told us about ${issueType.count} ${if issueType.count = 1 then 'pension' else 'pensions'}",
+        "cy": "Rydych wedi rhoi gwybod i ni ynghylch ${issueType.count} ${if issueType.count = 1 then 'pensiwn' else 'o bensiynau'}"
+      },
+      "summaryName": {
+        "en": "Pensions you have told us about",
+        "cy": "Pensiynau rydych wedi rhoi gwybod i ni amdanynt"
+      },
+      "shortName": {
+        "en": "Pension $n",
+        "cy": "Pensiwn $n"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "description": {
+        "en": "<strong>$n. ${dataRetrieve.individualsEmployments.employerName} </strong> \n\n ${atlTypeWording}",
+        "cy": "<strong>$n. ${dataRetrieve.individualsEmployments.employerName} </strong> \n\n ${atlTypeWording}"
+      },
+      "summaryDescription": {
+        "en": "${dataRetrieve.individualsEmployments.employerName} \n\n ${atlTypeWording}"
+      },
+      "addAnotherQuestion": {
+        "id": "addBenefitChoice",
+        "type": "choice",
+        "label": {
+          "en": "Do you want to tell us about another pension?",
+          "cy": "A ydych am roi gwybod i ni am bensiwn arall?"
+        },
+        "labelSize": "s",
+        "errorMessage": {
+          "en": "Select yes if you want to tell us about another pension",
+          "cy": "Dewiswch ‘Iawn’ os ydych am roi gwybod i ni am bensiwn arall"
+        },
+        "choices": [
+          "Yes",
+          "No"
+        ]
+      },
+      "cyaPage": {
+        "updateTitle": {
+          "en": "Change your answers for pension $n",
+          "cy": "Gwiriwch eich atebion ar gyfer pensiwn $n:"
+        },
+        "title": {
+          "en": "Check your answers for pension $n",
+          "cy": "Gwiriwch eich atebion ar gyfer pensiwn $n"
+        }
+      },
+      "pages": [
+        {
+          "presentationHint": "invisiblePageTitle",
+          "title": {
+            "en": "What type of pension do you want to tell us about?",
+            "cy": "Pa fath o bensiwn ydych am roi gwybod i ni amdano?"
+          },
+          "fields": [
+            {
+              "shortName": {
+                "en": "Type of pension",
+                "cy": "Math o bensiwn"
+              },
+              "id": "typeOfPension",
+              "type": "choice",
+              "notPII": true,
+              "labelSize": "m",
+              "errorMessage": {
+                "en": "Select the type of pension you want to tell us about",
+                "cy": "Dewiswch y math o bensiwn rydych am roi gwybod i ni amdano"
+              },
+              "choices": [
+                {
+                  "en": "Workplace pension",
+                  "cy": "Pensiwn gweithle"
+                },
+                {
+                  "en": "Personal pension",
+                  "cy": "Pensiwn personol"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n",
+            "cy": "Pensiwn  $n"
+          },
+          "includeIf": "${typeOfPension contains 1}",
+          "title": {
+            "en": "Pension reference number",
+            "cy": "Cyfeirnod y pensiwn"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "fields": [
+            {
+              "type": "info",
+              "id": "noFormatInfoBoxPension",
+              "infoText": {
+                "en": "We need the pension reference number for the pension you're telling us about. It might also be called a customer number, policy number, or reference number. \n\n You can find this number on letters from your pension provider, or online if you log in to check your pension statement.",
+                "cy": "Mae angen arnom gyfeirnod y pensiwn yr ydych yn rhoi gwybod i ni amdano. Efallai y cyfeirir at hyn hefyd fel ‘rhif cwsmer’, ‘rhif polisi’ neu ‘gyfeirnod’. \n\n Gallwch ddod o hyd i’r rhif hwn ar lythyrau oddi wrth eich darparwr pensiwn, neu ar-lein os byddwch yn mewngofnodi i wirio’ch datganiad pensiwn."
+              },
+              "infoType": "noformat"
+            },
+            {
+              "type": "info",
+              "id": "reasonToSayYesPension",
+              "infoText": {
+                "en": "If you do not know the pension number, this could delay any changes that we make to your tax code.",
+                "cy": "Os nad ydych yn gwybod beth yw rhif y pensiwn, gallai hyn oedi unrhyw newidiadau y byddwn yn eu gwneud i’ch cod treth."
+              },
+              "infoType": "important"
+            },
+            {
+              "type": "choice",
+              "id": "pensionNumberKnown",
+              "label": {
+                "en": "Do you know the pension reference number?",
+                "cy": "A ydych yn gwybod cyfeirnod y pensiwn?"
+              },
+              "labelSize": "m",
+              "shortName": {
+                "en": "Pension number known",
+                "cy": "Rhif y pensiwn yn hysbys"
+              },
+              "errorMessage": {
+                "en": "Select whether you know the pension number.",
+                "cy": "Dewiswch p’un a ydych yn gwybod beth yw rhif y pensiwn"
+              },
+              "choices": [
+                {
+                  "en": "Yes",
+                  "cy": "Iawn"
+                },
+                {
+                  "en": "No",
+                  "cy": "Na"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n",
+            "cy": "Pensiwn  $n"
+          },
+          "includeIf": "${pensionNumberKnown contains 0}",
+          "title": {
+            "en": "What is the pension reference number?",
+            "cy": "Beth yw cyfeirnod y pensiwn?"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "fields": [
+            {
+              "type": "text",
+              "helpText": {
+                "en": "Enter the pension reference number. You can find this number on letters from your pension provider, or online if you log in to check your pension statement.",
+                "cy": "Nodwch gyfeirnod y pensiwn. Gallwch ddod o hyd i hwn ar lythyrau oddi wrth eich darparwr pensiwn, neu ar-lein pan fyddwch yn mewngofnodi i wirio eich datganiad pensiwn."
+              },
+              "id": "pensionNumber",
+              "labelSize": "m",
+              "format": "text",
+              "errorShortName": {
+                "en": "the pension reference number",
+                "cy": "gyfeirnod y pensiwn"
+              },
+              "errorShortNameStart": {
+                "en": "The pension reference number",
+                "cy": "c yeirnod y pensiwn"
+              },
+              "shortName": {
+                "en": "Pension reference number",
+                "cy": "cyfeirnod y pensiwn"
+              }
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Your pension for the current tax year",
+            "cy": "Eich pensiwn ar gyfer y flwyddyn dreth bresennol"
+          },
+          "continueLabel": {
+            "en": "Continue",
+            "cy": "Parhau"
+          },
+          "includeIf": "${(typeOfPension contains 0) && (count(dataRetrieve.individualsEmployments) = 1)}",
+          "fields": [
+            {
+              "type": "info",
+              "id": "pensionInfo",
+              "label": {
+                "en": "",
+                "cy": ""
+              },
+              "infoType": "noformat",
+              "infoText": {
+                "en": "We have one pension on record for you, from 6 April ${lastTaxYear} to 5 April ${taxYear}.",
+                "cy": "Mae gennym gofnod o un pensiwn ar eich cyfer, o 6 Ebrill ${lastTaxYear} i 5 Ebrill ${taxYear}."
+              }
+            },
+            {
+              "id": "employerDetails",
+              "type": "miniSummaryList",
+              "label": {
+                "en": "",
+                "cy": ""
+              },
+              "rows": [
+                {
+                  "key": {
+                    "en": "Name of pension provider",
+                    "cy": "Enw’r darparwr pensiwn"
+                  },
+                  "value": "${dataRetrieve.individualsEmployments.employerName}",
+                  "submitMode": "summaryinfoonly"
+                },
+                {
+                  "key": {
+                    "en": "Pension provider PAYE reference",
+                    "cy": "Cyfeirnod TWE y darparwr pensiwn"
+                  },
+                  "value": "${dataRetrieve.individualsEmployments.taxDistrictNumber}/${dataRetrieve.individualsEmployments.payeNumber}",
+                  "submitMode": "summaryinfoonly"
+                }
+              ]
+            },
+            {
+              "id": "employerNameSummary",
+              "type": "text",
+              "format": "text",
+              "label": {
+                "en": "Pension provider",
+                "cy": "Darparwr pensiwn"
+              },
+              "value": "${dataRetrieve.individualsEmployments.employerName}",
+              "submitMode": "summaryinfoonly"
+            },
+            {
+              "id": "correctPension",
+              "type": "choice",
+              "label": {
+                "en": "Is this the pension you want to tell us about?",
+                "cy": "Ai dyma’r pensiwn yr ydych am roi gwybod i ni amdano?"
+              },
+              "labelSize": "m",
+              "errorMessage": {
+                "en": "Select yes if this is the pension you want to tell us about",
+                "cy": "Dewiswch ‘Iawn’ os taw’r pensiwn hwn yw’r un yr ydych am roi gwybod i ni amdano"
+              },
+              "shortName": {
+                "en": "Use pension on record",
+                "cy": "Defnyddiwch bensiwn ar gofnod"
+              },
+              "choices": [
+                {
+                  "en": "Yes",
+                  "cy": "Iawn"
+                },
+                {
+                  "en": "No, I'll enter the pension details instead",
+                  "cy": "Na, byddaf yn nodi’r manylion pensiwn yn lle hynny"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "Which pension do you want to tell us about?",
+            "cy": "Pa bensiwn ydych am roi gwybod i ni amdano?"
+          },
+          "includeIf": "${(typeOfPension contains 0) && (count(dataRetrieve.individualsEmployments) > 1)}",
+          "shortName": {
+            "en": "Pension provider",
+            "cy": "Darparwr pensiwn"
+          },
+          "fields": [
+            {
+              "id": "employer1",
+              "type": "choice",
+              "errorMessage": {
+                "en": "Select the pension you want to tell us about",
+                "cy": "Dewiswch y pensiwn rydych am roi gwybod i ni amdano"
+              },
+              "helpText": {
+                "en": "You can tell us about any of these pensions that we have on record for you, from 6 April ${lastTaxYear} to 5 April ${taxYear}.",
+                "cy": "Gallwch roi gwybod i am unrhyw un o’r pensiynau sydd gennym yn ein cofnodion ar eich cyfer, o 6 Ebrill ${lastTaxYear} i 5 Ebrill ${taxYear}."
+              },
+              "dividerPosition": 1,
+              "shortName": {
+                "en": "Pension provider",
+                "cy": "Darparwr pensiwn"
+              },
+              "choices": [
+                {
+                  "en": "${dataRetrieve.individualsEmployments.employerName} – pension provider PAYE reference: ${dataRetrieve.individualsEmployments.taxDistrictNumber}/${dataRetrieve.individualsEmployments.payeNumber}",
+                  "cy": "${dataRetrieve.individualsEmployments.employerName} – cyfeirnod TWE y darparwr pensiwn: ${dataRetrieve.individualsEmployments.taxDistrictNumber}/${dataRetrieve.individualsEmployments.payeNumber}",
+                  "dynamic": "dataRetrieve.individualsEmployments.employerName",
+                  "hint": {
+                    "en": "The payroll ID for this pension: ${dataRetrieve.individualsEmployments.worksNumber}",
+                    "cy": "ID y gyflogres ar gyfer y pensiwn hwn: ${dataRetrieve.individualsEmployments.worksNumber}"
+                  },
+                  "value": "EMP"
+                },
+                {
+                  "en": "I want to enter pension details",
+                  "cy": "Hoffwn i nodi’r manylion pensiwn",
+                  "value": "enterDetails"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n",
+            "cy": "Pensiwn  $n"
+          },
+          "includeIf": "${employer1 = 'enterDetails' || correctPension = 1}",
+          "shortName": {
+            "en": "Pension details",
+            "cy": "Manylion pensiwn"
+          },
+          "title": {
+            "en": "What is the pension PAYE reference number?",
+            "cy": "Beth yw cyfeirnod TWE y pensiwn?"
+          },
+          "fields": [
+            {
+              "id": "payeRefPension",
+              "type": "text",
+              "shortName": {
+                "en": "Pension PAYE reference number",
+                "cy": "Cyfeirnod TWE y pensiwn"
+              },
+              "errorShortName": {
+                "en": "pension PAYE reference number",
+                "cy": "cyfeirnod TWE y pensiwn"
+              },
+              "helpText": {
+                "en": "This is a 3 digit tax office number, a forward slash, and a tax office employer reference, like 123/AB456. It may be called ‘Employer PAYE reference’ or ‘PAYE reference’.",
+                "cy": "Rhif swyddfa dreth yw hwn, mae’n cynnwys 3 digid wedi’i ddilyn gan flaenslaes a chyfeirnod swyddfa dreth y cyflogwr, er enghraifft 123/AB456. Enw arall ar hyn yw ‘Cyfeirnod TWE y Cyflogwr’ neu ‘Cyfeirnod TWE’."
+              },
+              "format": "payeReference"
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n",
+            "cy": "Pensiwn  $n"
+          },
+          "includeIf": "${employer1 = 'enterDetails' || correctPension = 1}",
+          "title": {
+            "en": "What is the payroll number?",
+            "cy": "Beth yw’r rhif cyflogres?"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "fields": [
+            {
+              "type": "text",
+              "helpText": {
+                "en": "Enter the payroll number for the pension you're telling us about. You can find this on your payslip, P60, personal tax account, or in the HMRC app.",
+                "cy": "Nodwch y rhif cyflogres ar gyfer y pensiwn yr ydych yn rhoi gwybod i ni amdano. Gallwch ddod o hyd i hwn ar eich slip cyflog, P60, eich cyfrif treth personol, neu ar ap CThEF."
+              },
+              "id": "payrollNumber",
+              "labelSize": "m",
+              "format": "text",
+              "errorShortName": {
+                "en": "payroll number",
+                "cy": "rif cyflogres"
+              },
+              "errorShortNameStart": {
+                "en": "Payroll number",
+                "cy": "rhif cyflogres"
+              }
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension $n",
+            "cy": "Pensiwn $n"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "title": {
+            "en": "Reason for contact",
+            "cy": "Rheswm dros gysylltu"
+          },
+          "shortName": {
+            "en": "Reason for contact",
+            "cy": "Rheswm dros gysylltu"
+          },
+          "fields": [
+            {
+              "id": "issueType",
+              "type": "choice",
+              "notPII": true,
+              "labelSize": "m",
+              "errorMessage": {
+                "en": "Select what you want to tell us about your pension",
+                "cy": "Nodwch yr hyn yr ydych am roi gwybod i ni amdano ynghylch eich pensiwn"
+              },
+              "choices": [
+                {
+                  "en": "The pension income amount in my personal tax account is not the amount I received",
+                  "cy": "Nid yw swm yr incwm pensiwn yn fy nghyfrif treth personol yr un peth â’r swm a gefais",
+                  "value": "incorrect"
+                },
+                {
+                  "en": "I am no longer receiving payments from this pension",
+                  "cy": "Dydw i ddim yn cael taliadau o’r pensiwn hwn mwyach",
+                  "value": "ended"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "title": {
+            "en": "What you will need",
+            "cy": "Yr hyn y bydd ei angen arnoch"
+          },
+          "includeIf": "${issueType contains 'incorrect'}",
+          "fields": [
+            {
+              "id": "whatYouWillNeedInfo",
+              "type": "info",
+              "infoText": {
+                "en": "We will ask you for the annual amount of: <ul><li>income that you expect to receive from this pension before tax<li> tax you expect to pay on the pension income before you receive it</li></ul>",
+                "cy": "Byddwn yn gofyn am swm blynyddol y canlynol: <ul><li>incwm yr ydych yn disgwyl ei gael o’r pensiwn hwn cyn treth<li> treth yr ydych yn disgwyl ei thalu ar yr incwm pensiwn cyn y byddwch yn ei gael</li></ul>"
+              },
+              "infoType": "noformat"
+            },
+            {
+              "id": "whatYouWillNeedInfo1",
+              "type": "info",
+              "infoText": {
+                "en": "You should enter the amounts you expect to receive, and pay, during the current tax year (6 April ${lastTaxYear} to 5 April ${taxYear}).",
+                "cy": "Dylech nodi’r symiau yr ydych yn disgwyl eu cael, a’r rhai yr ydych yn disgwyl eu talu, yn ystod y flwyddyn dreth bresennol (6 Ebrill ${lastTaxYear} to 5 Ebrill ${taxYear})."
+              }
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n - Income details",
+            "cy": "Pensiwn  $n"
+          },
+          "title": {
+            "en": "How much do you expect to receive from your pension before tax?",
+            "cy": "Faint ydych chi’n disgwyl ei gael o’ch pensiwn cyn treth?"
+          },
+          "includeIf": "${issueType contains 'incorrect'}",
+          "shortName": {
+            "en": "Pension income details",
+            "cy": "Manylion y pensiwn"
+          },
+          "fields": [
+            {
+              "type": "text",
+              "id": "estimatedIncomeAmount",
+              "labelSize": "m",
+              "shortName": {
+                "en": "Pension income amount (before tax)",
+                "cy": "Swm incwm y pensiwn (cyn treth)"
+              },
+              "displayWidth": "l",
+              "format": "positiveSterling",
+              "helpText": [
+                {
+                  "en": "Enter the annual amount that you expect to receive between 6 April ${lastTaxYear} and 5 April ${taxYear}. Enter the amount in GBP.",
+                  "cy": "Nodwch y swm blynyddol yr ydych yn disgwyl ei gael rhwng 6 Ebrill ${lastTaxYear} a 5 Ebrill ${taxYear}. Nodwch y swm mewn GBP."
+                }
+              ],
+              "errorShortName": {
+                "en": "pension income amount (before tax)",
+                "cy": "swm yr incwm pensiwn (cyn treth)"
+              },
+              "errorShortNameStart": {
+                "en": "Pension income amount (before tax)",
+                "cy": "swm yr incwm pensiwn (cyn treth)"
+              }
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n - Income details",
+            "cy": "Pensiwn  $n"
+          },
+          "title": {
+            "en": "How much tax will you pay on your pension income before receiving it?",
+            "cy": "Faint o dreth fyddwch yn ei thalu ar eich incwm pensiwn cyn i chi ei gael?"
+          },
+          "includeIf": "${issueType contains 'incorrect'}",
+          "presentationHint": "invisiblePageTitle",
+          "fields": [
+            {
+              "type": "text",
+              "id": "totalTaxAtDateOfLeavingIncorrect",
+              "labelSize": "m",
+              "shortName": {
+                "en": "Amount of tax paid on pension income",
+                "cy": "Swm y dreth a dalwyd ar yr incwm pensiwn"
+              },
+              "displayWidth": "l",
+              "format": "positiveSterling",
+              "helpText": {
+                "en": "Enter the amount of tax you expect you'll pay on your pension between 6 April ${lastTaxYear} and 5 April ${taxYear}. Enter the amount in GBP.",
+                "cy": "Nodwch swm y dreth yr ydych yn disgwyl ei thalu ar eich pensiwn rhwng 6 Ebrill ${lastTaxYear} a 5 Ebrill ${taxYear}. Nodwch y swm mewn GBP."
+              },
+              "validators": [
+                {
+                  "validIf": "${totalTaxAtDateOfLeavingIncorrect <= estimatedIncomeAmount}",
+                  "errorShortName": {
+                    "en": "amount of tax paid on pension income"
+                  },
+                  "errorShortNameStart": {
+                    "en": "Amount of tax paid on pension income"
+                  },
+                  "errorMessage": {
+                    "en": "The tax you expect to pay cannot be more than the income you expect to earn",
+                    "cy": "Ni all y dreth yr ydych yn disgwyl ei thalu fod yn fwy na’r incwm yr ydych yn disgwyl ei ennill"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "continueLabel": {
+            "en": "Confirm and continue",
+            "cy": "Cadarnhau a pharhau"
+          },
+          "caption": {
+            "en": "Pension  $n - Income details",
+            "cy": "Pensiwn  $n"
+          },
+          "includeIf": "${issueType contains 'incorrect'}",
+          "title": {
+            "en": "Confirm the estimated income amount from this pension after tax",
+            "cy": "Cadarnhau swm amcangyfrifedig yr incwm o’r pensiwn hwn ar ôl treth"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "fields": [
+            {
+              "id": "hideTable",
+              "type": "info",
+              "label": {
+                "en": "",
+                "cy": ""
+              },
+              "infoType": "noformat",
+              "infoText": {
+                "en": "<style>.govuk-table__caption--m {display:none}</style>",
+                "cy": "<style>.govuk-table__caption--m {display:none}</style>"
+              }
+            },
+            {
+              "id": "estimatedIncomeAmountPlayback",
+              "type": "table",
+              "shortName": {
+                "en": "Pension income amount (after tax)",
+                "cy": "Swm incwm y pensiwn (ar ôl treth)"
+              },
+              "summaryValue": {
+                "en": "${hideZeroDecimals(netAmountPlayback)}",
+                "cy": "${hideZeroDecimals(netAmountPlayback)}"
+              },
+              "labelSize": "m",
+              "label": {
+                "en": "Employment summary of tax",
+                "cy": "Crynodeb treth o gyflogaeth"
+              },
+              "header": [
+                {
+                  "en": "Type",
+                  "cy": "Math"
+                },
+                {
+                  "en": "Amount",
+                  "cy": "Swm"
+                }
+              ],
+              "rows": [
+                {
+                  "values": [
+                    {
+                      "value": {
+                        "en": "Income amount before tax",
+                        "cy": "Swm yr incwm cyn treth"
+                      }
+                    },
+                    {
+                      "class": "govuk-!-text-align-right",
+                      "value": {
+                        "en": "${hideZeroDecimals(estimatedIncomeAmount)}",
+                        "cy": "${hideZeroDecimals(estimatedIncomeAmount)}"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "values": [
+                    {
+                      "value": {
+                        "en": "Tax paid on income amount",
+                        "cy": "Treth a dalwyd ar swm yr incwm"
+                      }
+                    },
+                    {
+                      "class": "govuk-!-text-align-right",
+                      "value": {
+                        "en": "${hideZeroDecimals(totalTaxAtDateOfLeavingIncorrect)}",
+                        "cy": "${hideZeroDecimals(totalTaxAtDateOfLeavingIncorrect)}"
+                      }
+                    }
+                  ]
+                },
+                {
+                  "values": [
+                    {
+                      "class": "govuk-table__header govuk-!-padding-top-3",
+                      "value": {
+                        "en": "<span class=\"govuk-heading-m govuk-!-margin-0\">Income amount after tax</span>",
+                        "cy": "<span class=\"govuk-heading-m govuk-!-margin-0\">Swm yr incwm ar ôl treth</span>"
+                      }
+                    },
+                    {
+                      "class": "govuk-table__header govuk-!-padding-top-3 govuk-!-text-align-right",
+                      "value": {
+                        "en": "<span class=\"govuk-heading-m govuk-!-margin-0\">${hideZeroDecimals(netAmountPlayback)}</span>",
+                        "cy": "<span class=\"govuk-heading-m govuk-!-margin-0\">${hideZeroDecimals(netAmountPlayback)}</span>"
+                      }
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "CSSgformTable1",
+              "type": "info",
+              "label": {
+                "en": "",
+                "cy": ""
+              },
+              "infoText": {
+                "en": "<style>table thead th.govuk-table__header:nth-child(2){text-align:right;}</style>"
+              },
+              "infoType": "noformat"
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n - Income details",
+            "cy": "Pensiwn  $n"
+          },
+          "title": {
+            "en": "Are you still receiving payments from this pension?",
+            "cy": "A ydych chi’n cael taliadau o’r pensiwn hwn o hyd?"
+          },
+          "presentationHint": "invisiblePageTitle",
+          "includeIf": "${issueType contains 'incorrect'}",
+          "fields": [
+            {
+              "errorMessage": {
+                "en": "Select yes if you are still receiving an income from this pension",
+                "cy": "Dewiswch ‘Iawn’ os ydych yn dal i gael incwm o’r pensiwn hwn"
+              },
+              "shortName": {
+                "en": "Still receiving payments from the pension",
+                "cy": "Yn dal i gael taliadau o’r pensiwn hwn"
+              },
+              "type": "choice",
+              "id": "stillReceivingIncome",
+              "labelSize": "m",
+              "choices": [
+                {
+                  "en": "Yes",
+                  "cy": "Iawn"
+                },
+                {
+                  "en": "No",
+                  "cy": "Na"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "caption": {
+            "en": "Pension  $n",
+            "cy": "Pensiwn  $n"
+          },
+          "title": {
+            "en": "When did you receive your last payment from this pension?",
+            "cy": "Pryd gawsoch eich taliad olaf o’r pensiwn hwn?"
+          },
+          "includeIf": "${stillReceivingIncome contains 1 || issueType contains 'ended'}",
+          "presentationHint": "invisiblePageTitle",
+          "fields": [
+            {
+              "id": "dateStoppedReceivingIncome",
+              "type": "date",
+              "shortName": {
+                "en": "Date of last payment",
+                "cy": "Dyddiad y taliad diwethaf"
+              },
+              "helpText": {
+                "en": "For example, 7 4 ${lastTaxYear}.",
+                "cy": "Er enghraifft, 7 4 ${lastTaxYear}."
+              },
+              "errorShortName": {
+                "en": "date of last payment",
+                "cy": "ddyddiad y taliad diwethaf"
+              },
+              "errorShortNameStart": {
+                "en": "Date of last payment",
+                "cy": "ddyddiad y taliad diwethaf"
+              },
+              "validators": [
+                {
+                  "validIf": "${dateStoppedReceivingIncome before TODAY +1d}",
+                  "errorMessage": {
+                    "en": "The date must be TODAY or in the past",
+                    "cy": "Mae’n rhaid i’r dyddiad fod HEDDIW neu yn y gorffennol"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "What is your telephone number?",
+        "cy": "Beth yw’ch rhif ffôn?"
+      },
+      "id": "phone",
+      "shortName": {
+        "en": "Contact details",
+        "cy": "Manylion cyswllt"
+      },
+      "fields": [
+        {
+          "id": "applicantTelephone",
+          "type": "text",
+          "format": "telephoneNumber",
+          "helpText": {
+            "en": "We will use this if we need to contact you about your application.",
+            "cy": "Byddwn yn defnyddio hyn os bydd angen i ni gysylltu â chi ynghylch eich cais."
+          },
+          "errorShortNameStart": {
+            "en": "Telephone number",
+            "cy": "Rhif ffôn"
+          }
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Where should we send a confirmation email for this application?",
+        "cy": "I ble y dylem anfon e-bost cadarnhau ar gyfer y cais hwn?"
+      },
+      "includeIf": "${auth.ggLogin && auth.email != ''}",
+      "shortName": {
+        "en": "Choose where to receive a confirmation email",
+        "cy": "Dewiswch ble i gael e-bost cadarnhau"
+      },
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "individualEmail",
+          "type": "revealingChoice",
+          "labelSize": "m",
+          "errorMessage": {
+            "en": "Select where HMRC should send the confirmation email for this request",
+            "cy": "Dewiswch i ble y dylai CThEF anfon yr e-bost cadarnhau ar gyfer y cais hwn"
+          },
+          "shortName": {
+            "en": "Email address for confirmation",
+            "cy": "Cyfeiriad e-bost ar gyfer yr e-bost cadarnhau"
+          },
+          "errorShortName": {
+            "en": "an email address",
+            "cy": "gyfeiriad e-bost"
+          },
+          "choices": [
+            {
+              "en": "To ${auth.email}",
+              "cy": "At ${auth.email}"
+            },
+            {
+              "en": "To a different email address",
+              "cy": "At gyfeiriad e-bost gwahanol"
+            }
+          ],
+          "hints": [
+            {
+              "en": "This is the email address for this Government Gateway user ID.",
+              "cy": "Dyma’r cyfeiriad e-bost ar gyfer y Dynodydd Defnyddiwr (ID) hwn ar gyfer Porth y Llywodraeth."
+            },
+            {
+              "en": "",
+              "cy": ""
+            }
+          ],
+          "revealingFields": [
+            [],
+            [
+              {
+                "id": "emailAlt",
+                "type": "text",
+                "label": {
+                  "en": "Email address for confirmation",
+                  "cy": "Cyfeiriad e-bost ar gyfer yr e-bost cadarnhau"
+                },
+                "format": "email"
+              }
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "caption": {
+        "en": "About you",
+        "cy": "Amdanoch chi"
+      },
+      "title": {
+        "en": "What is your email address?",
+        "cy": "Beth yw’ch cyfeiriad e-bost?"
+      },
+      "includeIf": "${auth.ggLogin && auth.email = ''}",
+      "presentationHint": "invisiblePageTitle",
+      "fields": [
+        {
+          "id": "emailAddressNonGg",
+          "type": "text",
+          "helpText": {
+            "en": "We will use this if we need to make contact about this form, and also to send you a confirmation email.",
+            "cy": "Byddwn yn defnyddio hwn os bydd angen i ni gysylltu â chi ynghylch y ffurflen hon, a hefyd i anfon e-bost cadarnhau atoch."
+          },
+          "label": {
+            "en": "What is your email address?",
+            "cy": "Beth yw’ch cyfeiriad e-bost?"
+          },
+          "shortName": {
+            "en": "Your email address",
+            "cy": "Eich cyfeiriad e-bost"
+          },
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "title": {
+        "en": "Check your address",
+        "cy": "Gwiriwch eich cyfeiriad"
+      },
+      "id": "page1",
+      "presentationHint": "invisiblePageTitle",
+      "includeIf": "${auth.itmpAddress != ''}",
       "fields": [
         {
           "id": "itmpAddressPlayback",
@@ -420,6 +1266,7 @@
         },
         {
           "id": "itmpAddressOverseas",
+          "presentationHint": "invisiblePageTitle",
           "type": "overseasAddress",
           "label": {
             "en": "Address",
@@ -436,805 +1283,197 @@
           "type": "choice",
           "labelSize": "m",
           "shortName": {
-            "en": "Is address correct",
-            "cy": "A yw’r cyfeiriad yn gywir"
+            "en": "Correspondence address",
+            "cy": "Cyfeiriad gohebiaeth"
           },
           "errorMessage": {
-            "en": "Select yes if this is your address",
+            "en": "Select yes if this is the address where we should contact you",
             "cy": "Dewiswch ‘Iawn’ os mai’ch cyfeiriad chi yw hwn"
           },
           "label": {
-            "en": "Is this your current address?"
+            "en": "Is this the address we should use to contact you about this form?",
+            "cy": "Ai dyma’r cyfeiriad y dylwn ei ddefnyddio i gysylltu â chi ynglŷn â’r ffurflen hon?"
           },
-          "format": "yesno"
+          "choices": [
+            {
+              "en": "Yes",
+              "cy": "Iawn"
+            },
+            {
+              "en": "No",
+              "cy": "Na"
+            }
+          ]
         }
       }
     },
     {
-      "title": "You need to update your address",
-      "continueIf": false,
+      "title": {
+        "en": "Entering a different address",
+        "cy": "Nodi cyfeiriad gwahanol"
+      },
       "includeIf": "${yourAddressChoice contains 1}",
       "fields": [
         {
-          "id": "addressMessage",
-          "type": "info",
-          "label": "",
-          "infoText": "Because you told us your address has changed, you need to update this before you can continue with this service. <ol><li> [Update your personal details (opens in new tab)](https://www.gov.uk/tell-hmrc-change-of-details). </li><li>Return to this tab.</li><li>Check and confirm your new address on the next page.</li></ol> \n\n Because it may take up to 24 hours before your new address is visible in this service, you may need to come back later and sign in again.\n\n We have saved your progress.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "postUpdateButton",
+          "id": "addressUpdate",
           "type": "info",
           "label": {
             "en": "",
             "cy": ""
           },
           "infoText": {
-            "en": "<a href='${link.ggCheckAddress}' class='govuk-button' role='button' target='_self' >Check and confirm new address</a>"
+            "en": "You can enter a different address next. However, the address you enter into this form will not update the details in your Government Gateway account.",
+            "cy": "Gallwch nodi cyfeiriad gwahanol nesaf. Fodd bynnag, ni fydd nodi cyfeiriad ar y ffurflen hon yn diweddaru’r manylion yn eich cyfrif Porth y Llywodraeth."
+          },
+          "infoType": "noformat"
+        },
+        {
+          "id": "addressUpdate1",
+          "type": "info",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoText": {
+            "en": "If this is a new permanent address, you will need to update your details after you submit this form.",
+            "cy": "Os yw hwn yn gyfeiriad parhaol newydd, bydd angen i chi ddiweddaru’ch manylion ar ôl i chi gyflwyno’r ffurflen hon."
+          }
+        },
+        {
+          "id": "addressUpdate2",
+          "type": "info",
+          "label": {
+            "en": "",
+            "cy": ""
+          },
+          "infoText": {
+            "en": "We will tell you how to update your address once your form is submitted.",
+            "cy": "Byddwn yn rhoi gwybod i chi sut i ddiweddaru eich cyfeiriad ar ôl i’r ffurflen gael ei chyflwyno."
           },
           "infoType": "noformat"
         }
       ]
     },
     {
-      "includeIf": "${isBusiness}",
-      "caption": {
-        "en": "Business details"
-      },
-      "title": [
-        {
-          "includeIf": "${whoIsApplyingChoice contains 'business'}",
-          "en": "Are you registered for VAT?"
-        },
-        {
-          "en": "Is the business registered for VAT?"
-        }
-      ],
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "type": "choice",
-          "helpText": "Only use this service to pay import VAT if you are not registered for VAT.",
-          "id": "registeredForVATchoice",
-          "notPII": true,
-          "shortName": {
-            "en": "Registered for VAT"
-          },
-          "format": "yesno"
-        }
-      ]
-    },
-    {
-      "includeIf": "${registeredForVATchoice contains 0}",
-      "caption": {
-        "en": "Business details"
-      },
       "title": {
-        "en": "You cannot use this service to make an import VAT payment"
+        "en": "Is your current address in the UK?",
+        "cy": "A yw’ch cyfeiriad presennol yn y DU?"
       },
+      "includeIf": "${auth.itmpAddress = '' || yourAddressChoice contains 1}",
       "presentationHint": "invisiblePageTitle",
       "fields": [
         {
-          "type": "info",
-          "id": "registeredVATexit",
-          "label": "VAT registered exit",
-          "infoType": "noformat",
-          "infoText": [
-            {
-              "includeIf": "${whoIsApplyingChoice contains 'business'}",
-              "en": "Because you are already registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now [sign out of this service](${link.signOut})."
-            },
-            {
-              "en": "Because the business is registered for VAT, the payment should be accounted for in your VAT return. You cannot make an import VAT payment using this service. \n\n You can now [sign out of this service](${link.signOut})."
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "includeIf": "${user.affinityGroup = 'organisation'}",
-      "caption": {
-        "en": "Business details"
-      },
-      "title": {
-        "en": "What is the name of the business?"
-      },
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "type": "text",
-          "id": "businessNameEntered",
-          "shortName": {
-            "en": "Business name"
-          },
-          "errorShortName": {
-            "en": "the name of the business"
-          },
-          "errorShortNameStart": {
-            "en": "The name of the business"
-          },
-          "format": "text"
-        }
-      ]
-    },
-    {
-      "caption": {
-        "en": "About the import VAT payment"
-      },
-      "title": "Did the items arrive in Northern Ireland on or after ${TODAY -4y}?",
-      "shortName": {
-        "en": "About the import VAT payment"
-      },
-      "fields": [
-        {
-          "id": "arrivedNI4Years",
-          "type": "choice",
-          "helpText": "You only need to pay import VAT on items that arrived in Northern Ireland within the last 4 years.",
-          "choices": [
-            "Yes, the items arrived on or after ${TODAY -4y}",
-            "No, the items arrived more than 4 years ago"
-          ],
-          "errorMessage": {
-            "en": "Select yes if the items arrived in Northern Ireland within the last 4 years"
-          },
-          "shortName": {
-            "en": "Items arrived in Northern Ireland within last 4 years"
-          }
-        }
-      ]
-    },
-    {
-      "includeIf": "${arrivedNI4Years contains 1}",
-      "caption": {
-        "en": "About the import VAT payment"
-      },
-      "continueIf": false,
-      "title": "You do not need to make an import VAT payment",
-      "fields": [
-        {
-          "id": "dateBeforeVATrulesChangedInfo",
-          "type": "info",
-          "infoType": "noformat",
-          "infoText": "You do not need to pay import VAT on items that arrived in Northern Ireland more than 4 years ago. \n\n You can <a href='${link.signOut}' target='_self'>sign out of this service.</a>"
-        }
-      ]
-    },
-    {
-      "caption": {
-        "en": "About the import VAT payment"
-      },
-      "title": "Import VAT you owe on items sent or carried to Northern Ireland",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "type": "info",
-          "infoType": "noformat",
-          "id": "howToCalculateVATGoodsShippedNI2",
-          "infoText": "To check the amount of import VAT you owe, <a href='https://www.gov.uk/guidance/how-vat-will-apply-to-goods-moving-between-great-britain-and-northern-ireland#if-you-travel-with-goods-by-air-or-sea-between-great-britain-and-northern-ireland'> check the VAT rates guidance page (opens in new tab)."
-        },
-        {
-          "id": "amountVATowed",
-          "type": "text",
-          "label": "How much import VAT do you owe?",
-          "helpText": "Enter the amount in GBP.",
-          "labelSize": "m",
-          "format": "positiveSterling",
-          "shortName": "Import VAT due",
-          "validators": [
-            {
-              "validIf": "${amountVATowed > 0}",
-              "errorMessage": {
-                "en": "Enter an amount greater than £0"
-              }
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "includeIf": "${amountVATowed >= 18000}",
-      "title": {
-        "en": "Is your total taxable turnover over £90,000?"
-      },
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "taxableProfitAboveThresholdchoice",
-          "type": "choice",
-          "format": "yesno",
-          "errorMessage": {
-            "en": "Select yes if your total taxable turnover is over £90,000"
-          },
-          "shortName": {
-            "en": "Taxable income in excess of £90,000"
-          }
-        }
-      ]
-    },
-    {
-      "includeIf": "${taxableProfitAboveThresholdchoice contains 0}",
-      "caption": {
-        "en": "About the import VAT payment"
-      },
-      "continueIf": false,
-      "title": "You need to register for VAT",
-      "fields": [
-        {
-          "id": "vatOwedAboveThresholdInfo",
-          "type": "info",
-          "infoType": "noformat",
-          "infoText": "You qualify for VAT registration, and so cannot use this form to pay import VAT. Instead, you must <a href='https://www.gov.uk/register-for-vat/how-register-for-vat'> register for VAT (opens in new tab)."
-        }
-      ]
-    },
-    {
-      "includeIf": "${auth.itmpName = ''}",
-      "caption": {
-        "en": "Contact details"
-      },
-      "shortName": {
-        "en": "Contact details"
-      },
-      "title": {
-        "en": "What is your full name?"
-      },
-      "fields": [
-        {
-          "id": "fullName",
-          "type": "text",
-          "format": "text",
-          "shortName": {
-            "en": "Your full name"
-          },
-          "errorShortName": {
-            "en": "your full name"
-          },
-          "errorShortNameStart": {
-            "en": "Your full name"
-          }
-        }
-      ]
-    },
-    {
-      "includeIf": "${(user.affinityGroup = 'individual' && auth.itmpAddress = '') || user.affinityGroup = 'organisation'}",
-      "caption": [
-        {
-          "includeIf": "${isBusiness}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your details"
-        }
-      ],
-      "title": [
-        {
-          "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-          "en": "Is your residential address in the United Kingdom?"
-        },
-        {
-          "en": "Is the business address in the United Kingdom?"
-        }
-      ],
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "addressUKorOverseas",
+          "id": "noAddressInUK",
           "type": "choice",
           "labelSize": "m",
-          "shortName": [
-            {
-              "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-              "en": "Has UK residential address"
-            },
-            {
-              "en": "Business address in UK"
-            }
-          ],
+          "shortName": {
+            "en": "Address in UK",
+            "cy": "Cyfeiriad yn y DU"
+          },
           "errorMessage": {
-            "en": "Select whether your address is in the United Kingdom or overseas"
+            "en": "Select yes if your current address is in the UK",
+            "cy": "Dewiswch ‘Iawn’ os yw’ch cyfeiriad presennol yn y DU"
           },
           "presentationHint": "invisiblePageTitle",
           "choices": [
             {
-              "en": "Yes"
+              "en": "Yes",
+              "cy": "Iawn"
             },
             {
-              "en": "No, its overseas"
+              "en": "No",
+              "cy": "Na"
             }
           ]
         }
       ]
     },
     {
-      "includeIf": "${addressUKorOverseas contains 0}",
-      "caption": [
-        {
-          "includeIf": "${isBusiness}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your details"
-        }
-      ],
-      "title": [
-        {
-          "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-          "en": "Find your UK residential address"
-        },
-        {
-          "en": "Find the business' UK address"
-        }
-      ],
+      "title": {
+        "en": "Enter your address",
+        "cy": "Nodwch eich cyfeiriad"
+      },
       "presentationHint": "invisiblePageTitle",
+      "includeIf": "${noAddressInUK contains 0}",
       "fields": [
         {
           "type": "postcodeLookup",
           "id": "ukAddress",
-          "label": "Address",
-          "shortName": [
-            {
-              "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-              "en": "UK residential address"
-            },
-            {
-              "en": "UK business address"
-            }
-          ],
-          "chooseAddressLabel": "Choose the UK address",
-          "confirmAddressLabel": "Confirm your UK address"
-        }
-      ]
-    },
-    {
-      "includeIf": "${addressUKorOverseas contains 1}",
-      "caption": [
-        {
-          "includeIf": "${isBusiness}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your details"
-        }
-      ],
-      "title": [
-        {
-          "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-          "en": "What is your overseas residential address?"
-        },
-        {
-          "en": "What is the overseas business address?"
-        }
-      ],
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "overseasAddress",
-          "type": "overseasAddress",
-          "shortName": [
-            {
-              "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-              "en": "Overseas residential address"
-            },
-            {
-              "en": "Overseas business address"
-            }
-
-          ],
-          "errorShortName": {
-            "en": "overseas address"
-          },
-          "errorShortNameStart": {
-            "en": "Overseas address"
-          }
-        }
-      ]
-    },
-    {
-      "caption": [
-        {
-          "includeIf": "${isBusiness}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your details"
-        }
-      ],
-      "title": "Choose a correspondence address for this notification",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "correspondenceAddressChoice",
-          "type": "choice",
-          "helpText": "We may use this to contact you about the import VAT notification or payment.",
-          "shortName": "Correspondence address",
-          "errorMessage": "Select a correspondence address",
-          "choices": [
-            {
-              "includeIf": "${user.affinityGroup = 'individual' && auth.itmpAddress != ''}",
-              "en": "${auth.itmpAddress}",
-              "value": "GGaddressIsCorrespondenceAddress"
-            },
-            {
-              "includeIf": "${user.affinityGroup = 'individual' && auth.itmpAddress = ''}",
-              "en": "${ukAddress orElse overseasAddress}",
-              "value": "addressEnteredIsCorrespondenceAddress"
-            },
-            {
-              "includeIf": "${user.affinityGroup = 'organisation'}",
-              "en": "${ukAddress}",
-              "value": "businessAddressIsCorrespondenceAddress"
-            },
-            {
-              "en": "Enter a different address",
-              "value": "diffAddIsCorrespondenceAddress"
-            }
-          ],
-          "hints": [
-            "The address in your Government Gateway account",
-            "Your ${if whoIsApplyingChoice contains 'individual' then 'residential' else 'business'} address",
-            "The office address of the business",
-            ""
-          ]
-        }
-      ]
-    },
-    {
-      "includeIf": "${correspondenceAddressChoice contains 'diffAddIsCorrespondenceAddress'}",
-      "caption": "Your contact details",
-"title": [
-      {
-        "includeIf": "${whoIsApplyingChoice contains 'individual'}",
-        "en": "Is your correspondence address in the UK?"
-      },
-      {
-        "en": "Is the correspondence address in the UK?"
-      }
-    ],
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "correspondenceAddressUKorOverseasChoice",
-          "type": "choice",
-          "labelSize": "m",
-          "shortName": {
-            "en": "Correspondence address in UK"
-          },
-          "errorMessage": {
-            "en": "Select whether the correspondence address is in the United Kingdom or overseas"
-          },
-          "presentationHint": "invisiblePageTitle",
-          "choices": [
-            {
-              "en": "Yes"
-            },
-            {
-              "en": "No, it's overseas"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "includeIf": "${correspondenceAddressUKorOverseasChoice contains 0}",
-      "caption": [
-        {
-          "includeIf": "${isBusiness}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your details"
-        }
-      ],
-      "title":  {
-        "en": "Find the correspondence address in the United Kingdom"
-      },
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "type": "postcodeLookup",
-          "id": "ukCorrespondenceAddress",
-          "label": "Correspondence address",
-          "shortName": {
-            "en": "Correspondence address"
-          },
-          "chooseAddressLabel": "Choose the address in the United Kingdom",
-          "confirmAddressLabel": "Confirm the address in the United Kingdom"
-        }
-      ]
-    },
-    {
-      "includeIf": "${correspondenceAddressUKorOverseasChoice contains 1}",
-      "caption": [
-        {
-          "includeIf": "${isBusiness}",
-          "en": "Business details"
-        },
-        {
-          "en": "Your details"
-        }
-      ],
-      "title": {
-        "en": "What is the overseas correspondence address?"
-      },
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "overseasCorrespondenceAddress",
-          "type": "overseasAddress",
-          "shortName": {
-            "en": "Overseas correspondence address"
-          },
-          "errorShortName": {
-            "en": "overseas correspondence address"
-          },
-          "errorShortNameStart": {
-            "en": "Overseas correspondence address"
-          }
-        }
-      ]
-    },
-    {
-      "includeIf": "${auth.email != ''}",
-      "caption": {
-        "en": "Your contact details"
-      },
-      "title": {
-        "en": "What is your email address?"
-      },
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "emailChoice",
-          "type": "choice",
-          "labelSize": "m",
-          "helpText": "We’ll use this to confirm that your application has been received, and to send you instructions on how to pay.",
-          "errorMessage": "Select the email address we can use to confirm that your application has been received",
-          "shortName": "Email address",
-          "choices": [
-            {
-              "en": "${auth.email}",
-              "cy": "${auth.email}",
-              "hint": "This is the email address for this Government Gateway user ID."
-            },
-            {
-              "en": "A different email address"
-            }
-          ]
-        }
-      ]
-    },
-    {
-      "includeIf": "${auth.email = '' || emailChoice contains 1}",
-      "caption": {
-        "en": "Your contact details"
-      },
-      "title": "Your email address for this application",
-      "id": "backlinkhere",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "emailYouEnterInfo",
-          "type": "info",
-          "label": "",
-          "infoText": "We will send you a code to confirm your email address. On the next screen, you'll be asked to enter the code.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "altEmail",
-          "verifiedBy": {
-            "service": "digitalContact",
-            "emailTemplateId": "dynamicEmail_code",
-            "codeField": "code"
-          },
-          "type": "text",
-          "format": "email",
-          "displayWidth": "m",
-          "label": "What is your email address?",
-          "labelSize": "m",
-          "helpText": "We will use this to send you the details of the import VAT payment you need to make.This will not update the email linked to your Government Gateway User ID.",
-          "shortName": "Email address",
-          "errorMessage": "Enter an email address in the correct format"
-        }
-      ]
-    },
-    {
-      "includeIf": "${auth.email = '' || emailChoice contains 1}",
-      "caption": {
-        "en": "Your contact details"
-      },
-      "title": "Enter your code to confirm your email address",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "emailInfo",
-          "label": "",
-          "infoType": "noformat",
-          "type": "info",
-          "infoText": "We sent a code to: <strong>${altEmail}</strong> "
-        },
-        {
-          "id": "emailTimingsInfo",
-          "label": "",
-          "infoType": "noformat",
-          "type": "info",
-          "infoText": "This can take a few minutes to arrive."
-        },
-        {
-          "id": "emailAccessInfo",
-          "label": "",
-          "type": "info",
-          "infoText": "If you're checking your email in a browser, keep this tab open. Open a new tab to access your email and get the code."
-        },
-        {
-          "id": "code",
-          "presentationHint": "invisibleInSummary",
-          "shortName": "Confirmation code",
-          "label": "Confirmation code",
-          "labelSize": "m",
-          "helpText": "This is 4 letters. For example, DNXL.",
-          "errorMessage": "Enter the code we emailed you",
-          "displayWidth": "xs",
-          "type": "text",
-          "format": "text"
-        },
-        {
-          "id": "emailCodeInfo3",
-          "type": "info",
-          "infoType": "long",
-          "label": "If you cannot find the code",
-          "infoText": "Make sure you use the code in the most recent email we sent you. \n\n Search your emails for 'Confirm your email address - Apply for a refund on import VAT you have paid on items sent or carried from Great Britain to Northern Ireland'. You may also need to check your spam or junk folder. \n\n If you cannot find it, you can (<a href='${link.backlinkhere}'>request a new code or enter a different email address</a>."
-        }
-      ]
-    },
-    {
-      "includeIf": "${auth.email = '' || emailChoice contains 1}",
-      "caption": {
-        "en": "Your contact details"
-      },
-      "title": "Email address confirmed",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "emailConfirmedInfo1",
-          "type": "info",
-          "label": "",
-          "infoText": "We'll use the email address to send you a confirmation email for this application. However, the email linked to your Government Gateway User ID will stay the same.",
-          "infoType": "noformat"
-        },
-        {
-          "id": "emailConfirmedInfo3",
-          "label": "",
-          "type": "info",
-          "infoText": "You can now continue with your notification and payment for import VAT.",
-          "infoType": "noformat"
-        }
-      ]
-    },
-    {
-      "caption": {
-        "en": "Your contact details"
-      },
-      "title": {
-        "en": "Consent to communicate by email"
-      },
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "type": "info",
-          "id": "emailComm1",
-          "label": "",
-          "infoText": {
-            "en": "We always send an email confirming that we have received your application. This also includes a reference number. \n\n We may also need to contact you for further information about your application. But we need your consent to communicate by email."
-          },
-          "infoType": "noformat"
-        },
-        {
-          "type": "info",
-          "id": "emailComm2",
-          "label": "",
-          "infoText": {
-            "en": "There are risks to communicating sensitive information by email. Read the <a href='https://www.gov.uk/government/publications/corresponding-with-hmrc-by-email-ccfs72/corresponding-with-hmrc-by-email' rel='noreferrer noopener'>guidance on corresponding with HMRC by email (opens in new tab)</a>."
-          },
-          "infoType": "noformat"
-        },
-        {
-          "id": "consentToEmail",
-          "type": "choice",
-          "labelSize": "s",
           "label": {
-            "en": "Do you consent to communication by email?"
+            "en": "Address",
+            "cy": "Cyfeiriad"
           },
           "shortName": {
-            "en": "Consent to communicate by email"
+            "en": "UK address",
+            "cy": "Cyfeiriad yn y DU"
           },
-          "errorMessage": {
-            "en": "Select yes if you want HMRC to communicate with you by email"
-          },
-          "choices": [
-            "Yes",
-            "No, only send a confirmation email with a reference number"
-          ]
+          "chooseAddressLabel": "Choose your address",
+          "confirmAddressLabel": "Confirm your address"
         }
       ]
     },
     {
-      "caption": {
-        "en": "Your contact details"
-      },
       "title": {
-        "en": "What is your telephone number (optional)?"
+        "en": "What is your address?",
+        "cy": "Beth yw’ch cyfeiriad?"
       },
       "presentationHint": "invisiblePageTitle",
+      "includeIf": "${noAddressInUK contains 1}",
       "fields": [
         {
-          "id": "telephone",
-          "type": "text",
-          "format": "telephoneNumber",
+          "id": "addressOverseas",
+          "type": "overseasAddress",
           "shortName": {
-            "en": "Telephone number"
+            "en": "Your address",
+            "cy": "Eich cyfeiriad"
           },
-          "helpText": "We may use this to contact you about the import VAT notification or payment. For international numbers include the country code",
-          "mandatory": false
+          "errorShortName": {
+            "en": "address",
+            "cy": "cyfeiriad"
+          },
+          "errorShortNameStart": {
+            "en": "Address",
+            "cy": "Cyfeiriad"
+          },
+          "selectionCriteria": [
+            {
+              "column": "Region",
+              "value": [
+                "2",
+                "3",
+                "4",
+                "5"
+              ]
+            }
+          ]
         }
       ]
     }
   ],
   "summarySection": {
     "title": {
-      "en": "Check your answers before making your payment"
+      "en": "Check your answers",
+      "cy": "Gwiriwch eich atebion"
     },
     "header": {
       "en": "",
       "cy": ""
     },
-    "footer": "",
-    "fields": [
-      {
-        "id": "Spacing",
-        "type": "info",
-        "infoText": "",
-        "infoType": "noformat"
-      },
-      {
-        "id": "Spacing1",
-        "type": "info",
-        "infoText": "",
-        "infoType": "noformat"
-      },
-      {
-        "id": "declarationInfo",
-        "type": "info",
-        "infoText": "By submitting this form, you are confirming that the information entered is correct to the best of your knowledge. Giving false information on purpose could result in a penalty or prosecution.</div>",
-        "infoType": "important"
-      }
-    ],
+    "footer": {
+      "en": "<div class='govuk-!-margin-top-7'><a href ='${link.printSummaryPdf}'> Save or print a draft copy of your answers (opens in new tab)</a><h2 class='govuk-heading-m govuk-!-margin-top-8'>Now submit your form</h2>\n\nBy submitting this form you confirm that, to the best of your knowledge, the details you are providing are correct. <p class='govuk-!-margin-top-6 govuk-!-margin-bottom-7'></p></div>",
+      "cy": "<div class='govuk-!-margin-top-7'><a href ='${link.printSummaryPdf}'> Cadw neu argraffu copi drafft o’ch atebion (yn agor tab newydd)</a><h2 class='govuk-heading-m govuk-!-margin-top-8'>Cyflwynwch eich ffurflen nawr</h2>\n\nWrth gyflwyno’r ffurflen hon rydych yn cadarnhau, hyd eithaf eich gwybodaeth, fod y manylion rydych yn eu rhoi yn gywir. <p class='govuk-!-margin-top-6 govuk-!-margin-bottom-7'></p></div>"
+    },
     "continueLabel": {
-      "en": "Confirm and submit"
+      "en": "Accept and submit",
+      "cy": "Derbyn a chyflwyno"
     }
   },
   "acknowledgementSection": {
     "title": {
-      "en": "Acknowledgement Page",
-      "cy": "Tudalen Gydnabyddiaeth"
+      "en": "Form submitted",
+      "cy": "Ffurflen wedi’i chyflwyno"
     },
-    "pdf": {
-      "header": "",
-      "footer": "<h2>Payment details</h2> \n* <b>Payment reference number:</b> ${paymentReference}\n \n* <b>Payment amount:</b> ${amountVATowed} \n\n ###Pay with our online payment service\n\n \n\n 1. Go to GOV.UK \n\n 2. Search for ‘Pay taxes, penalties or enquiry settlements’\n\n 3. Follow the payment instructions on the page, using the payment details in this PDF.\n\n###Pay online with telephone banking, CHAPS or Bacs\n\n \n\nYou can pay by Faster Payments, CHAPS (Clearing House Automated Payment System) or Bacs (Bankers Automated Clearing System) to HMRC’s account using these details:\n\n <b>Account name:</b> HMRC payments\n\n<b>Reference number:</b> ${paymentReference} \n\n <b>Sort code:</b> 08 32 10 \n\n <b>Account number:</b> 12001020 \n\n \n\n Payments by:<ul><li>Faster Payments (online or telephone banking) usually reach HMRC on the same or next day, including weekends and bank holidays</li><li>CHAPS usually reach HMRC the same working day if you pay within your bank’s processing times</li><li>Bacs usually take 3 working days</li></ul> \n\n ###Pay from overseas\n\n Use the following details to pay from an overseas account:\n\n <b>Account number (IBAN):</b> GB03 BARC 2011 4783 9776 92 \n\n<b>Bank identifier code (BIC):</b> BARCGB22 \n\n <b>Account name:</b> HMRC Shipley \n\n###Pay by cheque in the post \n\n Make your cheque payable to ‘HM Revenue and Customs only’ and write your payment reference on the back of the cheque. \n\n You’ll also need to give us the following details:\n \n* your name, address and telephone number \n* the amount you’re paying \n\n Do not: \n* fold the cheque \n* fasten documents together \n \n Allow 3 working days for your payment to reach HMRC and send your payment to: \n\n HMRC \n\n  Direct \n\n  BX5 5BD \n\n You can request a receipt with you payment."
-    },
-    "showBanner": false,
     "fields": [
-      {
-        "id": "pageHeading",
-        "type": "info",
-        "label": {
-          "en": "",
-          "cy": ""
-        },
-        "infoType": "noformat",
-        "infoText": {
-          "en": "<h1 class='govuk-heading-l'>Now make your payment</h1><p class='govuk-body'>"
-        }
-      },
       {
         "id": "nextSteps",
         "type": "info",
@@ -1242,147 +1481,52 @@
           "en": "",
           "cy": ""
         },
-        "infoType": "noformat",
         "infoText": {
-          "en": "Your form has been submitted. We have sent a confirmation email to: **${email}**.",
-          "cy": "Anfonon ni e-bost cadarnhau at **${email}** gyda’ch cyfeirnod cyflwyno. Nid yw’r e-bost yn cynnwys copi o’ch atebion.\n\n<strong>[Argraffwch neu cadwch gopi PDF o’ch ffurflen](${link.printAcknowledgementPdf})</strong>\n\n"
-        }
+          "en": "We sent a confirmation email to **${email}** with your submission reference. For security reasons, the email will not include a copy of your answers.<h2 class='govuk-heading-m'> If you need a copy of your answers</h2>\n\n[Print or save a copy of your answers (PDF, opens in new tab).](${link.printAcknowledgementPdf})\n\n<h2 class='govuk-heading-m'> What happens next </h2>\n\nWe will review your application. \n\nIf there is a change to your tax code, we will let you know within <strong>15 working days.</strong>\n\n If we need more information, we will contact you by telephone.  \n\n <h2 class='govuk-heading-m'> How we’ll tell you if your tax code changes</h2>\n\n We will show you your new tax code in your personal tax account.\n\nIf you: <ul><li>receive your tax letters through your HMRC online account, we will notify you by email</li><li>get tax letters by post, we will send you a letter</li></ul>A change to your tax code may affect how much tax you pay.",
+          "cy": "Gwnaethom anfon e-bost cadarnhau at **${email}** gyda’ch cyfeirnod cyflwyno. Am resymau diogelwch, nid fydd yr e-bost yn cynnwys copi o’ch atebion.<h2 class='govuk-heading-m'> Os oes angen copi o’ch atebion arnoch</h2>\n\n[Cadwch neu argraffwch gopi o’ch ffurflen (ar ffurf PDF, yn agor tab newydd).]</h2>\n\n Yr hyn sy’n digwydd nesaf</h2>\n\nByddwn yn adolygu eich cais. \n\nOs bydd newid i’ch cod treth, byddwn yn rhoi gwybod i chi cyn pen <strong>15 diwrnod gwaith.</strong>\n\n Os bydd angen rhagor o wybodaeth arnom, byddwn yn cysylltu â chi dros y ffôn.  \n\n <h2 class='govuk-heading-m'> Sut y byddwn yn rhoi gwybod i chi os bydd eich cod treth yn newid</h2>\n\n Byddwn yn dangos eich cod treth newydd yn eich cyfrif treth personol.\n\nOs ydych: <ul><li>yn cael eich llythyrau treth drwy’ch cyfrif ar-lein CThEF, byddwn yn rhoi gwybod i chi drwy e-bost</li><li>yn cael llythyrau treth drwy’r post, byddwn ni’n anfon llythyr atoch</li></ul>Gallai newid i’ch cod treth effeithio faint o dreth rydych yn ei thalu."
+        },
+        "infoType": "noformat"
       },
       {
-        "id": "payDetailsHeading",
-        "type": "info",
-        "infoType": "noformat",
-        "infoText": {
-          "en": "<h2 class='govuk-heading-m'>Payment Details</h2><p class='govuk-body'>",
-          "cy": ""
-        }
-      },
-      {
-        "id": "payDetails",
+        "id": "insetInfo",
         "type": "info",
         "label": {
           "en": "",
           "cy": ""
         },
-        "infoType": "noformat",
         "infoText": {
-          "en": "Keep these details safe, you may need them later. \n \n* Payment reference number: <strong> ${paymentReference}</strong> \n* Amount you need to pay: <strong>${amountVATowed}</strong> \n\n<strong>[Download a copy of your answers and payment instructions (PDF, opens in new tab)](${link.printAcknowledgementPdf})</strong>"
-        }
+          "en": "Do not worry if you do not hear from us. We'll only contact you if your tax code changes.",
+          "cy": "Peidiwch â phoeni os na fyddwch yn clywed gennym. Byddwn dim ond yn cysylltu â chi os bydd eich cod treth yn newid."
+        },
+        "infoType": "standard"
       },
       {
-        "id": "payNow",
-        "type": "info",
-        "infoType": "noformat",
-        "infoText": {
-          "en": "<h2 class='govuk-heading-m'>If you are paying now</h2><p class='govuk-body'>"
-        }
-      },
-      {
-        "id": "payNowDetails",
+        "id": "addressMessage",
+        "includeIf": "${yourAddressChoice contains 1}",
         "type": "info",
         "label": {
           "en": "",
           "cy": ""
         },
-        "infoType": "noformat",
         "infoText": {
-          "en": "You can continue to pay now using our online payment service. It’s the easiest way to make your payment."
-        }
-      },
-      {
-        "type": "button",
-        "id": "paymentJourney",
-        "label": "Pay now",
-        "reference": "${paymentReference}",
-        "amountInPence": "${amountVATowed * 100}",
-        "isStartButton": true
-      },
-      {
-        "id": "payNow",
-        "type": "info",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": {
-          "en": "<h2 class='govuk-heading-m'>Other ways to pay</h2><p class='govuk-body'>\n\n You can pay later if you need to, using the payment instructions in the PDF, and confirmation email."
-        }
-      },
-      {
-        "type": "info",
-        "id": "payLaterWarning",
-        "label": "",
-        "infoText": "You should make this payment within 45 days."
-      },
-      {
-        "type": "info",
-        "id": "makePaymentBACSguidance",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "<h3 class='govuk-heading-s'>Pay online with telephone banking, CHAPS or Bacs</h2><p class='govuk-body'>\n\n \n\nYou can pay by Faster Payments, CHAPS (Clearing House Automated Payment System) or Bacs (Bankers Automated Clearing System) to HMRC’s account using these details:\n\n <dl class='govuk-summary-list'><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Account name</dt><dd class='govuk-summary-list__value'>HMRC payments</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Reference number</dt><dd class='govuk-summary-list__value'>${paymentReference}</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Sort code</dt><dd class='govuk-summary-list__value'>08 32 10</dd></div><dt class='govuk-summary-list__key'>Account number</dt><dd class='govuk-summary-list__value'>12001020</dd></div></dl>"
-      },
-      {
-        "type": "info",
-        "id": "paymentWarning",
-        "label": "",
-        "infoText": "Your payment may be delayed if you use the wrong reference."
-      },
-      {
-        "type": "info",
-        "id": "makePaymentTimings",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "Payments by:\n* Faster Payments (online or telephone banking) usually reach HMRC on the same or next day, including weekends and bank holidays \n* CHAPS usually reach HMRC the same working day if you pay within your bank’s processing times \n* Bacs usually take 3 working days \n"
-      },
-      {
-        "id": "payOverseas",
-        "type": "info",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": {
-          "en": "<h3 class='govuk-heading-s'>Pay from overseas</h2><p class='govuk-body'>\n\n\n\n      Use the following details to pay from an overseas account:\n\n      <dl class='govuk-summary-list'><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>Account number (IBAN)</dt><dd class='govuk-summary-list__value'>GB03 BARC 2011 4783 9776 92</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>\n\n      Bank identifier code (BIC)\n\n      </dt><dd class='govuk-summary-list__value'>BARCGB22</dd></div><div class='govuk-summary-list__row govuk-summary-list__row--no-actions'><dt class='govuk-summary-list__key'>\n\n      Account name\n\n      </dt><dd class='govuk-summary-list__value'>HMRC Shipley</dd></div></div></dl> Use the following address if you need to give your bank HMRC’s banking address:"
-        }
-      },
-      {
-        "type": "info",
-        "id": "payOverseasaddress",
-        "label": "",
-        "infoText": "Barclays Bank Plc \n\n  1 Churchill Place \n\n  London \n\n  United Kingdom \n\n E14 5HP"
-      },
-      {
-        "id": "nextSteps3",
-        "type": "info",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": {
-          "en": "<h3 class='govuk-heading-s'>Pay by cheque in the post</h2><p class='govuk-body'>\n\n  \n\n Make your cheque payable to ‘HM Revenue and Customs only’ and write your payment reference on the back of the cheque. \nYou’ll also need to give us the following details:\n \n* your name, address and telephone number \n* the amount you’re paying \n\n Do not: \n* fold the cheque \n* fasten documents together \n \n Allow 3 working days for your payment to reach HMRC and send your payment to:"
-        }
-      },
-      {
-        "type": "info",
-        "id": "chequePostDetails",
-        "label": "",
-        "infoText": "HMRC \n\n  Direct \n\n  BX5 5BD"
-      },
-      {
-        "type": "info",
-        "id": "receiptRequest",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "You can include a request for a receipt with your payment."
-      },
-      {
-        "type": "info",
-        "id": "contactC2C",
-        "label": "",
-        "infoType": "noformat",
-        "infoText": "<h2 class='govuk-heading-m'>If you need to contact us</h2><p class='govuk-body'> \n\nQuote the submission reference number: <strong>${form.submissionReference}"
+          "en": "If your permanent address has changed, you need to [update your personal details now (opens in new tab)](https://www.gov.uk/tell-hmrc-change-of-details).",
+          "cy": "Os yw’ch cyfeiriad parhaol wedi newid, bydd angen i chi [ddiweddaru’ch manylion personol nawr (yn agor tab newydd)](https://www.gov.uk/rhoi-gwybod-i-cthem-newid-manylion)."
+        },
+        "infoType": "important"
       }
     ]
   },
   "destinations": [
     {
-      "id": "transitionToSubmitted",
-      "type": "stateTransition",
-      "requiredState": "Submitted"
+      "id": "attendedDmsQueueDestination",
+      "type": "hmrcDms",
+      "failOnError": true,
+      "convertSingleQuotes": true,
+      "dmsFormId": "TES1",
+      "customerId": "${auth.payenino}",
+      "classificationType": "PSA-DFS TES",
+      "businessArea": "PT Operations",
+      "dataOutputFormat": "xml"
     }
   ]
 }
