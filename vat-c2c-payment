@@ -126,7 +126,7 @@
           "type": "info",
           "infoText": {
             "en": "You can tell us if: <ul><li>a pension income shown in your personal tax account does not match the amount you received</li><li>you no longer receive payments from a pension</li></ul>",
-            "cy": "Mae angen chi roi gwybod i ni os yw’r canlynol yn berthnasol: <ul><li>nid yw swm yr incwm pensiwn yn eich cyfrif treth personol yr un peth â’r swm a gawsoch</li><li>nid ydych yn cael taliadau o bensiwn mwyach</li></ul>"
+            "cy": "Mae angen chi rhoi gwybod i ni os yw’r canlynol yn berthnasol: <ul><li>nid yw swm yr incwm pensiwn yn eich cyfrif treth personol yr un peth â’r swm a gawsoch</li><li>nid ydych yn cael taliadau o bensiwn mwyach</li></ul>"
           },
           "infoType": "noformat"
         },
@@ -197,7 +197,6 @@
       "dataRetrieve": [
         {
           "type": "ninoInsights",
-          "_comment": "REMOVE if statement for go live",
           "id": "ninoCheck",
           "parameters": {
             "nino": "${auth.payenino}"
@@ -209,7 +208,7 @@
           "if": "${dataRetrieve.ninoCheck.reason != 'NINO_ON_WATCH_LIST'}",
           "parameters": {
             "nino": "${auth.payenino}",
-            "taxYear": "${2025}"
+            "taxYear": "${taxYear}"
           }
         }
       ],
@@ -286,7 +285,7 @@
             },
             {
               "en": "Sign in with a different Government Gateway user ID",
-              "cy": "Mewngofnodi gan ddefnyddio Dynodydd Defnyddiwr (ID) gwahanol ar gyfer Porth y Llywodraeth"
+              "cy": "Mewngofnodwch gan ddefnyddio Dynodydd Defnyddiwr (ID) gwahanol ar gyfer Porth y Llywodraeth"
             },
             {
               "en": "Sign out of this service",
@@ -539,12 +538,7 @@
                 "cy": "gyfeirnod y pensiwn"
               },
               "errorShortNameStart": {
-                "en": "The pension reference number",
-                "cy": "c yeirnod y pensiwn"
-              },
-              "shortName": {
-                "en": "Pension reference number",
-                "cy": "cyfeirnod y pensiwn"
+                "en": "Gyfeirnod y pensiwn"
               }
             }
           ]
@@ -624,7 +618,7 @@
               },
               "shortName": {
                 "en": "Use pension on record",
-                "cy": "Defnyddiwch bensiwn ar gofnod"
+                "cy": "TBC"
               },
               "choices": [
                 {
@@ -673,13 +667,13 @@
                   "dynamic": "dataRetrieve.individualsEmployments.employerName",
                   "hint": {
                     "en": "The payroll ID for this pension: ${dataRetrieve.individualsEmployments.worksNumber}",
-                    "cy": "ID y gyflogres ar gyfer y pensiwn hwn: ${dataRetrieve.individualsEmployments.worksNumber}"
+                    "cy": "Eich dull adnabod cyflogres ar gyfer y swydd hon: ${dataRetrieve.individualsEmployments.worksNumber}"
                   },
                   "value": "EMP"
                 },
                 {
                   "en": "I want to enter pension details",
-                  "cy": "Hoffwn i nodi’r manylion pensiwn",
+                  "cy": "Hoffwn i nodi manylion pensiwn",
                   "value": "enterDetails"
                 }
               ]
@@ -743,11 +737,11 @@
               "format": "text",
               "errorShortName": {
                 "en": "payroll number",
-                "cy": "rif cyflogres"
+                "cy": "rhif cyflogres"
               },
               "errorShortNameStart": {
                 "en": "Payroll number",
-                "cy": "rhif cyflogres"
+                "cy": "Rhif cyflogres"
               }
             }
           ]
@@ -844,17 +838,15 @@
               "format": "positiveSterling",
               "helpText": [
                 {
-                  "en": "Enter the annual amount that you expect to receive between 6 April ${lastTaxYear} and 5 April ${taxYear}. Enter the amount in GBP.",
-                  "cy": "Nodwch y swm blynyddol yr ydych yn disgwyl ei gael rhwng 6 Ebrill ${lastTaxYear} a 5 Ebrill ${taxYear}. Nodwch y swm mewn GBP."
-                }
-              ],
+                "en": "Enter the annual amount that you expect to receive between 6 April ${lastTaxYear} and 5 April ${taxYear}. Enter the amount in GBP.",
+                "cy": "Nodwch y swm blynyddol yr ydych yn disgwyl ei gael rhwng 6 Ebrill ${lastTaxYear} a 5 Ebrill ${taxYear}. Nodwch y swm mewn GBP."
+              }
+                ],
               "errorShortName": {
-                "en": "pension income amount (before tax)",
-                "cy": "swm yr incwm pensiwn (cyn treth)"
+                "en": "pension income amount (before tax)"
               },
               "errorShortNameStart": {
-                "en": "Pension income amount (before tax)",
-                "cy": "swm yr incwm pensiwn (cyn treth)"
+                "en": "Pension income amount (before tax)"
               }
             }
           ]
@@ -866,7 +858,7 @@
           },
           "title": {
             "en": "How much tax will you pay on your pension income before receiving it?",
-            "cy": "Faint o dreth fyddwch yn ei thalu ar eich incwm pensiwn cyn i chi ei gael?"
+            "cy": "Faint o dreth byddwch yn ei thalu ar eich incwm pensiwn cyn i chi ei gael?"
           },
           "includeIf": "${issueType contains 'incorrect'}",
           "presentationHint": "invisiblePageTitle",
@@ -1088,12 +1080,10 @@
                 "cy": "Er enghraifft, 7 4 ${lastTaxYear}."
               },
               "errorShortName": {
-                "en": "date of last payment",
-                "cy": "ddyddiad y taliad diwethaf"
+                "en": "date of last payment"
               },
               "errorShortNameStart": {
-                "en": "Date of last payment",
-                "cy": "ddyddiad y taliad diwethaf"
+                "en": "Date of last payment"
               },
               "validators": [
                 {
@@ -1128,7 +1118,7 @@
             "en": "We will use this if we need to contact you about your application.",
             "cy": "Byddwn yn defnyddio hyn os bydd angen i ni gysylltu â chi ynghylch eich cais."
           },
-          "errorShortNameStart": {
+          "shortName": {
             "en": "Telephone number",
             "cy": "Rhif ffôn"
           }
@@ -1158,10 +1148,6 @@
           "shortName": {
             "en": "Email address for confirmation",
             "cy": "Cyfeiriad e-bost ar gyfer yr e-bost cadarnhau"
-          },
-          "errorShortName": {
-            "en": "an email address",
-            "cy": "gyfeiriad e-bost"
           },
           "choices": [
             {
@@ -1197,37 +1183,6 @@
               }
             ]
           ]
-        }
-      ]
-    },
-    {
-      "caption": {
-        "en": "About you",
-        "cy": "Amdanoch chi"
-      },
-      "title": {
-        "en": "What is your email address?",
-        "cy": "Beth yw’ch cyfeiriad e-bost?"
-      },
-      "includeIf": "${auth.ggLogin && auth.email = ''}",
-      "presentationHint": "invisiblePageTitle",
-      "fields": [
-        {
-          "id": "emailAddressNonGg",
-          "type": "text",
-          "helpText": {
-            "en": "We will use this if we need to make contact about this form, and also to send you a confirmation email.",
-            "cy": "Byddwn yn defnyddio hwn os bydd angen i ni gysylltu â chi ynghylch y ffurflen hon, a hefyd i anfon e-bost cadarnhau atoch."
-          },
-          "label": {
-            "en": "What is your email address?",
-            "cy": "Beth yw’ch cyfeiriad e-bost?"
-          },
-          "shortName": {
-            "en": "Your email address",
-            "cy": "Eich cyfeiriad e-bost"
-          },
-          "format": "email"
         }
       ]
     },
@@ -1284,7 +1239,7 @@
           "labelSize": "m",
           "shortName": {
             "en": "Correspondence address",
-            "cy": "Cyfeiriad gohebiaeth"
+            "cy": "A yw’r cyfeiriad yn gywir"
           },
           "errorMessage": {
             "en": "Select yes if this is the address where we should contact you",
@@ -1525,8 +1480,7 @@
       "dmsFormId": "TES1",
       "customerId": "${auth.payenino}",
       "classificationType": "PSA-DFS TES",
-      "businessArea": "PT Operations",
-      "dataOutputFormat": "xml"
+      "businessArea": "PT Operations"
     }
   ]
 }
