@@ -1,5 +1,5 @@
 {
-  "_id": "wip-give-additional-information-for-creative-industry-tax-relief-or-credit",
+  "_id": "give-additional-information-for-creative-industry-tax-relief-or-credit-emma",
   "version": 1,
   "formName": {
     "en": "Give additional information for creative industry tax relief or credit"
@@ -4082,7 +4082,7 @@
                 {
                   "caption": "AVEC film project $n",
                   "title": {
-                    "en": "What is the production status for ${filmAVECproductionName} at the end of accounting period ending ${accountingEnd}?"
+                    "en": "What is the production status of ${animatedTRproductionName} on ${accountingEnd}?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
@@ -4101,65 +4101,139 @@
                   ]
                 },
                 {
-                  "includeIf": "${filmAVECproductionStatus contains 2 || filmAVECproductionStatus contains 0}",
+                  "comment": "abandoned film",
+                  "includeIf": "${filmAVECproductionStatus contains 2}",
                   "caption": "AVEC film project $n",
-                  "title":
-                          [
-                            {
-                              "en": "Wait to apply for AVEC tax relief",
-                              "includeIf": "${filmAVECproductionStatus contains 0}"
-                            },
-                            {
-                              "en": "This project is not eligible for AVEC tax relief"
-                            }
-                          ],
+                  "title": {
+                    "en": "What date was the project abandoned?"
+                  },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "abandonedInfo",
-                      "includeIf": "${filmAVECproductionStatus contains 2}",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "label": "",
-                      "infoText": {
-                        "en": "A project that has been abandoned cannot apply for AVEC tax relief."
-                      }
-                    },
-                    {
-                      "id": "ongoingInfo",
-                      "includeIf": "${filmAVECproductionStatus contains 0}",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "label": "",
-                      "infoText": {
-                        "en": "A project that is ongoing cannot apply for AVEC tax relief. You must wait until the project is complete before you can apply for tax relief. \n \n Once ${filmAVECproductionName} is complete, [apply for your final certificate with the BFI (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification), and use this form to submit your claim."
-                      }
-                    },
-                    {
-                      "id": "ongoingSavedFormInfo",
-                      "includeIf": "${filmAVECproductionStatus contains 0}",
-                      "type": "info",
-                      "label": "",
-                      "infoText": {
-                        "en": "Your answers for this form will be saved for <strong>up to 90 days</strong>, but you must return to this form at least once every <strong>28 days</strong> to keep them saved."
-                      }
-                    },
-                    {
-                      "type": "choice",
-                      "label": "What do you want to do now?",
-                      "labelSize": "m",
-                      "id": "AVECNotEligible",
+                      "id": "filmAVECabandonedDate",
+                      "labelSize": "s",
                       "shortName": {
-                        "en": "What to do next"
+                        "en": "Date project abandoned"
+                      },
+                      "errorShortName": {
+                        "en": "date project abandoned"
+                      },
+                      "errorShortNameStart": {
+                        "en": "Date project abandoned"
+                      },
+                      "helpText": {
+                        "en": "For example, 31 3 2022.",
+                        "cy": "Er enghraifft, 31 3 2022."
+                      },
+                      "type": "date",
+                      "format": "before today +1",
+                      "validators": [
+                        {
+                          "validIf": "${filmAVECproductionStartDate before filmAVECabandonedDate  +1d}",
+                          "errorMessage": {
+                            "en": "The date project was abandoned must be after the pre-production date ${filmAVECproductionStartDate}"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "comment": "ongoing film AVEC",
+                  "includeIf": "${filmAVECproductionStatus contains 0}",
+                  "caption": "High-end television Tax Relief project $n",
+                  "title": {
+                    "en": "Has the film received an interim certificate from the BFI?"
+                  },
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "helpText": "We need to know whether ${filmAVECproductionName} has been certified as British by the BFI.",
+                      "type": "choice",
+                      "id": "AVECInterimCertificationChoice",
+                      "shortName": {
+                        "en": "Received interim certification"
                       },
                       "choices": [
                         {
-                          "en": "Save your answers and come back later"
+                          "en": "Yes"
                         },
                         {
-                          "en": "Tell us about another film, or project"
+                          "en": "No"
                         }
                       ]
+                    }
+                  ]
+                },
+                {
+                  "comment": "ongoing film AVEC",
+                  "includeIf": "${AVECInterimCertificationChoice contains 1}",
+                  "caption": "AVEC film project $n",
+                  "title": {
+                    "en": "Has the film applied for its interim certification with the BFI?"
+                  },
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "type": "choice",
+                      "id": "AVECInterimAppliedCertificationChoice",
+                      "shortName": {
+                        "en": "Has applied for interim certification"
+                      },
+                      "choices": [
+                        {
+                          "en": "Yes"
+                        },
+                        {
+                          "en": "No"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "comment": "AVEC - no interim certification - kick out",
+                  "includeIf": "${AVECInterimCertificationChoice contains 1}",
+                  "caption": "Film Tax Relief project $n",
+                  "title": [
+                    {
+                      "en": "The film must apply for a final certificate from the BFI",
+                      "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 1}"
+                    },
+                    {
+                      "en": "This claim requires an interim certificate from the BFI"
+                    }
+                  ],
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "id": "filmAVECinterimProofInfo",
+                      "type": "info",
+                      "infoText": "Before you can apply for any kind of tax relief, we need proof that ${filmAVECproductionName} is certified as British.",
+                      "infoType": "noformat"
+                    },
+                    {
+                      "comment": "Has NOT applied for interim",
+                      "id": "filmAVECNotAppliedinterimInfo",
+                      "type": "info",
+                      "infoText": "Visit guidance on applying for an interim certificate [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
+                      "includeIf": "${AVECInterimAppliedCertificationChoice contains 1}"
+                    },
+                    {
+                      "comment": "Has applied for interim",
+                      "id": "filmAVECAppliedinterimInfo",
+                      "type": "info",
+                      "infoText": "You can check turnaround times for certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
+                      "includeIf": "${AVECInterimAppliedCertificationChoice contains 0}"
+                    },
+                    {
+                      "id": "waitAVECNoInterimInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "##Wait to submit your claim \n \n You can submit your claim once you receive the interim certificate for ${filmAVECproductionName}. \n \n To keep your information saved, return to this form at least <strong>once every 28 days</strong>. Your answers will be stored for <strong>up to 90 days</strong>. \n \n You can now [sign out of this service](${link.signOut})."
+                      }
                     }
                   ]
                 },
@@ -4168,7 +4242,7 @@
                   "includeIf": "${filmAVECproductionStatus contains 1}",
                   "caption": "AVEC film project $n",
                   "title": {
-                    "en": "Has the film received its final certification from the BFI?"
+                    "en": "Has the film received its final certificate from the BFI?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
@@ -4215,8 +4289,9 @@
                   ]
                 },
                 {
-                  "comment": "AVEC - ongoing film - no final certification - kick out",
+                  "comment": "AVEC - completed film - no final certification - kick out",
                   "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 1}",
+                  "continueIf": false,
                   "caption": "Film Tax Relief project $n",
                   "title": [
                     {
@@ -4230,7 +4305,7 @@
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECinterimProofInfo",
+                      "id": "filmAVECFinalProofInfo",
                       "type": "info",
                       "infoText": "Before you can apply for any kind of tax relief, we need proof that ${filmAVECproductionName} is complete.",
                       "infoType": "noformat"
@@ -4255,43 +4330,14 @@
                       "infoType": "noformat",
                       "label": "",
                       "infoText": {
-                        "en": "##Wait to submit your claim \n \n Once the final certificate for ${filmAVECproductionName} arrives, you can submit your claim. \n \n Your answers will be saved for <strong>up to 90 days</strong>, but you must return to this form at least once every <strong>28 days</strong> to keep them saved."
+                        "en": "##Wait to submit your claim \n \n You can submit your claim once you receive the interim certificate for ${filmAVECproductionName}. \n \n To keep your information saved, return to this form at least <strong>once every 28 days</strong>. Your answers will be stored for <strong>up to 90 days</strong>. \n \n You can now [sign out of this service](${link.signOut})."
                       }
-                    },
-                    {
-                      "type": "info",
-                      "id": "otherOptionAVECNoFinalInfo",
-                      "label": {
-                        "en": "If you need to claim for other projects now",
-                        "cy": ""
-                      },
-                      "infoType": "long",
-                      "infoText": {
-                        "en": "You can follow the amended claims process. This means that you'll be able to claim relief for any projects that already have the relevant BFI cultural certificate. \n \n However, once you receive the BFI certificate for ${filmAVECproductionName}, you will need to submit a new, separate claim - which would need to include the details of the projects you’ve already claimed for."
-                      }
-                    },
-                    {
-                      "type": "choice",
-                      "label": "What do you want to do now?",
-                      "labelSize": "m",
-                      "id": "AVECNoFinalInfoNextStepsChoice",
-                      "shortName": {
-                        "en": "What to do next"
-                      },
-                      "choices": [
-                        {
-                          "en": "Save your answers and come back later"
-                        },
-                        {
-                          "en": "Tell us about another film, or project"
-                        }
-                      ]
                     }
                   ]
                 },
                 {
                   "caption": "AVEC film project $n",
-                  "includeIf": "${filmAVECfinalCertificationChoice contains 0}",
+                  "includeIf": "${filmAVECfinalCertificationChoice contains 0 || AVECInterimCertificationChoice contains 0}",
                   "title": {
                     "en": "What is the BFI reference number for ${filmAVECproductionName}?"
                   },
@@ -4412,6 +4458,24 @@
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
+                      "id": "filmAVECCconnectedPersonsInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "Upload a document that includes the following information for each connected party transaction: \n\n* the name of the connected party\n* the date of the transaction\n* the amount spent\n* a description of the goods or services provided"
+                      }
+                    },
+                    {
+                      "id": "filmAVECCconnectedPersonsMoreInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "You can group transactions where the cost and the goods or services provided are similar."
+                      }
+                    },
+                    {
                       "id": "filmAVECconnectedPersonsUpload",
                       "type": "file",
                       "mandatory": false,
@@ -4470,6 +4534,7 @@
                 },
                 {
                   "caption": "AVEC film project $n",
+                  "includeIf": "${filmAVECproductionStatus contains 2 || filmAVECproductionStatus contains 0}",
                   "title": {
                     "en": "Are you claiming additional credit for visual effects (VFX) for ${filmAVECproductionName}?"
                   },
@@ -5178,6 +5243,24 @@
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
+                      "id": "hetvAVECCconnectedPersonsInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "For each each transaction with a connected party, you'll need to upload a document that shows:\n\n* The name of the connected party\n* The date of the transaction\n* The amount spent\n* A description of the goods or services provided \n\n You can upload multiple files."
+                      }
+                    },
+                    {
+                      "id": "hetvAVECCconnectedPersonsMoreInfo",
+                      "type": "info",
+                      "infoType": "long",
+                      "label": "If you have multiple transactions of the same type",
+                      "infoText": {
+                        "en": "You can group similar transactions  within the accounting period together. However, you should only combine them if the cost and the goods or services provided are similar."
+                      }
+                    },
+                    {
                       "id": "hetvAVECconnectedPersonsUpload",
                       "type": "file",
                       "mandatory": false,
@@ -5634,6 +5717,24 @@
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
+                      "id": "animatedAVECCconnectedPersonsInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "For each each transaction with a connected party, you'll need to upload a document that shows:\n\n* The name of the connected party\n* The date of the transaction\n* The amount spent\n* A description of the goods or services provided \n\n You can upload multiple files."
+                      }
+                    },
+                    {
+                      "id": "animatedAVECCconnectedPersonsMoreInfo",
+                      "type": "info",
+                      "infoType": "long",
+                      "label": "If you have multiple transactions of the same type",
+                      "infoText": {
+                        "en": "You can group similar transactions  within the accounting period together. However, you should only combine them if the cost and the goods or services provided are similar."
+                      }
+                    },
+                    {
                       "id": "animatedAVECconnectedPersonsUpload",
                       "type": "file",
                       "mandatory": false,
@@ -6055,6 +6156,24 @@
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
+                      "id": "childAVECCconnectedPersonsInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "For each each transaction with a connected party, you'll need to upload a document that shows:\n\n* The name of the connected party\n* The date of the transaction\n* The amount spent\n* A description of the goods or services provided \n\n You can upload multiple files."
+                      }
+                    },
+                    {
+                      "id": "childAVECCconnectedPersonsMoreInfo",
+                      "type": "info",
+                      "infoType": "long",
+                      "label": "If you have multiple transactions of the same type",
+                      "infoText": {
+                        "en": "You can group similar transactions  within the accounting period together. However, you should only combine them if the cost and the goods or services provided are similar."
+                      }
+                    },
+                    {
                       "id": "childrensAVECconnectedPersonsUpload",
                       "type": "file",
                       "mandatory": false,
@@ -6475,6 +6594,24 @@
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
+                    {
+                      "id": "vgAVECCconnectedPersonsInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "For each each transaction with a connected party, you'll need to upload a document that shows:\n\n* The name of the connected party\n* The date of the transaction\n* The amount spent\n* A description of the goods or services provided \n\n You can upload multiple files."
+                      }
+                    },
+                    {
+                      "id": "vgAVECCconnectedPersonsMoreInfo",
+                      "type": "info",
+                      "infoType": "long",
+                      "label": "If you have multiple transactions of the same type",
+                      "infoText": {
+                        "en": "You can group similar transactions  within the accounting period together. However, you should only combine them if the cost and the goods or services provided are similar."
+                      }
+                    },
                     {
                       "id": "videoGameVGECconnectedPersonsUpload",
                       "type": "file",
@@ -7779,6 +7916,24 @@
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
+                    {
+                      "id": "tomgeAVECCconnectedPersonsInfo",
+                      "type": "info",
+                      "infoType": "noformat",
+                      "label": "",
+                      "infoText": {
+                        "en": "For each each transaction with a connected party, you'll need to upload a document that shows:\n\n* The name of the connected party\n* The date of the transaction\n* The amount spent\n* A description of the goods or services provided \n\n You can upload multiple files."
+                      }
+                    },
+                    {
+                      "id": "tomgeAVECCconnectedPersonsMoreInfo",
+                      "type": "info",
+                      "infoType": "long",
+                      "label": "If you have multiple transactions of the same type",
+                      "infoText": {
+                        "en": "You can group similar transactions  within the accounting period together. However, you should only combine them if the cost and the goods or services provided are similar."
+                      }
+                    },
                     {
                       "id": "tomgeUploadConnectedParty",
                       "type": "file",
