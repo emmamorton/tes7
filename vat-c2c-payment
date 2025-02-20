@@ -1,5 +1,5 @@
 {
-  "_id": "cavr-avec-film-emma",
+  "_id": "cavr-TR-emma",
   "version": 1,
   "formName": {
     "en": "Give additional information for creative industry tax relief or credit"
@@ -174,257 +174,159 @@
   "displayWidth": "xl",
   "sections": [
     {
-      "title": "Audio-Visual and Video Game Expenditure Credit (AVEC and VGEC)",
+      "comment": "Tax Relief Projects",
+      "title": "Film, High-End TV, Animated TV, Children's TV and Video Games Tax Relief",
       "tasks": [
         {
-          "title": "AVEC and VGEC projects",
+          "title": "Tax Relief projects",
           "sections": [
             {
-              "caption": "Audio-Visual and Video Game Expenditure Credit",
+              "caption": "Tax Relief projects",
               "title": {
-                "en": "What type of project is ${businessName} claiming for under Audio-Visual or Video Game Expenditure Credit (AVEC and VGEC)?"
+                "en": "What types of project is ${businessName} claiming tax relief for?"
               },
               "noPIITitle": {
-                "en": "What type of project is the business claiming for under Audio-Visual or Video Game Expenditure Credit (AVEC and VGEC)?"
+                "en": "What types of project is the business claiming tax relief for?"
               },
-              "shortName": {
-                "en": "Types of AVEC and VGEC projects"
-              },
+              "shortName": "Types of film, television and video games tax relief projects",
               "fields": [
                 {
                   "type": "choice",
                   "multivalue": true,
-                  "id": "creditExpenditureProjectType",
+                  "id": "ftvgTRprojectType",
                   "notPII": true,
                   "errorMessage": {
-                    "en": "Select the type of project the business is claiming expenditure credit for"
+                    "en": "Select the type of project the business is claiming tax relief for"
                   },
                   "shortName": {
-                    "en": "Type of AVEC or VGEC project"
+                    "en": "Type of project claiming tax relief for"
                   },
                   "choices": [
                     {
                       "en": "Film",
-                      "value": "filmAVEC"
+                      "value": "filmTR"
                     },
                     {
                       "en": "High-end television",
-                      "value": "hetvAVEC"
+                      "value": "hetvTR"
                     },
                     {
-                      "en": "Animated television or film",
-                      "value": "animationAVEC"
+                      "en": "Animated television",
+                      "value": "animatedTR"
                     },
                     {
                       "en": "Children's television",
-                      "value": "childrensAVEC"
-                    },
-                    {
-                      "en": "Independent film",
-                      "value": "indyFilmAVEC"
+                      "value": "childrensTR"
                     },
                     {
                       "en": "Video game",
-                      "value": "videoGameVGEC"
+                      "value": "videoGameTR"
                     }
                   ]
                 }
               ]
             },
             {
-              "comment": "Start AVEC film",
-              "includeIf": "${creditExpenditureProjectType contains 'filmAVEC'}",
+              "comment": "Start Film Tax relief projects",
+              "includeIf": "${ftvgTRprojectType contains 'filmTR'}",
               "type": "addToList",
               "title": {
-                "en": "AVEC film projects you have added"
+                "en": "Film Tax Relief projects you have added"
               },
               "summaryName": {
-                "en": "AVEC film projects added"
+                "en": "Film Tax Relief projects added"
               },
               "summaryDescription": {
-                "en": "${filmAVECproductionName}"
+                "en": "${filmTRproductionName}"
               },
               "shortName": {
-                "en": "${filmAVECproductionName}"
+                "en": "${filmTRproductionName}"
               },
               "description": {
-                "en": "${filmAVECproductionName}"
+                "en": "$n. ${filmTRproductionName}"
               },
               "addAnotherQuestion": {
-                "id": "filmAVECaddAnother",
+                "id": "filmTRaddAnother",
                 "type": "choice",
                 "label": {
-                  "en": "Do you want to claim AVEC for another film project?"
+                  "en": "Do you want to add another film Tax Relief project?"
                 },
                 "format": "yesno",
                 "errorMessage": {
-                  "en": "Select yes if you want to claim AVEC for another film project"
+                  "en": "Select yes if you want to add another film Tax Relief project"
                 }
               },
               "defaultPage": {
-                "continueLabel": "Add projects",
+                "continueLabel": "Add film projects",
                 "title": {
-                  "en": "Film details you'll need to claim AVEC"
+                  "en": "Details about the film that you'll need"
                 },
                 "fields": [
                   {
-                    "id": "filmAVECwhatYouNeedInfo",
+                    "id": "filmTRwhatYouNeedInfo",
                     "type": "info",
                     "infoType": "noformat",
-                    "label": "",
-                    "infoText": "We’ll ask for the film's:\n* name\n* pre–production start date\n* BFI reference number \n* most recent BFI certificate \n  \n"
-                  },
-                  {
-                    "id": "filmAVECCETitleInfo",
-                    "type": "info",
-                    "infoType": "noformat",
-                    "label": "",
-                    "infoText": "##Expenditure amounts"
-                  },
-                  {
-                    "id": "filmAVECExpenditureInfo",
-                    "type": "info",
-                    "infoType": "noformat",
-                    "label": "",
-                    "infoText": "For each film, we will ask you for the following types of expenditure: \n* relevant global expenditure (core expenditure that is not excluded expenditure)\n* UK relevant global expenditure (the amount of total global expenditure that is spent on goods of services used or consumed in the UK)\n \n Each type of expenditure should be reported as the total for <strong>all accounting periods</strong> up to ${accountingEnd}."
-                  },
-                  {
-                    "id": "filmAVECCoreExpenditureInfo",
-                    "type": "info",
-                    "infoType": "long",
-                    "label": "What is core expenditure?",
-                    "infoText": "Core expenditure is the amount spent on:\n \n* Pre-production\n* Principal photography \n* Post-production "
-                  },
-                  {
-                    "id": "filmAVECECTitleInfo",
-                    "type": "info",
-                    "infoType": "noformat",
-                    "label": "",
-                    "infoText": "##Expenditure credit"
-                  },
-                  {
-                    "id": "filmAVECOtherInfo",
-                    "type": "info",
-                    "label": "",
-                    "infoType": "noformat",
-                    "infoText": "You’ll also need to provide the expenditure credit, but only for the accounting period ending ${accountingEnd}."
-                  },
-                  {
-                    "id": "filmAVECAddingProjectsInfo",
-                    "type": "info",
                     "label": "",
                     "infoText": {
-                      "en": "Once you've entered details for the first project, you can tell us about additional film projects, if you need to."
+                      "en": "For each film, we’ll ask for:\n* the name\n* the BFI reference number\n* the pre–production start date\n* proof of British certification \n  \n To calculate the amount of relief the film is eligible for, we’ll also need the film’s total:\n* expenditure\n* UK core expenditure \n\n After you have told us about the first project, you can tell us about others if you need to."
                     }
                   }
                 ]
               },
               "cyaPage": {
                 "title": {
-                  "en": "Check your answers for AVEC film project $n: ${filmAVECproductionName}"
+                  "en": "Check your answers for film Tax Relief project: ${filmTRproductionName}"
                 },
                 "updateTitle": {
-                  "en": "Check your answers for AVEC film project $n: ${filmAVECproductionName}"
+                  "en": "Check your answers for film Tax Relief project: ${filmTRproductionName}"
                 },
                 "presentationHint": "invisiblePageTitle"
               },
               "pages": [
                 {
-                  "caption": "AVEC film project $n",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
                     "en": "What is the name of the film?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECproductionName",
+                      "helpText": "Enter the name of the film, as it appears on the BFI certification.",
+                      "id": "filmTRproductionName",
                       "notPII": true,
                       "shortName": {
                         "en": "Film name"
                       },
                       "errorShortName": {
-                        "en": "the film name"
+                        "en": "film name"
                       },
                       "errorShortNameStart": {
-                        "en": "The film name"
+                        "en": "Film name"
                       },
                       "type": "text",
-                      "helpText": "Enter the name shown on the film’s most recent BFI certificate.",
                       "format": "text"
                     }
                   ]
                 },
                 {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "What was the start date of pre-production for ${filmAVECproductionName}?"
+                    "en": "What was the start date of pre-production for ${filmTRproductionName}?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECproductionStartDate",
+                      "id": "filmTRpreproductionStartDate",
                       "notPII": true,
                       "labelSize": "s",
                       "shortName": {
                         "en": "Pre-production start date"
                       },
                       "errorShortName": {
-                        "en": "the pre-production start date"
+                        "en": "pre-production start date"
                       },
                       "errorShortNameStart": {
-                        "en": "The pre-production start date"
-                      },
-                      "helpText": {
-                        "en": "This is the date the project was green-lit. For example, 31 3 2022.",
-                        "cy": "Er enghraifft, 31 3 2022."
-                      },
-                      "type": "date",
-                      "format": "before today +1"
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What was the production status of ${filmAVECproductionName} on ${accountingEnd}?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "type": "choice",
-                      "id": "filmAVECproductionStatus",
-                      "shortName": {
-                        "en": "Production status"
-                      },
-                      "errorMessage": "Select whether film is ongoing, completed, or abandoned",
-                      "choices": [
-                        "Ongoing",
-                        "Completed",
-                        "Abandoned"
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "comment": "abandoned film",
-                  "includeIf": "${filmAVECproductionStatus contains 2}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What date was the project abandoned?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECabandonedDate",
-                      "labelSize": "s",
-                      "shortName": {
-                        "en": "Date of abandonment"
-                      },
-                      "errorShortName": {
-                        "en": "the date the project was abandoned"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The date the project was abandoned"
+                        "en": "Pre-production start date"
                       },
                       "helpText": {
                         "en": "For example, 31 3 2022.",
@@ -434,9 +336,9 @@
                       "format": "before today +1",
                       "validators": [
                         {
-                          "validIf": "${filmAVECproductionStartDate before filmAVECabandonedDate  +1d}",
+                          "validIf": "${filmTRpreproductionStartDate before TODAY +1d}",
                           "errorMessage": {
-                            "en": "The date project was abandoned must be after the pre-production date ${filmAVECproductionStartDate}"
+                            "en": "The start date of pre-production must be in the past"
                           }
                         }
                       ]
@@ -444,22 +346,86 @@
                   ]
                 },
                 {
-                  "comment": "ongoing film AVEC",
-                  "includeIf": "${filmAVECproductionStatus contains 0 || filmAVECproductionStatus contains 2}",
-                  "caption": "High-end television Tax Relief project $n",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "Has the film received an interim certificate from the BFI?"
+                    "en": "What is the status of ${filmTRproductionName} at the end of accounting period ending ${accountingEnd}?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "helpText": "We need to know whether ${filmAVECproductionName} has been certified as British by the BFI.",
                       "type": "choice",
-                      "id": "AVECInterimCertificationChoice",
+                      "id": "filmTRproductionStatus",
+                      "shortName": {
+                        "en": "Production status"
+                      },
+                      "choices": [
+                        {
+                          "en": "Still in production"
+                        },
+                        {
+                          "en": "Completed"
+                        },
+                        {
+                          "en": "Abandoned"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "comment": "abandoned film",
+                  "includeIf": "${filmTRproductionStatus contains 2}",
+                  "caption": "Film Tax Relief project $n",
+                  "title": {
+                    "en": "What date was the project abandoned?"
+                  },
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "id": "filmTRabandonedDate",
+                      "labelSize": "s",
+                      "shortName": {
+                        "en": "Date project abandoned"
+                      },
+                      "errorShortName": {
+                        "en": "date project abandoned"
+                      },
+                      "errorShortNameStart": {
+                        "en": "Date project abandoned"
+                      },
+                      "helpText": {
+                        "en": "For example, 31 3 2022.",
+                        "cy": "Er enghraifft, 31 3 2022."
+                      },
+                      "type": "date",
+                      "format": "before today +1",
+                      "validators": [
+                        {
+                          "validIf": "${filmTRpreproductionStartDate before filmTRabandonedDate  +1d}",
+                          "errorMessage": {
+                            "en": "The date project was abandoned must be after the pre-production date ${filmTRpreproductionStartDate}"
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "comment": "ongoing film",
+                  "includeIf": "${filmTRproductionStatus contains 0}",
+                  "caption": "Film Tax Relief project $n",
+                  "title": {
+                    "en": "Has the film received an interim certification from the BFI?"
+                  },
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "helpText": "We need to know whether ${filmTRproductionName} has been certified as British by the BFI.",
+                      "type": "choice",
+                      "id": "filmInterimCertificationChoice",
                       "shortName": {
                         "en": "Received interim certification"
                       },
-                      "errorMessage": "Select yes if the film has received an interim certificate from the BFI",
                       "choices": [
                         {
                           "en": "Yes"
@@ -472,21 +438,20 @@
                   ]
                 },
                 {
-                  "comment": "ongoing film AVEC",
-                  "includeIf": "${AVECInterimCertificationChoice contains 1}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "comment": "ongoing film",
+                  "includeIf": "${filmInterimCertificationChoice contains 1}",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "Has the film applied for an interim certificate with the BFI?"
+                    "en": "Has the film applied for its interim certification with the BFI?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
                       "type": "choice",
-                      "id": "AVECInterimAppliedCertificationChoice",
+                      "id": "filmInterimAppliedCertificationChoice",
                       "shortName": {
                         "en": "Has applied for interim certification"
                       },
-                      "errorMessage": "Select yes if the film has applied for an interim certificate with the BFI",
                       "choices": [
                         {
                           "en": "Yes"
@@ -499,83 +464,63 @@
                   ]
                 },
                 {
-                  "comment": "AVEC - no interim certification - kick out",
-                  "includeIf": "${AVECInterimCertificationChoice contains 1}",
+                  "comment": "ongoing film - kick out",
+                  "includeIf": "${filmInterimAppliedCertificationChoice contains 1 || filmInterimAppliedCertificationChoice contains 0}",
                   "caption": "Film Tax Relief project $n",
                   "title": [
                     {
-                      "en": "The film must apply for a final certificate from the BFI",
-                      "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 1}"
+                      "en": "The film must apply for an interim certificate from the BFI",
+                      "includeIf": "${filmInterimAppliedCertificationChoice contains 1}"
                     },
                     {
-                      "en": "This claim requires an interim certificate from the BFI"
+                      "en": "Wait for the BFI to send you the interim certificate"
                     }
                   ],
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECinterimProofInfo",
+                      "id": "interimProofInfo",
                       "type": "info",
-                      "infoText": "Before you can apply for any kind of tax relief, we need proof that ${filmAVECproductionName} is certified as British.",
+                      "infoText": "We need proof that the project is certified as British before you can apply for tax relief.",
                       "infoType": "noformat"
                     },
                     {
                       "comment": "Has NOT applied for interim",
-                      "id": "filmAVECNotAppliedinterimInfo",
+                      "id": "applyInterimInfo",
                       "type": "info",
-                      "infoType": "noformat",
-                      "infoText": "Visit guidance on applying for an interim certificate [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
-                      "includeIf": "${AVECInterimAppliedCertificationChoice contains 1}"
+                      "infoText": "You can apply for certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
+                      "includeIf": "${filmInterimAppliedCertificationChoice contains 1}"
                     },
                     {
                       "comment": "Has applied for interim",
-                      "id": "filmAVECAppliedinterimInfo",
+                      "id": "appliedInterimInfo",
                       "type": "info",
-                      "infoType": "noformat",
                       "infoText": "You can check turnaround times for certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
-                      "includeIf": "${AVECInterimAppliedCertificationChoice contains 0}"
+                      "includeIf": "${filmInterimAppliedCertificationChoice contains 0}"
                     },
                     {
-                      "id": "waitAVECNoInterimInfo",
+                      "id": "filmInterimCertificationNextInfo",
                       "type": "info",
                       "infoType": "noformat",
                       "label": "",
                       "infoText": {
-                        "en": "##Wait to submit your claim \n \n You can submit your claim once you receive the interim certificate for ${filmAVECproductionName}."
-                      }
-                    },
-                    {
-                      "id": "waitAVECNoInterimKeepSavedInfo",
-                      "type": "info",
-                      "label": "",
-                      "infoType": "noformat",
-                      "infoText": {
-                        "en": "To keep your information saved, return to this form at least <strong>once every 28 days</strong>. Your answers will be stored for <strong>up to 90 days</strong>."
-                      }
-                    },
-                    {
-                      "id": "waitAVECNoInterimMoreGuidanceInfo",
-                      "type": "info",
-                      "label": "",
-                      "infoText": {
-                        "en": "If you need to submit your claim for other projects now, [visit the Creative Industries Expenditure Credit Manual (opens in new tab)](https://www.gov.uk/hmrc-internal-manuals/creative-industries-expenditure-credit-manual/crec080100)."
+                        "en": "Once you have received an interim certificate for ${filmTRproductionName}, you can return to this form to apply for tax relief."
                       }
                     },
                     {
                       "type": "choice",
                       "label": "What do you want to do now?",
                       "labelSize": "m",
-                      "id": "AVECNoInterimInfoNextStepsChoice",
+                      "id": "filmInterimNotAppliedNextStepsChoice",
                       "shortName": {
-                        "en": "What do you want to do now?"
+                        "en": "What to do next"
                       },
-                      "errorMessage": "Select whether you want to sign out of this service or continue claiming for other projects",
                       "choices": [
                         {
-                          "en": "Sign out of this service"
+                          "en": "Tell us about another film, or project"
                         },
                         {
-                          "en": "Remove project and continue claiming for other projects"
+                          "en": "Sign out of this service"
                         }
                       ]
                     }
@@ -583,20 +528,19 @@
                 },
                 {
                   "comment": "Completed film",
-                  "includeIf": "${filmAVECproductionStatus contains 1}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "includeIf": "${filmTRproductionStatus contains 1}",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "Has the film received a final certificate from the BFI?"
+                    "en": "Has the film received its final certification from the BFI?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
                       "type": "choice",
-                      "id": "filmAVECfinalCertificationChoice",
+                      "id": "filmFinalCertificationChoice",
                       "shortName": {
                         "en": "Received final certification"
                       },
-                      "errorMessage": "Select yes if the film has received a final certificate from the BFI",
                       "choices": [
                         {
                           "en": "Yes"
@@ -609,20 +553,19 @@
                   ]
                 },
                 {
-                  "includeIf": "${filmAVECfinalCertificationChoice contains 1}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "includeIf": "${filmFinalCertificationChoice contains 1}",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "Has the film applied for a final certificate with the BFI?"
+                    "en": "Has the film applied for its final certification with the BFI?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
                       "type": "choice",
-                      "id": "filmAVECfinalAppliedCertificationChoice",
+                      "id": "filmFinalAppliedCertificationChoice",
                       "shortName": {
                         "en": "Has applied for final certification"
                       },
-                      "errorMessage": "Select yes if the film has applied for a final certificate from the BFI",
                       "choices": [
                         {
                           "en": "Yes"
@@ -635,685 +578,397 @@
                   ]
                 },
                 {
-                  "comment": "AVEC - completed film - no final certification - kick out",
-                  "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 1}",
-                  "continueIf": false,
+                  "comment": "Completed film - kick out - applied for final certification",
+                  "includeIf": "${filmFinalAppliedCertificationChoice contains 0}",
                   "caption": "Film Tax Relief project $n",
-                  "title": [
-                    {
-                      "en": "The film must apply for a final certificate from the BFI",
-                      "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 1}"
-                    },
-                    {
-                      "en": "This claim requires a final certificate from the BFI"
-                    }
-                  ],
+                  "title": {
+                    "en": "Wait for the BFI to send you final certification"
+                  },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECFinalProofInfo",
-                      "type": "info",
-                      "infoText": "Before you can apply for any kind of tax relief, we need proof that ${filmAVECproductionName} is complete.",
-                      "infoType": "noformat"
-                    },
-                    {
-                      "comment": "Has NOT applied for final",
-                      "id": "filmAVECNotAppliedFinalInfo",
-                      "type": "info",
-                      "infoText": "Visit guidance on applying for final certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
-                      "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 1}"
-                    },
-                    {
-                      "comment": "Has applied for final",
-                      "id": "filmAVECAppliedFinalInfo",
-                      "type": "info",
-                      "infoText": "You can check turnaround times for certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
-                      "includeIf": "${filmAVECfinalAppliedCertificationChoice contains 0}"
-                    },
-                    {
-                      "id": "waitAVECNoFinalInfo",
+                      "id": "filmFinalAppliedCertificationInfo",
                       "type": "info",
                       "infoType": "noformat",
                       "label": "",
                       "infoText": {
-                        "en": "##Wait to submit your claim \n \n You can submit your claim once you receive the final certificate for ${filmAVECproductionName}."
+                        "en": "You cannot apply for tax relief on a completed film until it has received final certification."
                       }
                     },
                     {
-                      "id": "waitAVECNoFinalKeepSavedInfo",
+                      "id": "filmFinalAppliedCertificationInsetInfo",
                       "type": "info",
                       "label": "",
+                      "infoText": {
+                        "en": "You can check turnaround times for certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification)."
+                      }
+                    },
+                    {
+                      "id": "filmFinalAppliedCertificationNextInfo",
+                      "type": "info",
                       "infoType": "noformat",
-                      "infoText": {
-                        "en": "To keep your information saved, return to this form at least <strong>once every 28 days</strong>. Your answers will be stored for <strong>up to 90 days</strong>."
-                      }
-                    },
-                    {
-                      "id": "waitAVECNoFinalMoreGuidanceInfo",
-                      "type": "info",
                       "label": "",
                       "infoText": {
-                        "en": "If you need to submit your claim for other projects now, [visit the Creative Industries Expenditure Credit Manual (opens in new tab)](https://www.gov.uk/hmrc-internal-manuals/creative-industries-expenditure-credit-manual/crec080100)."
+                        "en": "Once you have received final certification for ${filmTRproductionName}, you can return to this form to apply for tax relief."
                       }
                     },
                     {
                       "type": "choice",
                       "label": "What do you want to do now?",
                       "labelSize": "m",
-                      "id": "AVECNoFinalInfoNextStepsChoice",
+                      "id": "filmFinalAppliedCertificationNextStepsChoice",
                       "shortName": {
-                        "en": "What do you want to do now?"
+                        "en": "Your next steps"
                       },
-                      "errorMessage": "Select whether you want to sign out of this service or continue claiming for other projects",
                       "choices": [
                         {
-                          "en": "Sign out of this service"
+                          "en": "Tell us about another film, or project"
                         },
                         {
-                          "en": "Remove project and continue claiming for other projects"
+                          "en": "Sign out of this service"
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "includeIf": "${filmAVECfinalCertificationChoice contains 0 || AVECInterimCertificationChoice contains 0}",
+                  "comment": "completed film",
+                  "includeIf": "${filmFinalAppliedCertificationChoice contains 1}",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "What is the BFI reference number for ${filmAVECproductionName}?"
+                    "en": "Has the film applied for its interim certificate with the BFI?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECDCMSnumber",
+                      "type": "choice",
+                      "id": "filmFinalInterimCertificationChoice",
                       "shortName": {
-                        "en": "BFI reference number"
+                        "en": "Has applied for interim certification"
                       },
-                      "errorShortName": {
-                        "en": "the BFI reference number"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The BFI reference number"
-                      },
-                      "type": "text",
-                      "helpText": [
+                      "choices": [
                         {
-                          "includeIf": "${filmAVECproductionStatus contains 1}",
-                          "en": "You can find this on the BFI final certificate."
+                          "en": "Yes"
                         },
                         {
-                          "en": "You can find this on the BFI interim certificate."
+                          "en": "No"
                         }
-                      ],
-                      "format": "text"
+                      ]
                     }
                   ]
                 },
                 {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "includeIf": "${filmAVECfinalCertificationChoice contains 0 || AVECInterimCertificationChoice contains 0}",
+                  "comment": "completed film - kick out - not applied for final certificate, may have interim",
+                  "includeIf": "${filmFinalAppliedCertificationChoice contains 1}",
+                  "caption": "Film Tax Relief project $n",
                   "title": [
                     {
-                      "includeIf": "${filmAVECproductionStatus contains 1}",
-                      "en": "Upload the BFI final certificate for ${filmAVECproductionName}"
+                      "en": "You need to apply for final certification with the BFI",
+                      "includeIf": "${filmFinalInterimCertificationChoice contains 1}"
                     },
                     {
-                      "en": "Upload the BFI interim certificate for ${filmAVECproductionName}"
+                      "en": "You need to move your interim certificate to final certification"
                     }
                   ],
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "filmAVECcertificateUpload",
-                      "type": "file",
-                      "mandatory": false,
-                      "helpText": {
-                        "en": "The selected file must be a PDF, JPEG, XLSX, ODS, DOCX, ODT, PPTX, or ODP.",
-                        "cy": "Mae’n rhaid i'r ffeil a ddewisir fod yn PDF JPEG XLSX ODS DOCX ODT PPTX neu ODP."
-                      },
-                      "label": {
-                        "en": "Upload file"
-                      },
-                      "labelSize": "s",
-                      "shortName": [
-                        {
-                          "includeIf": "${filmAVECproductionStatus contains 1}",
-                          "en": "BFI final certificate"
-                        },
-                        {
-                          "en": "BFI interim certificate"
-                        }
-                      ],
-                      "errorMessage": [
-                        {
-                          "includeIf": "${filmAVECproductionStatus contains 1}",
-                          "en": "Upload the final certificate for ${filmAVECproductionName}"
-                        },
-                        {
-                          "en": "Upload the interim certificate for ${filmAVECproductionName}"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "Has the company made any connected party transactions for ${filmAVECproductionName}?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
+                      "id": "interimToFinalInfo",
+                      "type": "info",
+                      "infoText": "We need proof from the BFI that the project is complete before you can apply for tax relief. \n Visit guidance on applying for final certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
+                      "infoType": "noformat",
+                      "includeIf": "${filmFinalInterimCertificationChoice contains 1}",
+                      "comment": "Has interim, no final"
+                    },
                     {
-                      "type": "choice",
-                      "id": "filmAVECconnectedPersonsChoice",
-                      "shortName": {
-                        "en": "Has made connected party transactions"
-                      },
-                      "errorMessage": "Select yes if connected party transactions were made during the project",
-                      "format": "yesno"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${filmAVECconnectedPersonsChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "How many connected parties has the company made transactions with for ${filmAVECproductionName}?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
+                      "id": "applyFinalInfo",
+                      "type": "info",
+                      "infoText": "We need proof from the BFI that the project is complete before you can apply for tax relief. \n Visit guidance on moving your interim certificate to final certification [using the BFI website (opens in new tab)](https://www.bfi.org.uk/about-bfi/help-faq/tax-relief-certification).",
+                      "infoType": "noformat",
+                      "includeIf": "${filmFinalInterimCertificationChoice contains 0}",
+                      "comment": "Has neither interim, nor final"
+                    },
                     {
-                      "id": "filmAVECconnectedPersonsTransactionsNumber",
-                      "shortName": {
-                        "en": "Number of connected parties"
-                      },
-                      "errorShortName": {
-                        "en": "the number of connected parties"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The number of connected parties"
-                      },
-                      "type": "text",
-                      "format": "positiveWholeNumber"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${filmAVECconnectedPersonsChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What is the total cost of the connected party transactions for ${filmAVECproductionName}?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECconnectedPersonsTransactionsValue",
-                      "shortName": {
-                        "en": "Cost of connected party transactions"
-                      },
-                      "errorShortName": {
-                        "en": "the cost of connected party transactions"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The cost of connected party transactions"
-                      },
-                      "type": "text",
-                      "helpText": "Enter the amount in GBP.",
-                      "format": "positiveSterling"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${filmAVECconnectedPersonsChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "Upload details of the connected party transactions for ${filmAVECproductionName}"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECCconnectedPersonsInfo",
+                      "id": "filmFinalCertificationNextInfo",
                       "type": "info",
                       "infoType": "noformat",
                       "label": "",
                       "infoText": {
-                        "en": "Upload a document that provides details about all the connected party transactions. \n\n For each transaction, you should include: \n\n* the name of the connected party\n* the date of the transaction\n* the amount spent\n* a description of the goods or services provided by the connected party"
+                        "en": "Once you have received final certification for ${filmTRproductionName}, you can return to this form to apply for tax relief."
                       }
                     },
-                    {
-                      "id": "filmAVECCconnectedPersonsMoreInfo",
-                      "type": "info",
-                      "label": "",
-                      "infoText": {
-                        "en": "You can group transactions if the costs and the goods or services provided are similar."
-                      }
-                    },
-                    {
-                      "id": "filmAVECconnectedPersonsUpload",
-                      "type": "file",
-                      "mandatory": false,
-                      "helpText": {
-                        "en": "The selected file must be a PDF, JPEG, XLSX, ODS, DOCX, ODT, PPTX, or ODP.",
-                        "cy": "Mae’n rhaid i'r ffeil a ddewisir fod yn PDF JPEG XLSX ODS DOCX ODT PPTX neu ODP."
-                      },
-                      "label": {
-                        "en": "Upload file"
-                      },
-                      "labelSize": "s",
-                      "shortName": {
-                        "en": "Uploaded connected party transactions"
-                      },
-                      "errorMessage": {
-                        "en": "Connected party transactions must be uploaded"
-                      }
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "Total relevant global expenditure"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECGlobalExpenditureAPInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "label": "",
-                      "infoText": "We need to know the total relevant global expenditure for ${filmAVECproductionName} across all accounting periods (including the current claim period)."
-                    },
-                    {
-                      "id": "filmAVECGlobalExpenditureInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "label": "",
-                      "infoText": "Relevant global expenditure is the amount of core expenditure that is left after the excluded expenditure is removed."
-                    },
-                    {
-                      "id": "filmAVECCoreExpenditureGCInfo",
-                      "type": "info",
-                      "infoType": "long",
-                      "label": "What is core expenditure?",
-                      "infoText": "core expenditure is the amount spent on:\n \n* Pre-production\n* Principal photography \n* Post-production "
-                    },
-                    {
-                      "id": "filmAVECtotalRelevantExpenditure",
-                      "shortName": {
-                        "en": "Total relevant global expenditure"
-                      },
-                      "errorShortName": {
-                        "en": "the relevant global expenditure"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The relevant global expenditure"
-                      },
-                      "label": "What is the total relevant global expenditure for ${filmAVECproductionName}?",
-                      "labelSize": "s",
-                      "helpText": "Enter in GBP.",
-                      "type": "text",
-                      "format": "positiveSterling"
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "includeIf": "${creditExpenditureProjectType contains 'indyFilmAVEC' && filmAVECtotalRelevantExpenditure >= 15000000}",
-                  "title": {
-                    "en": "This film exceeds the $15 million cap"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "comingSoonInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "infoText": "Playback calculation to go here."
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "Total UK relevant global expenditure"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECUKExpenditureAPInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "label": "",
-                      "infoText": "We need to know the total UK relevant global expenditure for ${filmAVECproductionName} across all accounting periods (including the current claim period)."
-                    },
-                    {
-                      "id": "filmAVECUKExpenditureInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "label": "",
-                      "infoText": "The total UK relevant global expenditure is the amount of total UK global expenditure that is spent on goods of services used or consumed in the UK."
-                    },
-                    {
-                      "id": "filmAVECUKtotalUKrelevantGlobalExpenditure",
-                      "shortName": {
-                        "en": "Total UK relevant global expenditure"
-                      },
-                      "errorShortName": {
-                        "en": "the UK relevant global expenditure"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The UK relevant global expenditure"
-                      },
-                      "label": "What is the total UK relevant global expenditure for ${filmAVECproductionName}?",
-                      "labelSize": "s",
-                      "helpText": "Enter in GBP.",
-                      "type": "text",
-                      "format": "positiveSterling",
-                      "validators": [
-                        {
-                          "validIf": "${filmAVECUKtotalUKrelevantGlobalExpenditure <= filmAVECtotalRelevantExpenditure}",
-                          "errorMessage": "Total UK relevant global expenditure cannot be more than the total relevant global expenditure"
-                        }
-                      ]
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "Have you claimed AVEC for ${filmAVECproductionName} before?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
                     {
                       "type": "choice",
-                      "id": "hasPreviouslyClaimedExpenditureCreditChoice",
+                      "label": "What do you want to do now?",
+                      "labelSize": "m",
+                      "id": "filmFinalNotAppliedCertificationNextStepsChoice",
                       "shortName": {
-                        "en": "Film has previously claimed expenditure credit"
+                        "en": "What to do next"
                       },
-                      "errorMessage": "Select yes if the film has previously claimed expenditure credit",
-                      "format": "yesno"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${hasPreviouslyClaimedExpenditureCreditChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What was the qualifying expenditure to date for the period for which you last claimed an expenditure credit?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECUKqualifyingExpenditureToDate",
-                      "shortName": {
-                        "en": "Total claimed in last AVEC claim"
-                      },
-                      "errorShortName": {
-                        "en": "the amount claimed in last AVEC claim"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The amount claimed in last AVEC claim"
-                      },
-                      "type": "text",
-                      "helpText": "Enter the total amount in GBP.",
-                      "format": "positiveSterling"
-                    }
-                  ]
-                },
-                {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What is the total expenditure credit for the accounting period ending ${accountingEnd}?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECexpenditureCredit",
-                      "shortName": {
-                        "en": "Expenditure credit for the accounting period"
-                      },
-                      "errorShortName": {
-                        "en": "the total expenditure credit for the accounting period"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The total expenditure credit for the accounting period"
-                      },
-                      "type": "text",
-                      "helpText": [
+                      "choices": [
                         {
-                          "includeIf": "${filmAVECproductionStatus contains 0}",
-                          "en": "Enter the total amount in GBP."
+                          "en": "Tell us about another film, or project"
                         },
                         {
-                          "en": "Include any additional credit for relevant VFX costs. Enter the total amount in GBP."
-                        }
-                      ],
-                      "format": "positiveSterling",
-                      "validators": [
-                        {
-                          "validIf": "${filmAVECexpenditureCredit <= filmAVECUKtotalUKrelevantGlobalExpenditure}",
-                          "errorMessage": "Expenditure credit for the accounting period should not be more than the total UK relevant global expenditure"
+                          "en": "Sign out of this service"
                         }
                       ]
                     }
                   ]
                 },
                 {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "includeIf": "${filmAVECproductionStatus contains 1 || filmAVECproductionStatus contains 2}",
+                  "caption": "Film Tax Relief project $n",
+                  "includeIf": "${filmFinalCertificationChoice contains 0 || filmInterimCertificationChoice contains 0}",
                   "title": {
-                    "en": "Do you want to claim additional credit for the VFX costs of ${filmAVECproductionName}?"
-                  },
-                  "shortName": "Visual effects (VFX) credits",
-                  "fields": [
-                    {
-                      "type": "choice",
-                      "id": "filmAVECvfxAssignVendorsToFilmChoice",
-                      "shortName": {
-                        "en": "Claiming VFX tax relief"
-                      },
-                      "errorMessage": "Select yes to claim additional tax relief for the VFX costs",
-                      "format": "yesno"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "How many vendors were involved in the VFX for ${filmAVECproductionName}?"
+                    "en": "What is the BFI reference number for ${filmTRproductionName}?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "AVECfilmVFXvendorNumber",
+                      "id": "filmTRDCMSnumber",
                       "shortName": {
-                        "en": "Number of VFX vendors"
+                        "en": "DCMS reference number"
                       },
                       "errorShortName": {
-                        "en": "the number of vendors involved in the VFX for ${filmAVECproductionName}"
+                        "en": "DCMS reference number"
                       },
                       "errorShortNameStart": {
-                        "en": "The number of VFX vendors"
+                        "en": "DCMS reference number"
                       },
                       "type": "text",
-                      "format": "positiveWholeNumber"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "VFX vendor and cost details that you'll need"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "AVECfilmVFXXCompanieInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "infoText": "You told us that <strong>${AVECfilmVFXvendorNumber}</strong> vendors were involved in the VFX for ${filmAVECproductionName}. \n\n We'll ask you about each vendor, one at a time."
-                    },
-                    {
-                      "id": "AVECfilmVFXWhatYouNeedInfo",
-                      "type": "info",
-                      "infoType": "noformat",
-                      "infoText": "##What you'll need \n\n For each vendor, we’ll ask you for:\n* their name\n* their company number (if applicable) \n* the amount you paid for their VFX work on the film\n* a description of the VFX services that they provided\n* the number of individuals they worked with to deliver VFX for the film"
-                    },
-                    {
-                      "type": "info",
-                      "id": "companyNoNotKnownShownInfo",
-                      "label": "",
-                      "infoText": "If you need help finding a company number you can <a href='https://find-and-update.company-information.service.gov.uk/'>search the online register (opens in new tab)</a>."
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What is the business name of vendor $n?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "filmAVECvfxVendorName",
-                      "notPII": true,
-                      "shortName": {
-                        "en": "Company name"
-                      },
-                      "errorShortName": {
-                        "en": "the business name of the company"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The company's business name"
-                      },
-                      "type": "text",
+                      "helpText": "You can find this on the British cultural certificate. ",
                       "format": "text"
                     }
                   ]
                 },
                 {
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "title": {
-                    "en": "Is ${filmAVECvfxVendorName} a business?"
-                  },
-                  "shortName": "Visual effects (VFX) credits",
-                  "fields": [
+                  "caption": "Film Tax Relief project $n",
+                  "title": [
                     {
-                      "type": "choice",
-                      "id": "vendorAffinityChoice",
-                      "shortName": {
-                        "en": "Vendor is a business"
-                      },
-                      "errorMessage": "Select yes if the vendor is a business",
-                      "format": "yesno"
-                    }
-                  ]
-                },
-                {
-                  "includeIf": "${vendorAffinityChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
-                  "title": {
-                    "en": "What is the company number for ${filmAVECvfxVendorName}?"
-                  },
-                  "presentationHint": "invisiblePageTitle",
-                  "fields": [
-                    {
-                      "id": "AVECfilmVFXvendorCRN",
-                      "helpText": "This is the registered number from Companies House. It is 8 characters. For example, 01234567 or AC012345.",
-                      "notPII": true,
-                      "shortName": {
-                        "en": "Company number"
-                      },
-                      "type": "text",
-                      "format": "companyRegistrationNumber"
+                      "includeIf": "${filmTRproductionStatus contains 1}",
+                      "en": "Upload the final British cultural certificate for ${filmTRproductionName}"
                     },
                     {
-                      "type": "info",
-                      "id": "companyNoNotKnownInfo",
-                      "label": "If you do not know the company number",
-                      "infoType": "long",
-                      "infoText": "You can find the company number <a href='https://find-and-update.company-information.service.gov.uk/'>using the online register (opens in new tab)</a>."
+                      "en": "Upload the interim British cultural certificate for ${filmTRproductionName}"
+                    }
+                  ],
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "id": "filmTRcertificateUpload",
+                      "type": "file",
+                      "mandatory": false,
+                      "helpText": {
+                        "en": "The selected file must be a PDF, JPEG, XLSX, ODS, DOCX, ODT, PPTX, or ODP.",
+                        "cy": "Mae’n rhaid i'r ffeil a ddewisir fod yn PDF JPEG XLSX ODS DOCX ODT PPTX neu ODP."
+                      },
+                      "label": {
+                        "en": "Upload file"
+                      },
+                      "labelSize": "s",
+                      "shortName": {
+                        "en": "British cultural certificate"
+                      },
+                      "errorMessage": {
+                        "en": "Upload the British cultural certificate for this production"
+                      }
                     }
                   ]
                 },
                 {
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "caption": {
+                    "en": "Film Tax Relief project $n"
+                  },
                   "title": {
-                    "en": "What is the cost of the relevant VFX work carried out in the UK by ${filmAVECvfxVendorName}?"
+                    "en": "What is the total core expenditure for ${filmTRproductionName} for the accounting period ending ${accountingEnd}?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "AVECfilmVFXvendorRelevantExpenditure",
+                      "id": "filmTRexpenditure",
                       "shortName": {
-                        "en": "Cost of VFX services"
-                      },
-                      "errorShortName": {
-                        "en": "how much the VFX services cost"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The cost of the VFX services"
+                        "en": "Expenditure"
                       },
                       "type": "text",
-                      "helpText": "Enter the amount in GBP.",
+                      "helpText": "This is the total cost you spend on pre-production, principal photography and post-production. Enter the amount in GBP.",
                       "format": "positiveSterling"
                     }
                   ]
                 },
                 {
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "caption": {
+                    "en": "Film Tax Relief project $n"
+                  },
                   "title": {
-                    "en": "Provide a description of the VFX services that ${filmAVECvfxVendorName} provided"
+                    "en": "What is the total UK core expenditure for ${filmTRproductionName} for the accounting period ending ${accountingEnd}?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "AVECfilmVFXvendorDescription",
+                      "id": "filmTRUKcoreExpenditure",
                       "shortName": {
-                        "en": "Description of VFX services"
-                      },
-                      "errorShortName": {
-                        "en": "a description of the VFX services provided"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The description of VFX services"
+                        "en": "UK core expenditure"
                       },
                       "type": "text",
-                      "displayWidth": "xl",
-                      "helpText": "For example pre vis, light touch up work, shot counts, CGI characters, or beauty work.",
-                      "format": "text",
-                      "multiline": true
+                      "helpText": "This is the portion of your total core expenditure that has been spent specifically on activities in the UK. Enter the amount in GBP.",
+                      "format": "positiveSterling"
                     }
                   ]
                 },
                 {
-                  "includeIf": "${filmAVECvfxAssignVendorsToFilmChoice contains 0}",
-                  "caption": "AVEC film project $n – ${filmAVECproductionName}",
+                  "caption": "Film Tax Relief project $n",
                   "title": {
-                    "en": "How many people did ${filmAVECvfxVendorName} work with to deliver the VFX for the film? "
+                    "en": "Have you claimed tax relief for this project in the past?"
                   },
                   "presentationHint": "invisiblePageTitle",
                   "fields": [
                     {
-                      "id": "AVECfilmVFXvendorNumberIndividuals",
+                      "type": "choice",
+                      "id": "claimedTaxReliefPastchoice",
                       "shortName": {
-                        "en": "Number of people to deliver VFX"
+                        "en": "Has claimed tax relief for project in past"
                       },
-                      "errorShortName": {
-                        "en": "the number of people involved in VFX"
-                      },
-                      "errorShortNameStart": {
-                        "en": "The number of people involved in VFX"
+                      "choices": [
+                        {
+                          "en": "Yes"
+                        },
+                        {
+                          "en": "No"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "includeIf": "${claimedTaxReliefPastchoice contains 0}",
+                  "caption": {
+                    "en": "Film Tax Relief project $n"
+                  },
+                  "title": {
+                    "en": "What was the additional deduction for ${filmTRproductionName}?"
+                  },
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "id": "filmTRadditionalDeduction",
+                      "shortName": {
+                        "en": "Additional deduction"
                       },
                       "type": "text",
-                      "format": "positiveWholeNumber"
+                      "format": "positiveSterling"
+                    }
+                  ]
+                },
+                {
+                  "caption": {
+                    "en": "Film Tax Relief project $n"
+                  },
+                  "title": {
+                    "en": "What was the amount of loss surrendered for ${filmTRproductionName} for the accounting period ending ${accountingEnd}?"
+                  },
+                  "presentationHint": "invisiblePageTitle",
+                  "fields": [
+                    {
+                      "id": "filmTRamountLossSurrendered",
+                      "helpText": "If no loss was surrendered, enter 0.",
+                      "shortName": {
+                        "en": "Amount loss surrendered"
+                      },
+                      "type": "text",
+                      "format": "positiveSterling"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "includeIf": "${ftvgTRprojectType contains 'filmTR'}",
+              "caption": {
+                "en": "Film Tax Relief calculations"
+              },
+              "title": {
+                "en": "Totals for all film Tax Relief projects"
+              },
+              "presentationHint": "invisiblePageTitle",
+              "fields": [
+                {
+                  "id": "filmTRcalculationsTable",
+                  "type": "table",
+                  "summaryValue": [
+                    {
+                      "en": "Total core expenditure: ${totalCoreExpenditureTRfilm}"
+                    }
+                  ],
+                  "label": {
+                    "en": "Calculations"
+                  },
+                  "header": [
+                    {
+                      "en": "Film project name"
+                    },
+                    {
+                      "en": "Total core expenditure"
+                    },
+                    {
+                      "en": "Total UK core expenditure"
+                    },
+                    {
+                      "en": "Total loss surrendered"
+                    }
+                  ],
+                  "rows": [
+                    {
+                      "dynamic": "filmTRaddAnother",
+                      "values": [
+                        {
+                          "value": {
+                            "en": "${filmTRproductionName}"
+                          }
+                        },
+                        {
+                          "value": {
+                            "en": "${filmTRexpenditure}"
+                          }
+                        },
+                        {
+                          "value": {
+                            "en": "${filmTRUKcoreExpenditure}"
+                          }
+                        },
+                        {
+                          "value": {
+                            "en": "${filmTRamountLossSurrendered}"
+                          }
+                        }
+                      ]
+                    },
+                    {
+                      "values": [
+                        {
+                          "class": "govuk-table__header",
+                          "value": {
+                            "en": "Total"
+                          }
+                        },
+                        {
+                          "class": "govuk-table__header",
+                          "value": {
+                            "en": "${totalExpenditureTRfilm}"
+                          }
+                        },
+                        {
+                          "class": "govuk-!-font-weight-bold govuk-!-text-align-right",
+                          "value": {
+                            "en": "${totalCoreExpenditureTRfilm}"
+                          }
+                        },
+                        {
+                          "class": "govuk-!-font-weight-bold govuk-!-text-align-right",
+                          "value": {
+                            "en": "${totalLossSurrenderedTRfilm}"
+                          }
+                        }
+                      ]
                     }
                   ]
                 }
